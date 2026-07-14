@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Raleway", sans-serif;
+
+  --color-brand-navy: #252D4B;
+  --color-brand-carbon: #2D2B2C;
+  --color-brand-light-gray: #F7F7F7;
+  --color-brand-lavender: #AAB2CD;
+  --color-brand-coral: #F2A38A;
+  --color-brand-cyan: #00D1E4;
+
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-shimmer: shimmer 1.5s infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes shimmer {
+    100% { transform: translateX(200%); }
+  }
+}
+
+/* Custom glowing effects and grid backgrounds for obsidian high-fidelity style */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.radial-glow {
+  background: radial-gradient(circle 600px at 50% 200px, rgba(242, 163, 138, 0.06), rgba(0, 209, 228, 0.04), transparent 80%);
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(242, 163, 138, 0.12);
+}
+
+/* Base custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #252D4B;
+}
+::-webkit-scrollbar-thumb {
+  background: #2D2B2C;
+  border-radius: 4px;
+  border: 1px solid rgba(242, 163, 138, 0.1);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F2A38A;
+}
+
