@@ -1,27 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Users, Award, Shield, Target, Lightbulb, Linkedin, Quote } from 'lucide-react';
 import { ABOUT_TEAM } from '../data';
-import { ActivePage } from '../types';
+import { Seo } from './Seo';
+import { Reveal } from './Reveal';
 
-interface NosotrosViewProps {
-  setActivePage: (page: ActivePage) => void;
-}
-
-export function NosotrosView({ setActivePage }: NosotrosViewProps) {
+export function NosotrosView() {
+  const navigate = useNavigate();
   const handleContactClick = () => {
-    setActivePage('contacto');
+    navigate('/contacto');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div id="nosotros-view" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
+      <Seo
+        title="Nosotros"
+        description="Conoce al equipo de Loopa Technology: consultora de datos e IA con foco en gobernanza, soberanía de datos y estándares DAMA-DMBOK en LatAm."
+      />
       {/* Decorative Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-20">
         {/* Header Title */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <Reveal className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-widest bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full">
             Nuestra Historia
           </span>
@@ -31,10 +34,10 @@ export function NosotrosView({ setActivePage }: NosotrosViewProps) {
           <p className="text-brand-lavender text-lg">
             Combinamos metodologías globales de gobernanza con tecnología de vanguardia para empoderar a los corporativos más dinámicos de Latinoamérica.
           </p>
-        </div>
+        </Reveal>
 
         {/* Mission & Vision Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-brand-carbon/50 border border-brand-navy/60 rounded-3xl p-8 relative overflow-hidden group hover:border-brand-coral/40 transition-all">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-coral/5 rounded-full blur-2xl" />
             <div className="space-y-4 relative z-10">
@@ -60,7 +63,7 @@ export function NosotrosView({ setActivePage }: NosotrosViewProps) {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Operational Values */}
         <div className="space-y-12">
@@ -73,7 +76,7 @@ export function NosotrosView({ setActivePage }: NosotrosViewProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <Reveal className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="bg-brand-carbon/30 border border-brand-navy/60 rounded-2xl p-6 text-center space-y-3">
               <div className="w-9 h-9 rounded-lg bg-brand-navy border border-brand-navy/60 flex items-center justify-center text-brand-coral mx-auto">
                 <Shield className="w-4 h-4" />
@@ -103,7 +106,7 @@ export function NosotrosView({ setActivePage }: NosotrosViewProps) {
                 Toda nuestra ingeniería se rige bajo los marcos mundiales de calidad, linaje de datos y trazabilidad arquitectónica más exigentes.
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Leadership Team Section */}
@@ -120,7 +123,7 @@ export function NosotrosView({ setActivePage }: NosotrosViewProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <Reveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {ABOUT_TEAM.map((member, idx) => (
               <div
                 key={idx}
@@ -160,7 +163,7 @@ export function NosotrosView({ setActivePage }: NosotrosViewProps) {
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
 
         {/* Corporate Quote Banner */}

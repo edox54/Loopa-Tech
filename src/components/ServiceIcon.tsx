@@ -1,4 +1,4 @@
-import { Database, TrendingUp, BarChart3, Sparkles, ShieldCheck, Cpu } from 'lucide-react';
+import { Database, TrendingUp, BarChart3, Sparkles, ShieldCheck, Cpu, Handshake } from 'lucide-react';
 
 interface ServiceIconProps {
   name: string;
@@ -19,6 +19,8 @@ export function ServiceIcon({ name, className = 'w-6 h-6' }: ServiceIconProps) {
       return <ShieldCheck className={className} id={`icon-shield-${name}`} />;
     case 'Cpu':
       return <Cpu className={className} id={`icon-cpu-${name}`} />;
+    case 'Handshake':
+      return <Handshake className={className} id={`icon-handshake-${name}`} />;
     default:
       return <Database className={className} id={`icon-default-${name}`} />;
   }

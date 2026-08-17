@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Play, Pause, RefreshCw, Cpu, Database, Server, Settings, Terminal, TrendingUp, DollarSign, Activity, Zap, CheckCircle2, Award, ChevronRight, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-
-interface DataLabViewProps {
-  setActivePage: (page: any) => void;
-}
+import { Seo } from './Seo';
+import { Reveal } from './Reveal';
+import { MediaPlaceholder } from './MediaPlaceholder';
 
 type PipelineTemplate = 'rag' | 'predictive' | 'governance';
 
-export function DataLabView({ setActivePage }: DataLabViewProps) {
+export function DataLabView() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'pipeline' | 'roi'>('pipeline');
   
   // Pipeline Simulator States
@@ -55,10 +56,12 @@ export function DataLabView({ setActivePage }: DataLabViewProps) {
     },
   };
 
-  // Auto-scroll logs terminal
+  // Auto-scroll logs terminal — scroll only the terminal's own box, never the page
+  // (scrollIntoView climbs ancestor scrollables and was yanking the whole page on every log line).
   useEffect(() => {
-    if (logsEndRef.current) {
-      logsEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    const container = logsEndRef.current?.parentElement;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
     }
   }, [logs]);
 
@@ -231,13 +234,17 @@ export function DataLabView({ setActivePage }: DataLabViewProps) {
 
   return (
     <div id="data-lab-view" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative overflow-x-hidden">
+      <Seo
+        title="Lab de Datos"
+        description="Simula en vivo un pipeline de datos de Loopa Technology: ingesta, procesamiento y ROI estimado para RAG privado, analítica predictiva y gobernanza."
+      />
       {/* Background visual effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         {/* Lab Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <Reveal className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-widest bg-brand-carbon border border-brand-coral/30 px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 shadow-sm">
             <Zap className="w-3.5 h-3.5 text-brand-coral animate-pulse" />
             Loopa Lab Interactivo
@@ -248,7 +255,11 @@ export function DataLabView({ setActivePage }: DataLabViewProps) {
           <p className="text-brand-lavender text-lg max-w-2xl mx-auto">
             Experimenta de primera mano la ingeniería de Loopa. Diseña tu pipeline analítico en tiempo real o predice el retorno de inversión (ROI) financiero de tu próximo sistema de datos.
           </p>
-        </div>
+        </Reveal>
+
+        <Reveal className="max-w-3xl mx-auto w-full">
+          <MediaPlaceholder ratio="16/9" kind="video" label="Video: cómo funciona el Lab" className="w-full" />
+        </Reveal>
 
         {/* Tab Selection */}
         <div className="flex justify-center">
@@ -882,7 +893,7 @@ export function DataLabView({ setActivePage }: DataLabViewProps) {
             <div className="pt-2">
               <button
                 onClick={() => {
-                  setActivePage('contacto');
+                  navigate('/contacto');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="px-8 py-4 rounded-xl text-brand-navy font-bold text-sm bg-gradient-to-r from-brand-coral via-brand-coral to-brand-cyan hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-brand-coral/25 inline-flex items-center space-x-2 cursor-pointer"

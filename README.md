@@ -1,20 +1,36 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Loopa Technology — Sitio Web
 
-# Run and deploy your AI Studio app
+Consultora de datos e IA de alta gama para empresas en LatAm. Sitio construido con React 19 + Vite + TypeScript + Tailwind CSS 4.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/5b835794-c9c9-48b7-b1d0-5d95f7ad2606
+- React Router para rutas reales (`/servicios`, `/blog/:id`, `/casos/:id`, etc.)
+- `react-i18next` para ES/EN (estructura preparada, contenido pendiente de adaptación cultural)
+- `animejs` + `motion` para animaciones e interacciones de scroll
 
-## Run Locally
+## Correr en local
 
-**Prerequisites:**  Node.js
+**Requisitos:** Node.js
 
+```bash
+npm install
+npm run dev
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Build
+
+```bash
+npm run build
+```
+
+Genera `public/sitemap.xml` automáticamente antes del build de Vite.
+
+## Variables de entorno
+
+Copiá `.env.example` a `.env` y completá según necesites:
+
+- `VITE_CALENDLY_URL` — link de Calendly para agendar demos
+- `VITE_PLATFORM_URL` — URL de la plataforma Loopa (login Facebook) embebida vía iframe
+- `VITE_MERCATELY_WIDGET_ID` — ID del widget de chatbot Mercately
+- `VITE_GA4_ID`, `VITE_GTM_ID`, `VITE_META_PIXEL_ID` — analítica (opcional)
+- `VITE_SITE_URL` — dominio usado al generar el sitemap

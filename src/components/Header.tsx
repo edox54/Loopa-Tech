@@ -1,40 +1,43 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Shield } from 'lucide-react';
-import { ActivePage } from '../types';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Menu, X, ArrowRight, Languages } from 'lucide-react';
+import { PlatformDemoButton } from './PlatformDemoButton';
 
-interface HeaderProps {
-  activePage: ActivePage;
-  setActivePage: (page: ActivePage) => void;
-}
-
-export function Header({ activePage, setActivePage }: HeaderProps) {
+export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+
+  const navItems = [
+    { label: t('nav.home'), to: '/' },
+    { label: t('nav.services'), to: '/servicios' },
+    { label: t('nav.datalab'), to: '/datalab' },
+    { label: t('nav.cases'), to: '/casos' },
+    { label: t('nav.blog'), to: '/blog' },
+    { label: t('nav.about'), to: '/nosotros' },
+    { label: t('nav.contact'), to: '/contacto' },
+  ];
+
+  const toggleLanguage = () => {
+    const next = i18n.language === 'es' ? 'en' : 'es';
+    i18n.changeLanguage(next);
+    localStorage.setItem('loopa-lang', next);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems: { label: string; id: ActivePage }[] = [
-    { label: 'Inicio', id: 'home' },
-    { label: 'Servicios', id: 'servicios' },
-    { label: 'Lab de Datos', id: 'datalab' },
-    { label: 'Casos de Éxito', id: 'casos' },
-    { label: 'Blog', id: 'blog' },
-    { label: 'Nosotros', id: 'nosotros' },
-    { label: 'Contacto', id: 'contacto' },
-  ];
+  const isSelected = (to: string) =>
+    to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
 
-  const handleNavClick = (pageId: ActivePage) => {
-    setActivePage(pageId);
+  const handleNavClick = (to: string) => {
+    navigate(to);
     setIsMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -51,10 +54,11 @@ export function Header({ activePage, setActivePage }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div
+          <Link
             id="header-logo"
+            to="/"
             className="flex items-center space-x-3 cursor-pointer group"
-            onClick={() => handleNavClick('home')}
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             <div className="relative w-10 h-10 flex items-center justify-center bg-brand-carbon rounded-xl border border-brand-navy hover:border-brand-coral/50 transition-all duration-300">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-coral/20 to-brand-cyan/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -84,43 +88,46 @@ export function Header({ activePage, setActivePage }: HeaderProps) {
                 Technology
               </span>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav id="desktop-nav" className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => {
-              const isSelected =
-                activePage === item.id ||
-                (item.id === 'servicios' && (activePage === 'servicio-llm' || activePage === 'servicio-social-listening')) ||
-                (item.id === 'casos' && activePage === 'caso-detalle') ||
-                (item.id === 'blog' && activePage === 'blog-post-detalle');
-              return (
-                <button
-                  key={item.id}
-                  id={`nav-link-${item.id}`}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 cursor-pointer ${
-                    isSelected
-                      ? 'text-brand-coral bg-brand-carbon border border-brand-coral/20'
-                      : 'text-brand-lavender hover:text-white hover:bg-brand-carbon/40 border border-transparent'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+            {navItems.map((item) => (
+              <button
+                key={item.to}
+                id={`nav-link-${item.to.replace(/\//g, '') || 'home'}`}
+                onClick={() => handleNavClick(item.to)}
+                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 cursor-pointer ${
+                  isSelected(item.to)
+                    ? 'text-brand-coral bg-brand-carbon border border-brand-coral/20'
+                    : 'text-brand-lavender hover:text-white hover:bg-brand-carbon/40 border border-transparent'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center space-x-3">
+            <button
+              id="language-toggle"
+              onClick={toggleLanguage}
+              className="p-2.5 rounded-xl text-brand-lavender hover:text-white border border-transparent hover:border-brand-coral/40 transition-all cursor-pointer flex items-center space-x-1.5"
+              aria-label="Toggle language"
+            >
+              <Languages className="w-4 h-4" />
+              <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
+            </button>
+            <PlatformDemoButton className="px-4 py-2.5 rounded-xl text-sm font-semibold text-brand-lavender border border-brand-navy/60 hover:text-white hover:border-brand-coral/40 transition-all" />
             <button
               id="cta-agendar-header"
-              onClick={() => handleNavClick('contacto')}
+              onClick={() => handleNavClick('/contacto')}
               className="relative px-5 py-2.5 rounded-xl text-sm font-bold text-brand-navy bg-gradient-to-r from-brand-coral via-brand-coral to-brand-cyan hover:brightness-110 active:scale-95 transition-all duration-300 shadow-[0_0_15px_rgba(242,163,138,0.2)] cursor-pointer overflow-hidden group"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative flex items-center space-x-2">
-                <span>Agendar Consultoría</span>
+                <span>{t('cta.scheduleConsult')}</span>
                 <ArrowRight className="w-4 h-4 text-brand-navy group-hover:translate-x-1 transition-transform" />
               </span>
             </button>
@@ -142,27 +149,24 @@ export function Header({ activePage, setActivePage }: HeaderProps) {
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
         <div id="mobile-nav-drawer" className="md:hidden bg-brand-navy border-b border-brand-carbon px-4 pt-4 pb-6 space-y-2">
-          {navItems.map((item) => {
-            const isSelected = activePage === item.id;
-            return (
-              <button
-                key={item.id}
-                id={`mobile-nav-link-${item.id}`}
-                onClick={() => handleNavClick(item.id)}
-                className={`block w-full text-left px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
-                  isSelected
-                    ? 'text-brand-coral bg-brand-carbon border border-brand-coral/10'
-                    : 'text-brand-lavender hover:text-white hover:bg-brand-carbon/30'
-                }`}
-              >
-                {item.label}
-              </button>
-            );
-          })}
+          {navItems.map((item) => (
+            <button
+              key={item.to}
+              id={`mobile-nav-link-${item.to.replace(/\//g, '') || 'home'}`}
+              onClick={() => handleNavClick(item.to)}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
+                isSelected(item.to)
+                  ? 'text-brand-coral bg-brand-carbon border border-brand-coral/10'
+                  : 'text-brand-lavender hover:text-white hover:bg-brand-carbon/30'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
           <div className="pt-4 px-4">
             <button
               id="mobile-cta-agendar"
-              onClick={() => handleNavClick('contacto')}
+              onClick={() => handleNavClick('/contacto')}
               className="w-full py-3 rounded-xl text-center text-sm font-bold text-brand-navy bg-gradient-to-r from-brand-coral to-brand-cyan hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-brand-coral/25"
             >
               Agendar Consultoría

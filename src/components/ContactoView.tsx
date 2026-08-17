@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, CheckCircle2, Send, Clock, Globe, ArrowRight, ShieldCheck, ChevronRight } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle2, Send, Clock, Globe, ArrowRight, ShieldCheck, ChevronRight, CalendarClock } from 'lucide-react';
+import { Seo } from './Seo';
+import { Reveal } from './Reveal';
+
+// TODO(env): set VITE_CALENDLY_URL to the real Calendly scheduling link once available.
+const CALENDLY_URL = import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/loopa-technology/demo';
+
+const BUDGET_OPTIONS = [
+  { value: 'menos-5000', label: 'Menos de $5,000 USD/año' },
+  { value: '5000-20000', label: '$5,000 - $20,000 USD/año' },
+  { value: 'mas-20000', label: 'Más de $20,000 USD/año' },
+] as const;
 
 interface CityOffice {
   name: string;
@@ -16,11 +27,13 @@ export function ContactoView() {
     email: '',
     telefono: '',
     servicio: 'social-listening',
+    presupuesto: '' as '' | (typeof BUDGET_OPTIONS)[number]['value'],
     mensaje: '',
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [activeOffice, setActiveOffice] = useState<number>(0);
+  const isQualifiedBudget = formData.presupuesto !== 'menos-5000';
 
   const offices: CityOffice[] = [
     {
@@ -55,7 +68,7 @@ export function ContactoView() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.nombre && formData.email && formData.empresa) {
+    if (formData.nombre && formData.email && formData.empresa && formData.presupuesto) {
       setIsSubmitted(true);
     }
   };
@@ -67,20 +80,29 @@ export function ContactoView() {
       email: '',
       telefono: '',
       servicio: 'social-listening',
+      presupuesto: '',
       mensaje: '',
     });
     setIsSubmitted(false);
   };
 
+  const openCalendly = () => {
+    window.open(CALENDLY_URL, 'loopa-calendly', 'width=680,height=780');
+  };
+
   return (
     <div id="contacto-view" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
+      <Seo
+        title="Contacto"
+        description="Agenda una consultoría con Loopa Technology. Analizamos tus silos de datos y te preparamos un pre-diagnóstico técnico sin compromiso."
+      />
       {/* Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <Reveal className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-widest bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full">
             Canales Oficiales
           </span>
@@ -90,7 +112,7 @@ export function ContactoView() {
           <p className="text-brand-lavender text-lg">
             Completa nuestro cuestionario preliminar. Un ingeniero consultor especializado analizará tus silos de datos para preparar un pre-diagnóstico técnico.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Intake Form Column */}
@@ -105,10 +127,30 @@ export function ContactoView() {
                     ¡Cuestionario Preliminar Recibido!
                   </h2>
                   <p className="text-brand-lavender text-sm max-w-md mx-auto leading-relaxed">
-                    Hemos registrado tus requisitos técnicos bajo el ticket temporal{' '}
-                    <span className="text-brand-cyan font-mono font-bold">#LP-4820-2026</span>. Un ingeniero senior se comunicará a tu correo corporativo en menos de 24 horas hábiles.
+                    {isQualifiedBudget ? (
+                      <>
+                        Hemos registrado tus requisitos técnicos bajo el ticket temporal{' '}
+                        <span className="text-brand-cyan font-mono font-bold">#LP-4820-2026</span>. Un ingeniero senior se comunicará a tu correo corporativo en menos de 24 horas hábiles.
+                      </>
+                    ) : (
+                      <>
+                        Gracias por tu interés. Para proyectos con este rango de presupuesto te recomendamos explorar nuestros{' '}
+                        <span className="text-brand-cyan font-mono font-bold">recursos gratuitos</span> mientras evalúas un sprint con Loopa a futuro.
+                      </>
+                    )}
                   </p>
                 </div>
+
+                {isQualifiedBudget && (
+                  <button
+                    id="cta-agenda-demo"
+                    onClick={openCalendly}
+                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-brand-coral to-brand-cyan hover:brightness-110 text-brand-navy font-bold text-sm px-6 py-3 rounded-xl transition-all cursor-pointer shadow-lg shadow-brand-coral/20"
+                  >
+                    <CalendarClock className="w-4 h-4" />
+                    <span>Agenda tu demo</span>
+                  </button>
+                )}
 
                 {/* Simulated ticket summary card */}
                 <div className="bg-brand-navy border border-brand-carbon rounded-2xl p-6 text-left max-w-md mx-auto space-y-4 font-mono text-xs text-brand-lavender">
@@ -218,6 +260,24 @@ export function ContactoView() {
                     <option value="prediccion-ventas">Predicción de Ventas e Inventarios</option>
                     <option value="consentimiento-blockchain">Gestión de Consentimiento (Blockchain)</option>
                     <option value="implementacion-llm">Implementación de LLMs e IA para Negocio</option>
+                  </select>
+                </div>
+
+                {/* Budget Dropdown */}
+                <div className="space-y-2">
+                  <label className="text-xs font-mono font-bold text-brand-lavender/70 uppercase tracking-wider block">
+                    Presupuesto Anual Disponible
+                  </label>
+                  <select
+                    required
+                    value={formData.presupuesto}
+                    onChange={(e) => setFormData({ ...formData, presupuesto: e.target.value as typeof formData.presupuesto })}
+                    className="w-full bg-brand-navy border border-brand-navy/60 focus:border-brand-coral rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none transition-colors cursor-pointer font-sans"
+                  >
+                    <option value="" disabled>Selecciona un rango</option>
+                    {BUDGET_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
                   </select>
                 </div>
 

@@ -1,16 +1,3 @@
-export type ActivePage =
-  | 'home'
-  | 'servicios'
-  | 'servicio-social-listening'
-  | 'servicio-llm'
-  | 'casos'
-  | 'caso-detalle'
-  | 'blog'
-  | 'blog-post-detalle'
-  | 'nosotros'
-  | 'contacto'
-  | 'datalab';
-
 export interface Service {
   id: string;
   title: string;
@@ -21,6 +8,7 @@ export interface Service {
   benefits: string[];
   forWho: string;
   metrics: string[];
+  comingSoon?: boolean;
 }
 
 export interface ProjectCase {
@@ -35,6 +23,7 @@ export interface ProjectCase {
   metrics: { value: string; label: string }[];
   tag: string;
   date: string;
+  coverImage?: string; // TODO: real asset pending — placeholder rendered until set
 }
 
 export interface BlogPost {
@@ -51,6 +40,7 @@ export interface BlogPost {
   };
   date: string;
   tags: string[];
+  coverImage?: string; // TODO: real asset pending — placeholder rendered until set
 }
 
 export interface TeamMember {

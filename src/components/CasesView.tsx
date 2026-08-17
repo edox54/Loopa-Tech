@@ -1,43 +1,39 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, CheckCircle2, TrendingUp, Calendar, Building2, HelpCircle, Activity } from 'lucide-react';
 import { SUCCESS_CASES_DATA } from '../data';
-import { ActivePage, ProjectCase } from '../types';
+import { Seo } from './Seo';
+import { Reveal } from './Reveal';
+import { MediaPlaceholder } from './MediaPlaceholder';
 
-interface CasesViewProps {
-  activePage: ActivePage;
-  setActivePage: (page: ActivePage) => void;
-  selectedCaseId: string;
-  setSelectedCaseId: (id: string) => void;
-}
+export function CasesView() {
+  const navigate = useNavigate();
+  const { id: selectedCaseId } = useParams<{ id: string }>();
 
-export function CasesView({
-  activePage,
-  setActivePage,
-  selectedCaseId,
-  setSelectedCaseId,
-}: CasesViewProps) {
   const handleBackToCases = () => {
-    setSelectedCaseId('');
-    setActivePage('casos');
+    navigate('/casos');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectCase = (id: string) => {
-    setSelectedCaseId(id);
-    setActivePage('caso-detalle');
+    navigate(`/casos/${id}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // List View of Cases
-  if (activePage === 'casos' && !selectedCaseId) {
+  if (!selectedCaseId) {
     return (
       <div id="cases-index" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
+        <Seo
+          title="Casos de Éxito"
+          description="Casos de éxito reales de Loopa Technology: social listening, predicción de inventarios, consentimiento en blockchain e IA generativa en LatAm."
+        />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
+          <Reveal className="text-center max-w-3xl mx-auto space-y-4 mb-20">
             <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-widest bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full">
               Casos de Estudio
             </span>
@@ -47,18 +43,19 @@ export function CasesView({
             <p className="text-brand-lavender text-lg">
               Conoce cómo diseñamos y desplegamos soluciones robustas para empresas líderes en sus sectores en Latinoamérica.
             </p>
-          </div>
+          </Reveal>
 
           {/* Grid of 4 Cases */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {SUCCESS_CASES_DATA.map((kase) => (
               <div
                 key={kase.id}
                 id={`case-index-card-${kase.id}`}
-                className="bg-brand-carbon border border-brand-navy/60 hover:border-brand-coral/40 rounded-2xl p-8 flex flex-col justify-between hover:bg-brand-carbon/95 transition-all duration-300 group cursor-pointer"
+                className="bg-brand-carbon border border-brand-navy/60 hover:border-brand-coral/40 rounded-2xl overflow-hidden flex flex-col justify-between hover:bg-brand-carbon/95 transition-all duration-300 group cursor-pointer"
                 onClick={() => handleSelectCase(kase.id)}
               >
-                <div className="space-y-6">
+                <MediaPlaceholder ratio="16/9" className="rounded-none border-x-0 border-t-0" />
+                <div className="p-8 space-y-6">
                   <div className="flex items-center justify-between text-xs font-mono text-brand-lavender/60">
                     <span className="font-bold">{kase.industry}</span>
                     <span className="text-brand-coral bg-brand-navy/50 border border-brand-coral/20 px-2 py-0.5 rounded font-bold">
@@ -87,7 +84,7 @@ export function CasesView({
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-brand-navy/40 mt-8 flex items-center justify-between text-xs">
+                <div className="px-8 pb-8 pt-6 border-t border-brand-navy/40 mt-2 flex items-center justify-between text-xs">
                   <span className="text-brand-lavender/70">
                     Cliente: <span className="text-white font-bold">{kase.client}</span>
                   </span>
@@ -98,19 +95,18 @@ export function CasesView({
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </div>
     );
   }
 
   // Case Detail View
-  if (activePage === 'caso-detalle' || selectedCaseId) {
-    // Default to the first case if selectedCaseId isn't found (which is our main high fidelity Almacenes del Centro case)
-    const kase = SUCCESS_CASES_DATA.find((c) => c.id === selectedCaseId) || SUCCESS_CASES_DATA[0];
+  const kase = SUCCESS_CASES_DATA.find((c) => c.id === selectedCaseId) || SUCCESS_CASES_DATA[0];
 
-    return (
+  return (
       <div id="case-detail-page" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
+        <Seo title={kase.title} description={kase.shortDesc} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
 
@@ -142,6 +138,8 @@ export function CasesView({
               {kase.shortDesc}
             </p>
           </div>
+
+          <MediaPlaceholder ratio="21/9" label="Imagen destacada del caso" className="w-full" />
 
           {/* Metrics Spotlight Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -257,7 +255,7 @@ export function CasesView({
             </p>
             <button
               onClick={() => {
-                setActivePage('contacto');
+                navigate('/contacto');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="px-6 py-3 bg-gradient-to-r from-brand-coral to-brand-cyan hover:brightness-110 text-brand-navy font-bold rounded-xl text-sm transition-all cursor-pointer inline-flex items-center space-x-2 shadow-lg shadow-brand-coral/15"
@@ -269,7 +267,4 @@ export function CasesView({
         </div>
       </div>
     );
-  }
-
-  return null;
 }

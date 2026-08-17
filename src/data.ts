@@ -227,8 +227,8 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     category: 'Inteligencia Artificial',
     readTime: '6 min de lectura',
     author: {
-      name: 'Ing. Alejandro Soler',
-      role: 'Director de IA en Loopa Technology',
+      name: 'Anita Sancho',
+      role: 'Content Lead en Loopa Technology',
       avatar: 'AS'
     },
     date: '10 de Julio, 2026',
@@ -262,9 +262,9 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     category: 'Data Science',
     readTime: '5 min de lectura',
     author: {
-      name: 'Camila Rossi',
-      role: 'Consultora Senior de Gobierno de Datos',
-      avatar: 'CR'
+      name: 'Anita Sancho',
+      role: 'Content Lead en Loopa Technology',
+      avatar: 'AS'
     },
     date: '04 de Julio, 2026',
     tags: ['DAMA', 'Gobernanza', 'Data Quality', 'Scaleup'],
@@ -277,9 +277,9 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     category: 'Inteligencia Artificial',
     readTime: '7 min de lectura',
     author: {
-      name: 'Dr. Hugo Mendoza',
-      role: 'Científico de Datos & NLP Lead',
-      avatar: 'HM'
+      name: 'Anita Sancho',
+      role: 'Content Lead en Loopa Technology',
+      avatar: 'AS'
     },
     date: '28 de Junio, 2026',
     tags: ['NLP', 'Social Listening', 'Análisis de Sentimiento', 'Retail'],
@@ -292,8 +292,8 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     category: 'Data Science',
     readTime: '8 min de lectura',
     author: {
-      name: 'Ing. Alejandro Soler',
-      role: 'Director de IA en Loopa Technology',
+      name: 'Anita Sancho',
+      role: 'Content Lead en Loopa Technology',
       avatar: 'AS'
     },
     date: '15 de Junio, 2026',
@@ -307,9 +307,9 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     category: 'Comercial',
     readTime: '5 min de lectura',
     author: {
-      name: 'Abg. Andrés Valenzuela',
-      role: 'Asesor Legal de Tech Compliance',
-      avatar: 'AV'
+      name: 'Anita Sancho',
+      role: 'Content Lead en Loopa Technology',
+      avatar: 'AS'
     },
     date: '02 de Junio, 2026',
     tags: ['Blockchain', 'Habeas Data', 'Compliance', 'Fintech'],
@@ -322,9 +322,9 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     category: 'Comercial',
     readTime: '4 min de lectura',
     author: {
-      name: 'Camila Rossi',
-      role: 'Consultora Senior de Gobierno de Datos',
-      avatar: 'CR'
+      name: 'Anita Sancho',
+      role: 'Content Lead en Loopa Technology',
+      avatar: 'AS'
     },
     date: '20 de Mayo, 2026',
     tags: ['BI', 'PowerBI', 'Inteligencia Comercial', 'Dashboards'],

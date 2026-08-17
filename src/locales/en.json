@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "datalab": "Data Lab",
+    "cases": "Case Studies",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "resources": "Resources"
+  },
+  "cta": {
+    "scheduleConsult": "Schedule Consultation",
+    "viewDemo": "View Live Demo",
+    "scheduleDemo": "Book Your Demo"
+  },
+  "home": {
+    "heroSubtitle": "[EN - pendiente copy adaptado]"
+  }
+}

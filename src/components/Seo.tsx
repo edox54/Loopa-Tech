@@ -1,0 +1,23 @@
+import { useEffect } from 'react';
+
+interface SeoProps {
+  title: string;
+  description: string;
+}
+
+// ponytail: no react-helmet dependency needed — plain DOM API covers per-route title/meta.
+export function Seo({ title, description }: SeoProps) {
+  useEffect(() => {
+    document.title = `${title} | Loopa Technology`;
+
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'description');
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', description);
+  }, [title, description]);
+
+  return null;
+}

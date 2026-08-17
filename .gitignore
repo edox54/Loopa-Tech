@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+.claude/
+.claude-flow/
+PROJECT_CONTEXT.md

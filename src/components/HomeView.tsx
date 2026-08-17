@@ -5,15 +5,13 @@ import {
   Zap, TrendingUp, Code2, Globe, Layers, Server, 
   Network, ChevronRight, Play, CheckCircle2, Lock
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { SERVICES_DATA, CLIENTS_LOGOS, SUCCESS_CASES_DATA } from '../data';
-import { ActivePage } from '../types';
-
-interface HomeViewProps {
-  setActivePage: (page: ActivePage) => void;
-  setSelectedServiceId: (id: string) => void;
-  setSelectedCaseId: (id: string) => void;
-  setSelectedPostId: (id: string) => void;
-}
+import { Seo } from './Seo';
+import { HeroTitle } from './HeroTitle';
+import { Reveal } from './Reveal';
+import { MediaPlaceholder } from './MediaPlaceholder';
 
 const FloatingDataNodes = () => {
   return (
@@ -79,7 +77,9 @@ const CyberLines = () => {
   );
 };
 
-export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseId }: HomeViewProps) {
+export function HomeView() {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const { scrollYProgress } = useScroll();
   const yHero = useTransform(scrollYProgress, [0, 0.5], [0, 200]);
   const opacityHero = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
@@ -119,6 +119,10 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
 
   return (
     <div className="bg-[#020408] min-h-screen text-white overflow-hidden selection:bg-brand-coral/30">
+      <Seo
+        title="Inicio"
+        description="Loopa Technology: consultora de datos e IA de alta gama para empresas en LatAm. Rentabilización, gobernanza, social listening y analítica predictiva."
+      />
       
       {/* GLOBAL BACKGROUND ELEMENTS */}
       <div className="fixed inset-0 z-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,228,0.05),transparent_50%)] pointer-events-none" />
@@ -157,24 +161,15 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
               transition={{ duration: 5, repeat: Infinity, delay: 1 }}
             />
             
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95]">
-              <motion.span 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                className="block text-white"
-              >
-                Inteligencia
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-[#00D1E4] via-[#75E6F2] to-[#F2A38A] drop-shadow-[0_0_15px_rgba(0,209,228,0.3)]"
-              >
-                En Movimiento.
-              </motion.span>
-            </h1>
+            <HeroTitle
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
+              lines={[
+                <span className="text-white">Inteligencia</span>,
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D1E4] via-[#75E6F2] to-[#F2A38A] drop-shadow-[0_0_15px_rgba(0,209,228,0.3)]">
+                  En Movimiento.
+                </span>,
+              ]}
+            />
             
             <motion.p 
               initial={{ opacity: 0 }}
@@ -182,7 +177,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
               transition={{ duration: 1, delay: 0.5 }}
               className="text-lg md:text-xl text-[#8C9BBD] max-w-2xl mx-auto font-light"
             >
-              Arquitecturas de datos dinámicas, modelos predictivos y LLMs privados. Transformamos el ruido en flujos de valor ininterrumpidos.
+              {t('home.heroSubtitle')}
             </motion.p>
           </div>
 
@@ -195,7 +190,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
           >
             <button
               onClick={() => {
-                setActivePage('datalab');
+                navigate('/datalab');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="group relative px-8 py-4 rounded-full bg-brand-cyan text-[#020408] font-bold text-sm overflow-hidden flex items-center space-x-2 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,209,228,0.4)]"
@@ -205,7 +200,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
               <span>Simular Engine en Vivo</span>
             </button>
             <button
-              onClick={() => setActivePage('contacto')}
+              onClick={() => navigate('/contacto')}
               className="px-8 py-4 rounded-full bg-transparent border border-[#232A4A] text-white font-bold text-sm hover:bg-[#101424] hover:border-brand-coral/50 transition-all flex items-center space-x-2"
             >
               <span>Desplegar Proyecto</span>
@@ -231,10 +226,29 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
         </div>
       </section>
 
+      {/* --- DEMO VIDEO --- */}
+      <section className="py-24 relative z-20 bg-[#05070D]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+          <div className="space-y-4">
+            <span className="inline-flex items-center space-x-2 text-brand-coral font-mono text-xs font-bold uppercase">
+              <Play className="w-4 h-4" />
+              <span>Loopa en 90 segundos</span>
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl font-black text-white">Míralo funcionando.</h2>
+            <p className="text-[#8C9BBD] max-w-xl mx-auto">
+              Un recorrido rápido por cómo Loopa conecta datos, IA y decisiones comerciales en tiempo real.
+            </p>
+          </div>
+          <Reveal>
+            <MediaPlaceholder ratio="16/9" kind="video" label="Video demo" className="w-full" />
+          </Reveal>
+        </div>
+      </section>
+
       {/* --- HIGH IMPACT INTERACTIVE DATA SIMULATOR --- */}
       <section className="py-24 relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Context */}
             <div className="space-y-6">
@@ -317,7 +331,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
               </div>
             </div>
 
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -331,15 +345,14 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
             <p className="text-[#8C9BBD] max-w-2xl mx-auto">Módulos de ingeniería especializados para dominar el ciclo de vida del dato corporativo.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Reveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES_DATA.slice(0, 6).map((service, idx) => (
               <motion.div
                 key={service.id}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="group bg-[#0A0D18] border border-[#1A2138] hover:border-brand-cyan/50 rounded-3xl p-6 md:p-8 cursor-pointer transition-all duration-300 relative overflow-hidden flex flex-col justify-between h-full min-h-[280px]"
                 onClick={() => {
-                  setSelectedServiceId(service.id);
-                  setActivePage('servicios');
+                  navigate(`/servicios/${service.id}`);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               >
@@ -366,7 +379,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
                 </div>
               </motion.div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -374,7 +387,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
       <section className="py-32 relative overflow-hidden bg-brand-cyan text-[#020408]">
         <div className="absolute inset-0 opacity-10 bg-grid-pattern pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#020408]/10">
+          <Reveal className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[#020408]/10">
             <div className="space-y-2">
               <span className="block text-4xl md:text-6xl font-display font-black">99.9%</span>
               <span className="block text-sm font-bold uppercase tracking-widest">Uptime Garantizado</span>
@@ -391,7 +404,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
               <span className="block text-4xl md:text-6xl font-display font-black">24/7</span>
               <span className="block text-sm font-bold uppercase tracking-widest">Monitoreo AI</span>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -405,7 +418,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
             </div>
             <button 
               onClick={() => {
-                setActivePage('casos');
+                navigate('/casos');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="text-brand-cyan hover:text-white font-bold flex items-center space-x-2 transition-colors shrink-0"
@@ -415,7 +428,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {SUCCESS_CASES_DATA.slice(0, 2).map((kase, idx) => (
               <motion.div
                 key={kase.id}
@@ -424,8 +437,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2 }}
                 onClick={() => {
-                  setSelectedCaseId(kase.id);
-                  setActivePage('caso-detalle');
+                  navigate(`/casos/${kase.id}`);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="group relative bg-[#0A0D18] border border-[#1A2138] rounded-[2rem] overflow-hidden cursor-pointer"
@@ -453,7 +465,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
                 </div>
               </motion.div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -462,7 +474,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
         <div className="absolute inset-0 bg-brand-coral/10" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-coral/20 rounded-full blur-[100px] pointer-events-none" />
         
-        <div className="max-w-4xl mx-auto px-4 relative z-10 text-center space-y-8">
+        <Reveal className="max-w-4xl mx-auto px-4 relative z-10 text-center space-y-8">
           <h2 className="font-display text-5xl md:text-7xl font-black text-white leading-tight">
             Listo para evolucionar <br/> tu infraestructura?
           </h2>
@@ -472,7 +484,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
           <div className="pt-8">
             <button
               onClick={() => {
-                setActivePage('contacto');
+                navigate('/contacto');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="px-10 py-5 rounded-full bg-white text-[#020408] font-black text-lg hover:scale-105 active:scale-95 transition-transform flex items-center space-x-3 mx-auto shadow-[0_0_30px_rgba(255,255,255,0.3)]"
@@ -481,7 +493,7 @@ export function HomeView({ setActivePage, setSelectedServiceId, setSelectedCaseI
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
-        </div>
+        </Reveal>
       </section>
       
     </div>

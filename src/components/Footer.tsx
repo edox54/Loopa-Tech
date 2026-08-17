@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { Mail, ArrowRight, Linkedin, Twitter, Sparkles, CheckCircle2 } from 'lucide-react';
-import { ActivePage } from '../types';
 
-interface FooterProps {
-  setActivePage: (page: ActivePage) => void;
-}
-
-export function Footer({ setActivePage }: FooterProps) {
+export function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,8 +15,8 @@ export function Footer({ setActivePage }: FooterProps) {
     }
   };
 
-  const navigateTo = (page: ActivePage) => {
-    setActivePage(page);
+  const navigateTo = (to: string) => {
+    navigate(to);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -71,7 +68,7 @@ export function Footer({ setActivePage }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Info */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigateTo('home')}>
+            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigateTo('/')}>
               <div className="w-9 h-9 flex items-center justify-center bg-brand-carbon rounded-xl border border-brand-navy">
                 <svg
                   viewBox="0 0 24 24"
@@ -118,32 +115,32 @@ export function Footer({ setActivePage }: FooterProps) {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <button onClick={() => navigateTo('servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Gobernanza de Datos
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('servicio-social-listening')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/servicios/social-listening')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Social Listening & NLP
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Inteligencia Comercial
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Predicción de Ventas
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Consentimiento Blockchain
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('servicio-llm')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/servicios/implementacion-llm')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Implementación de LLMs
                 </button>
               </li>
@@ -157,32 +154,37 @@ export function Footer({ setActivePage }: FooterProps) {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <button onClick={() => navigateTo('home')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Inicio
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('datalab')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/datalab')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Lab de Datos (Interactivo)
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('casos')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/casos')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Casos de Éxito
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('blog')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/blog')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Blog Insights
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('nosotros')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/nosotros')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Nosotros
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('contacto')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <button onClick={() => navigateTo('/recursos')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                  Recursos
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigateTo('/contacto')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   Contacto
                 </button>
               </li>
@@ -221,9 +223,9 @@ export function Footer({ setActivePage }: FooterProps) {
             &copy; 2026 Loopa Technology. Todos los derechos reservados.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0 text-brand-lavender/60">
-            <a href="#privacy" className="hover:text-brand-coral transition-colors">Aviso de Privacidad</a>
-            <a href="#terms" className="hover:text-brand-coral transition-colors">Términos de Servicio</a>
-            <a href="#compliance" className="hover:text-brand-coral transition-colors">Garantía Habeas Data</a>
+            <Link to="/legal#privacidad" className="hover:text-brand-coral transition-colors">Aviso de Privacidad</Link>
+            <Link to="/legal#terminos" className="hover:text-brand-coral transition-colors">Términos de Servicio</Link>
+            <Link to="/legal#habeas-data" className="hover:text-brand-coral transition-colors">Garantía Habeas Data</Link>
           </div>
         </div>
       </div>

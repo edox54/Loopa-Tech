@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "datalab": "Lab de Datos",
+    "cases": "Casos de Éxito",
+    "blog": "Blog",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "resources": "Recursos"
+  },
+  "cta": {
+    "scheduleConsult": "Agendar Consultoría",
+    "viewDemo": "Ver demo en vivo",
+    "scheduleDemo": "Agenda tu demo"
+  },
+  "home": {
+    "heroSubtitle": "Arquitecturas de datos dinámicas, modelos predictivos y LLMs privados. Transformamos el ruido en flujos de valor ininterrumpidos."
+  }
+}

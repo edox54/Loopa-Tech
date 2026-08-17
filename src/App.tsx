@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -9,109 +9,46 @@ import { BlogView } from './components/BlogView';
 import { NosotrosView } from './components/NosotrosView';
 import { ContactoView } from './components/ContactoView';
 import { DataLabView } from './components/DataLabView';
-import { ActivePage } from './types';
+import { ResourcesView } from './components/ResourcesView';
+import { LegalView } from './components/LegalView';
+import { MercatelyChat } from './components/MercatelyChat';
+import { Analytics } from './components/Analytics';
 
 export default function App() {
-  const [activePage, setActivePage] = useState<ActivePage>('home');
-  const [selectedServiceId, setSelectedServiceId] = useState<string>('');
-  const [selectedCaseId, setSelectedCaseId] = useState<string>('');
-  const [selectedPostId, setSelectedPostId] = useState<string>('');
-
-  const renderActiveView = () => {
-    switch (activePage) {
-      case 'home':
-        return (
-          <HomeView
-            setActivePage={setActivePage}
-            setSelectedServiceId={setSelectedServiceId}
-            setSelectedCaseId={setSelectedCaseId}
-            setSelectedPostId={setSelectedPostId}
-          />
-        );
-      case 'servicios':
-      case 'servicio-social-listening':
-      case 'servicio-llm':
-        return (
-          <ServicesView
-            activePage={activePage}
-            setActivePage={setActivePage}
-            selectedServiceId={selectedServiceId}
-            setSelectedServiceId={setSelectedServiceId}
-            setSelectedCaseId={setSelectedCaseId}
-          />
-        );
-      case 'casos':
-      case 'caso-detalle':
-        return (
-          <CasesView
-            activePage={activePage}
-            setActivePage={setActivePage}
-            selectedCaseId={selectedCaseId}
-            setSelectedCaseId={setSelectedCaseId}
-          />
-        );
-      case 'blog':
-      case 'blog-post-detalle':
-        return (
-          <BlogView
-            activePage={activePage}
-            setActivePage={setActivePage}
-            selectedPostId={selectedPostId}
-            setSelectedPostId={setSelectedPostId}
-          />
-        );
-      case 'nosotros':
-        return <NosotrosView setActivePage={setActivePage} />;
-      case 'contacto':
-        return <ContactoView />;
-      case 'datalab':
-        return <DataLabView setActivePage={setActivePage} />;
-      default:
-        return (
-          <HomeView
-            setActivePage={setActivePage}
-            setSelectedServiceId={setSelectedServiceId}
-            setSelectedCaseId={setSelectedCaseId}
-            setSelectedPostId={setSelectedPostId}
-          />
-        );
-    }
-  };
-
-  const transitionKey = `${activePage}-${selectedServiceId}-${selectedCaseId}-${selectedPostId}`;
+  const location = useLocation();
 
   return (
     <div className="flex flex-col min-h-screen bg-brand-navy text-white selection:bg-brand-coral/30 selection:text-brand-coral">
-      {/* Premium Header */}
-      <Header activePage={activePage} setActivePage={(page) => {
-        // Clear children selection states upon primary tab switch
-        if (page !== 'servicios') setSelectedServiceId('');
-        if (page !== 'casos') setSelectedCaseId('');
-        if (page !== 'blog') setSelectedPostId('');
-        setActivePage(page);
-      }} />
+      <Header />
 
-      {/* Main Multi-page container with fade-in and slide-up micro-interaction */}
       <main className="flex-grow">
         <motion.div
-          key={transitionKey}
+          key={location.pathname}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
         >
-          {renderActiveView()}
+          <Routes>
+            <Route path="/" element={<HomeView />} />
+            <Route path="/servicios" element={<ServicesView />} />
+            <Route path="/servicios/:id" element={<ServicesView />} />
+            <Route path="/casos" element={<CasesView />} />
+            <Route path="/casos/:id" element={<CasesView />} />
+            <Route path="/blog" element={<BlogView />} />
+            <Route path="/blog/:id" element={<BlogView />} />
+            <Route path="/nosotros" element={<NosotrosView />} />
+            <Route path="/contacto" element={<ContactoView />} />
+            <Route path="/datalab" element={<DataLabView />} />
+            <Route path="/recursos" element={<ResourcesView />} />
+            <Route path="/legal" element={<LegalView />} />
+            <Route path="*" element={<HomeView />} />
+          </Routes>
         </motion.div>
       </main>
 
-      {/* Premium Footer */}
-      <Footer setActivePage={(page) => {
-        // Clear children selection states on footer clicks
-        if (page !== 'servicios') setSelectedServiceId('');
-        if (page !== 'casos') setSelectedCaseId('');
-        if (page !== 'blog') setSelectedPostId('');
-        setActivePage(page);
-      }} />
+      <Footer />
+      <MercatelyChat />
+      <Analytics />
     </div>
   );
 }
-
