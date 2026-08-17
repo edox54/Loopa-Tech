@@ -2,7 +2,7 @@
 import { writeFileSync } from 'node:fs';
 import { SERVICES_DATA, SUCCESS_CASES_DATA, BLOG_POSTS_DATA } from '../src/data.ts';
 
-const SITE_URL = process.env.VITE_SITE_URL || 'https://loopatech.com';
+const SITE_URL = process.env.VITE_SITE_URL || 'https://loopa-tech.vercel.app';
 
 const staticRoutes = ['/', '/servicios', '/casos', '/blog', '/nosotros', '/contacto', '/datalab', '/recursos', '/legal'];
 const serviceRoutes = SERVICES_DATA.map((s) => `/servicios/${s.id}`);
