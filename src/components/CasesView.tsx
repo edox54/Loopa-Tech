@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight, CheckCircle2, TrendingUp, Calendar, Building2, HelpCircle, Activity } from 'lucide-react';
 import { SUCCESS_CASES_DATA } from '../data';

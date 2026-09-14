@@ -1,4 +1,5 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight, CheckCircle2, ShieldAlert, Users, Target, Calendar, BarChart3, HelpCircle, Activity, Lightbulb, Check, TrendingUp, Cpu, Clock } from 'lucide-react';
 import { SERVICES_DATA, SUCCESS_CASES_DATA } from '../data';

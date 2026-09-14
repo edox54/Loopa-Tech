@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, CheckCircle2, Send, Clock, Globe, ArrowRight, ShieldCheck, ChevronRight, CalendarClock } from 'lucide-react';
+import { Mail, MapPin, CheckCircle2, Send, Clock, Globe, ArrowRight, ShieldCheck, ChevronRight, CalendarClock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
@@ -17,7 +17,6 @@ interface CityOffice {
   name: string;
   country: string;
   address: string;
-  phone: string;
   coords: { x: string; y: string }; // Position in % for SVG Map
 }
 
@@ -34,39 +33,14 @@ export function ContactoView() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [activeOffice, setActiveOffice] = useState<number>(0);
   const isQualifiedBudget = formData.presupuesto !== 'menos-5000';
 
-  const offices: CityOffice[] = [
-    {
-      name: 'Ciudad de México',
-      country: t('contact.office1Country'),
-      address: 'Paseo de la Reforma 412, Piso 18, Juárez, CDMX',
-      phone: '+52 (55) 4123-4567',
-      coords: { x: '35%', y: '45%' },
-    },
-    {
-      name: 'Bogotá',
-      country: t('contact.office2Country'),
-      address: 'Calle 93B #13-45, Oficina 402, Bogotá',
-      phone: '+57 (601) 893-4122',
-      coords: { x: '48%', y: '65%' },
-    },
-    {
-      name: 'Santiago',
-      country: t('contact.office3Country'),
-      address: 'Av. Andrés Bello 2711, Piso 12, Las Condes, Santiago',
-      phone: '+56 (2) 2933-4120',
-      coords: { x: '47%', y: '90%' },
-    },
-    {
-      name: 'São Paulo',
-      country: t('contact.office4Country'),
-      address: 'Av. Paulista 1009, Cerqueira César, São Paulo',
-      phone: '+55 (11) 3211-5400',
-      coords: { x: '58%', y: '78%' },
-    },
-  ];
+  const office: CityOffice = {
+    name: 'Quito',
+    country: t('contact.officeCountry'),
+    address: 'Quito, Ecuador',
+    coords: { x: '30%', y: '78%' },
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -254,7 +228,7 @@ export function ContactoView() {
                   <select
                     value={formData.servicio}
                     onChange={(e) => setFormData({ ...formData, servicio: e.target.value })}
-                    className="w-full bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 focus:border-brand-coral rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none transition-colors cursor-pointer font-sans"
+                    className="w-full bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 focus:border-brand-coral rounded-xl px-4 py-3.5 text-sm text-brand-navy dark:text-white focus:outline-none transition-colors cursor-pointer font-sans"
                   >
                     <option value="rentabilizacion">{t('contact.serviceOptionRentabilizacion')}</option>
                     <option value="social-listening">{t('contact.serviceOptionSocialListening')}</option>
@@ -274,7 +248,7 @@ export function ContactoView() {
                     required
                     value={formData.presupuesto}
                     onChange={(e) => setFormData({ ...formData, presupuesto: e.target.value as typeof formData.presupuesto })}
-                    className="w-full bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 focus:border-brand-coral rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none transition-colors cursor-pointer font-sans"
+                    className="w-full bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 focus:border-brand-coral rounded-xl px-4 py-3.5 text-sm text-brand-navy dark:text-white focus:outline-none transition-colors cursor-pointer font-sans"
                   >
                     <option value="" disabled>{t('contact.budgetPlaceholderOption')}</option>
                     {BUDGET_OPTIONS.map((opt) => (
@@ -341,68 +315,37 @@ export function ContactoView() {
                   <path d="M25 80 Q35 70 50 80 Q70 90 75 110 Q80 130 55 155 Q45 155 35 120 Q20 100 25 80 Z" fillOpacity="0.8" />
                 </svg>
 
-                {/* Glowing Location points */}
-                {offices.map((office, idx) => {
-                  const isActive = activeOffice === idx;
-                  return (
-                    <button
-                      key={idx}
-                      id={`map-pin-${idx}`}
-                      onClick={() => setActiveOffice(idx)}
-                      className="absolute group focus:outline-none cursor-pointer transition-all duration-300"
-                      style={{ left: office.coords.x, top: office.coords.y }}
-                    >
-                      {/* Glow rings */}
-                      <span className={`absolute -left-3 -top-3 w-7 h-7 rounded-full bg-brand-coral/20 blur-sm scale-150 transition-transform ${isActive ? 'animate-ping' : 'opacity-0 group-hover:opacity-100'}`} />
-                      <span className={`absolute -left-1.5 -top-1.5 w-4 h-4 rounded-full bg-brand-coral/40 transition-transform ${isActive ? 'scale-125' : 'scale-100'}`} />
-                      {/* Active Point */}
-                      <span className={`relative block w-2 h-2 rounded-full border border-slate-950 ${isActive ? 'bg-brand-coral shadow-[0_0_8px_#F2A38A]' : 'bg-brand-lavender/60 group-hover:bg-brand-coral'}`} />
+                {/* Location point */}
+                <div
+                  className="absolute group"
+                  style={{ left: office.coords.x, top: office.coords.y }}
+                >
+                  {/* Glow rings */}
+                  <span className="absolute -left-3 -top-3 w-7 h-7 rounded-full bg-brand-coral/20 blur-sm scale-150 animate-ping" />
+                  <span className="absolute -left-1.5 -top-1.5 w-4 h-4 rounded-full bg-brand-coral/40 scale-125" />
+                  {/* Point */}
+                  <span className="relative block w-2 h-2 rounded-full border border-slate-950 bg-brand-coral shadow-[0_0_8px_#F2A38A]" />
 
-                      {/* Tooltip on map pins */}
-                      <span className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 text-brand-navy dark:text-white font-semibold text-[10px] px-2 py-1 rounded shadow-lg pointer-events-none whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-250 z-20">
-                        {office.name}
-                      </span>
-                    </button>
-                  );
-                })}
+                  {/* Tooltip on map pin */}
+                  <span className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 text-brand-navy dark:text-white font-semibold text-[10px] px-2 py-1 rounded shadow-lg pointer-events-none whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-250 z-20">
+                    {office.name}
+                  </span>
+                </div>
               </div>
 
-              {/* Active Office Selector Card */}
+              {/* Office Card */}
               <div className="bg-white dark:bg-brand-carbon p-4 rounded-xl border border-brand-navy/10 dark:border-white/10 space-y-4">
                 <div className="flex justify-between items-center flex-wrap gap-2">
-                  <span className="font-display font-bold text-brand-navy dark:text-white text-sm">{offices[activeOffice].name}</span>
+                  <span className="font-display font-bold text-brand-navy dark:text-white text-sm">{office.name}</span>
                   <span className="text-[10px] font-mono text-brand-coral bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 px-2 py-0.5 rounded font-bold">
-                    {offices[activeOffice].country}
+                    {office.country}
                   </span>
                 </div>
                 <div className="space-y-2 text-xs text-brand-navy/75 dark:text-white/75">
                   <p className="flex items-start space-x-2">
                     <MapPin className="w-3.5 h-3.5 text-brand-coral shrink-0 mt-0.5" />
-                    <span>{offices[activeOffice].address}</span>
+                    <span>{office.address}</span>
                   </p>
-                  <p className="flex items-center space-x-2">
-                    <Phone className="w-3.5 h-3.5 text-brand-coral shrink-0" />
-                    <a href={`tel:${offices[activeOffice].phone}`} className="hover:text-brand-coral transition-colors font-semibold">
-                      {offices[activeOffice].phone}
-                    </a>
-                  </p>
-                </div>
-
-                {/* Grid of quick office switches */}
-                <div className="grid grid-cols-4 gap-2 pt-2 border-t border-brand-navy/10 dark:border-white/10">
-                  {offices.map((off, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveOffice(idx)}
-                      className={`py-1 rounded text-[10px] font-mono font-bold transition-all cursor-pointer uppercase ${
-                        activeOffice === idx
-                          ? 'bg-brand-coral/25 text-brand-coral border border-brand-coral/40'
-                          : 'bg-white dark:bg-brand-carbon text-brand-navy/75 dark:text-white/75 hover:text-brand-coral'
-                      }`}
-                    >
-                      {off.name.split(' ').slice(-1)[0]}
-                    </button>
-                  ))}
                 </div>
               </div>
             </div>
@@ -417,8 +360,8 @@ export function ContactoView() {
                   </div>
                   <div>
                     <span className="text-[11px] text-brand-navy/55 dark:text-white/55 block uppercase font-mono">{t('contact.corporateEmailLabel')}</span>
-                    <a href="mailto:info@loopatech.com" className="text-brand-navy dark:text-white hover:text-brand-coral transition-colors font-semibold">
-                      info@loopatech.com
+                    <a href="mailto:info@loopa.technology" className="text-brand-navy dark:text-white hover:text-brand-coral transition-colors font-semibold">
+                      info@loopa.technology
                     </a>
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate as useRawNavigate } from 'react-router-dom';
+import { Link, useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, ArrowRight, Languages, Sun, Moon } from 'lucide-react';
 import { PlatformDemoButton } from './PlatformDemoButton';
@@ -10,6 +11,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const rawNavigate = useRawNavigate();
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
 
@@ -23,10 +25,14 @@ export function Header() {
     { label: t('nav.contact'), to: '/contacto' },
   ];
 
+  // Language is derived from the URL (LangLayout sets it) — switching means
+  // navigating to the equivalent path under/without the /en prefix.
   const toggleLanguage = () => {
     const next = i18n.language === 'es' ? 'en' : 'es';
-    i18n.changeLanguage(next);
-    localStorage.setItem('loopa-lang', next);
+    const esPath = location.pathname.startsWith('/en') ? location.pathname.slice(3) || '/' : location.pathname;
+    const target = next === 'en' ? (esPath === '/' ? '/en' : `/en${esPath}`) : esPath;
+    rawNavigate(`${target}${location.search}${location.hash}`);
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
@@ -35,8 +41,9 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const currentEsPath = location.pathname.startsWith('/en') ? location.pathname.slice(3) || '/' : location.pathname;
   const isSelected = (to: string) =>
-    to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
+    to === '/' ? currentEsPath === '/' : currentEsPath.startsWith(to);
 
   const handleNavClick = (to: string) => {
     navigate(to);

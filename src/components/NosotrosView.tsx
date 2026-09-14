@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { Users, Award, Shield, Target, Lightbulb, Linkedin, Quote } from 'lucide-react';
 import { ABOUT_TEAM } from '../data';

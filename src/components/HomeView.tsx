@@ -5,7 +5,7 @@ import {
   Zap, TrendingUp, Code2, Globe, Layers, Server, 
   Network, ChevronRight, Play, CheckCircle2, Lock
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { SERVICES_DATA, CLIENTS_LOGOS, SUCCESS_CASES_DATA } from '../data';
 import { pickLang, useLang } from '../lib/i18nData';

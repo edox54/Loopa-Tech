@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Share2, Clock, Calendar, ArrowRight, CheckCircle, Search, Linkedin } from 'lucide-react';
 import { BLOG_POSTS_DATA } from '../data';

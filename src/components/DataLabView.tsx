@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { Play, Pause, RefreshCw, Cpu, Database, Server, Settings, Terminal, TrendingUp, DollarSign, Activity, Zap, CheckCircle2, Award, ChevronRight, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';

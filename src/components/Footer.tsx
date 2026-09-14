@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
-import { Mail, ArrowRight, Linkedin, Twitter, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Mail, ArrowRight, Linkedin, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export function Footer() {
   const [email, setEmail] = useState('');
@@ -78,20 +78,13 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/loopatech/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="LinkedIn"
                 className="w-9 h-9 flex items-center justify-center rounded-lg bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 text-brand-navy/75 dark:text-white/75 hover:text-brand-coral hover:border-brand-coral/30 transition-all"
               >
                 <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 text-brand-navy/75 dark:text-white/75 hover:text-brand-coral hover:border-brand-coral/30 transition-all"
-              >
-                <Twitter className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -195,12 +188,6 @@ export function Footer() {
                   info@loopa.technology
                 </a>
               </li>
-              <li className="flex items-center space-x-3">
-                <span className="text-brand-coral text-xs font-mono font-bold">{t('footer.telLabel')}</span>
-                <a href="tel:+525541234567" className="hover:text-brand-coral transition-colors">
-                  +52 (55) 4123-4567
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -211,9 +198,9 @@ export function Footer() {
             {t('footer.copyright')}
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0 text-brand-navy/75 dark:text-white/75">
-            <Link to="/legal#privacidad" className="hover:text-brand-coral transition-colors">{t('footer.privacyNotice')}</Link>
-            <Link to="/legal#terminos" className="hover:text-brand-coral transition-colors">{t('footer.termsOfService')}</Link>
-            <Link to="/legal#habeas-data" className="hover:text-brand-coral transition-colors">{t('footer.dataRightsGuarantee')}</Link>
+            <Link to="/privacidad" className="hover:text-brand-coral transition-colors">{t('footer.privacyNotice')}</Link>
+            <Link to="/terminos" className="hover:text-brand-coral transition-colors">{t('footer.termsOfService')}</Link>
+            <Link to="/privacidad#habeas-data" className="hover:text-brand-coral transition-colors">{t('footer.dataRightsGuarantee')}</Link>
           </div>
         </div>
       </div>

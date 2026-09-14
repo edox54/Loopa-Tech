@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { CalendarClock, Briefcase, FlaskConical, TrendingUp, FileStack, ArrowRight } from 'lucide-react';
 
