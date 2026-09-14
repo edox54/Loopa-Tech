@@ -13,7 +13,7 @@ export function MediaPlaceholder({ ratio = '16/9', kind = 'image', label, classN
   const Icon = kind === 'video' ? Video : Image;
   return (
     <div
-      className={`relative flex flex-col items-center justify-center gap-2 bg-brand-carbon/60 border border-dashed border-brand-navy/60 rounded-2xl overflow-hidden text-brand-lavender/30 ${className}`}
+      className={`relative flex flex-col items-center justify-center gap-2 bg-white dark:bg-brand-carbon border border-dashed border-brand-navy/10 dark:border-white/10 rounded-2xl overflow-hidden text-brand-navy/45 dark:text-white/45 ${className}`}
       style={{ aspectRatio: ratio }}
     >
       <Icon className="w-8 h-8" />

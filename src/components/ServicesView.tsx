@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight, CheckCircle2, ShieldAlert, Users, Target, Calendar, BarChart3, HelpCircle, Activity, Lightbulb, Check, TrendingUp, Cpu, Clock } from 'lucide-react';
 import { SERVICES_DATA, SUCCESS_CASES_DATA } from '../data';
+import { pickLang, useLang } from '../lib/i18nData';
 import { ServiceIcon } from './ServiceIcon';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
@@ -8,6 +10,8 @@ import { Reveal } from './Reveal';
 export function ServicesView() {
   const navigate = useNavigate();
   const { id: selectedServiceId } = useParams<{ id: string }>();
+  const { t, i18n } = useTranslation();
+  const lang = useLang(i18n.language);
 
   const handleBackToServices = () => {
     navigate('/servicios');
@@ -27,10 +31,10 @@ export function ServicesView() {
   // Render index list of services
   if (!selectedServiceId) {
     return (
-      <div id="services-index" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
+      <div id="services-index" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
         <Seo
-          title="Servicios"
-          description="Rentabilización de datos, social listening, inteligencia comercial, predicción de ventas, blockchain de consentimiento e implementación de LLMs para empresas en LatAm."
+          title={t('services.seoTitle')}
+          description={t('services.seoDescription')}
         />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
@@ -38,14 +42,14 @@ export function ServicesView() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header */}
           <Reveal className="text-center max-w-3xl mx-auto space-y-4 mb-20">
-            <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-widest bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full">
-              Catálogo de Capacidades
+            <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-widest bg-brand-light-gray dark:bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full">
+              {t('services.eyebrow')}
             </span>
-            <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Ingeniería de Datos e Inteligencia Artificial Corporativa
+            <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-brand-navy dark:text-white tracking-tight">
+              {t('services.heading')}
             </h1>
-            <p className="text-brand-lavender text-lg">
-              Ofrecemos soluciones consultivas de alto nivel calibradas para el ecosistema empresarial de Latinoamérica.
+            <p className="text-brand-navy/75 dark:text-white/75 text-lg">
+              {t('services.subheading')}
             </p>
           </Reveal>
 
@@ -57,28 +61,28 @@ export function ServicesView() {
                 <div
                   key={service.id}
                   id={`service-detail-card-${service.id}`}
-                  className="bg-brand-carbon border border-brand-navy/60 hover:border-brand-coral/40 rounded-2xl p-8 flex flex-col justify-between hover:bg-brand-carbon/85 transition-all duration-300 group cursor-pointer"
+                  className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl p-8 flex flex-col justify-between hover:bg-white dark:hover:bg-brand-navy transition-all duration-300 group cursor-pointer"
                   onClick={() => handleNavigateToServiceDetail(service.id)}
                 >
                   <div className="space-y-6">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-brand-navy border border-brand-navy/60 text-brand-coral group-hover:text-brand-cyan transition-colors">
+                    <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 text-brand-coral group-hover:text-brand-cyan transition-colors">
                       <ServiceIcon name={service.iconName} />
                     </div>
                     <div>
-                      <h3 className="font-display text-xl font-bold text-white group-hover:text-brand-coral transition-colors">
-                        {service.title}
+                      <h3 className="font-display text-xl font-bold text-brand-navy dark:text-white group-hover:text-brand-coral transition-colors">
+                        {pickLang(service.title, lang)}
                       </h3>
-                      <p className="text-brand-lavender/40 text-xs font-mono mt-1">
-                        {service.id === 'social-listening' || service.id === 'implementacion-llm' ? 'Detalle de Alta Fidelidad disponible' : 'Servicios de Consultoría'}
+                      <p className="text-brand-navy/55 dark:text-white/55 text-xs font-mono mt-1">
+                        {hasDetailPage ? t('services.highFidelityAvailable') : t('services.consultingServices')}
                       </p>
                     </div>
-                    <p className="text-brand-lavender text-sm leading-relaxed">
-                      {service.shortDesc}
+                    <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed">
+                      {pickLang(service.shortDesc, lang)}
                     </p>
 
                     {/* Features checklist */}
-                    <ul className="space-y-2 text-xs text-brand-lavender pt-2">
-                      {service.features.slice(0, 3).map((feat, idx) => (
+                    <ul className="space-y-2 text-xs text-brand-navy/75 dark:text-white/75 pt-2">
+                      {pickLang(service.features, lang).slice(0, 3).map((feat, idx) => (
                         <li key={idx} className="flex items-start space-x-2">
                           <Check className="w-3.5 h-3.5 text-brand-coral shrink-0 mt-0.5" />
                           <span>{feat}</span>
@@ -87,11 +91,11 @@ export function ServicesView() {
                     </ul>
                   </div>
 
-                  <div className="pt-6 border-t border-brand-navy/60 mt-8 flex items-center justify-between">
+                  <div className="pt-6 border-t border-brand-navy/10 dark:border-white/10 mt-8 flex items-center justify-between">
                     <span className="text-xs font-mono text-brand-coral font-bold">
-                      {hasDetailPage ? 'Ver Detalle del Servicio' : 'Solicitar Cotización'}
+                      {hasDetailPage ? t('services.viewDetail') : t('services.requestQuote')}
                     </span>
-                    <ArrowRight className="w-4 h-4 text-brand-lavender/55 group-hover:text-brand-coral group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-brand-navy/70 dark:text-white/70 group-hover:text-brand-coral group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               );
@@ -100,89 +104,89 @@ export function ServicesView() {
             {/* Match - próximamente */}
             <div
               id="service-detail-card-match"
-              className="bg-brand-carbon/50 border border-dashed border-brand-cyan/30 rounded-2xl p-8 flex flex-col justify-between opacity-90"
+              className="bg-white dark:bg-brand-carbon border border-dashed border-brand-cyan/30 rounded-2xl p-8 flex flex-col justify-between opacity-90"
             >
               <div className="space-y-6">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-brand-navy border border-brand-navy/60 text-brand-cyan">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 text-brand-cyan">
                   <ServiceIcon name="Handshake" />
                 </div>
                 <div>
-                  <h3 className="font-display text-xl font-bold text-white">Match</h3>
-                  <p className="text-brand-lavender/40 text-xs font-mono mt-1">Nueva línea de servicio</p>
+                  <h3 className="font-display text-xl font-bold text-brand-navy dark:text-white">Match</h3>
+                  <p className="text-brand-navy/55 dark:text-white/55 text-xs font-mono mt-1">{t('services.matchNewLine')}</p>
                 </div>
-                <p className="text-brand-lavender text-sm leading-relaxed">
-                  Oportunidades de mercado conectadas a productos non-core: cruzamos demanda detectada con inventario o capacidad ociosa de tu negocio.
+                <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed">
+                  {t('services.matchDescription')}
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-brand-navy/60 mt-8 flex items-center justify-between">
+              <div className="pt-6 border-t border-brand-navy/10 dark:border-white/10 mt-8 flex items-center justify-between">
                 <span className="text-xs font-mono text-brand-cyan font-bold flex items-center space-x-1.5">
                   <Clock className="w-3.5 h-3.5" />
-                  <span>Próximamente</span>
+                  <span>{t('services.comingSoon')}</span>
                 </span>
               </div>
             </div>
           </Reveal>
 
           {/* Interactive Info Section */}
-          <div className="mt-20 bg-brand-carbon/50 border border-brand-navy/60 rounded-2xl p-8 md:p-12">
+          <div className="mt-20 bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-2xl p-8 md:p-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
-                <h3 className="font-display text-2xl font-bold text-white">
-                  Nuestro Proceso de Trabajo Ágil
+                <h3 className="font-display text-2xl font-bold text-brand-navy dark:text-white">
+                  {t('services.processHeading')}
                 </h3>
-                <p className="text-brand-lavender text-sm leading-relaxed">
-                  Evitamos la burocracia tradicional de las consultoras multinacionales. Nos enfocamos en sprints rápidos de ingeniería orientados a obtener resultados medibles desde el primer mes.
+                <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed">
+                  {t('services.processSubheading')}
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 rounded-full bg-brand-carbon border border-brand-coral/35 text-brand-coral text-xs font-bold flex items-center justify-center shrink-0">1</div>
+                    <div className="w-6 h-6 rounded-full bg-brand-light-gray dark:bg-brand-navy border border-brand-coral/35 text-brand-coral text-xs font-bold flex items-center justify-center shrink-0">1</div>
                     <div>
-                      <h4 className="text-white text-sm font-semibold">Descubrimiento y Auditoría (Semanas 1-2)</h4>
-                      <p className="text-brand-lavender/55 text-xs">Mapeamos sus orígenes de datos y flujos analíticos actuales sin costo de instalación.</p>
+                      <h4 className="text-brand-navy dark:text-white text-sm font-semibold">{t('services.step1Title')}</h4>
+                      <p className="text-brand-navy/70 dark:text-white/70 text-xs">{t('services.step1Text')}</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 rounded-full bg-brand-carbon border border-brand-coral/35 text-brand-coral text-xs font-bold flex items-center justify-center shrink-0">2</div>
+                    <div className="w-6 h-6 rounded-full bg-brand-light-gray dark:bg-brand-navy border border-brand-coral/35 text-brand-coral text-xs font-bold flex items-center justify-center shrink-0">2</div>
                     <div>
-                      <h4 className="text-white text-sm font-semibold">MVP Funcional en Sandbox (Semanas 3-6)</h4>
-                      <p className="text-brand-lavender/55 text-xs">Calibramos el modelo predictivo o RAG con un dataset cerrado para verificar tasas de precisión.</p>
+                      <h4 className="text-brand-navy dark:text-white text-sm font-semibold">{t('services.step2Title')}</h4>
+                      <p className="text-brand-navy/70 dark:text-white/70 text-xs">{t('services.step2Text')}</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 rounded-full bg-brand-carbon border border-brand-coral/35 text-brand-coral text-xs font-bold flex items-center justify-center shrink-0">3</div>
+                    <div className="w-6 h-6 rounded-full bg-brand-light-gray dark:bg-brand-navy border border-brand-coral/35 text-brand-coral text-xs font-bold flex items-center justify-center shrink-0">3</div>
                     <div>
-                      <h4 className="text-white text-sm font-semibold">Integración y Pase a Producción (Semana 8+)</h4>
-                      <p className="text-brand-lavender/55 text-xs">Conectamos mediante APIs seguras a su infraestructura productiva (ERP, CRM, Cloud).</p>
+                      <h4 className="text-brand-navy dark:text-white text-sm font-semibold">{t('services.step3Title')}</h4>
+                      <p className="text-brand-navy/70 dark:text-white/70 text-xs">{t('services.step3Text')}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="bg-brand-navy/60 p-6 rounded-2xl border border-brand-navy/60 space-y-6">
-                <h4 className="font-display text-lg font-bold text-white flex items-center space-x-2">
+              <div className="bg-brand-light-gray dark:bg-brand-navy p-6 rounded-2xl border border-brand-navy/10 dark:border-white/10 space-y-6">
+                <h4 className="font-display text-lg font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                   <Lightbulb className="w-5 h-5 text-brand-coral" />
-                  <span>¿Por qué Loopa?</span>
+                  <span>{t('services.whyLoopa')}</span>
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-brand-carbon/60 p-4 rounded-xl border border-brand-navy/60">
-                    <span className="text-brand-coral font-mono text-[10px] block font-bold uppercase tracking-wider">Alineación</span>
-                    <span className="text-white text-sm font-bold block mt-1">DAMA DMBOK</span>
-                    <p className="text-brand-lavender/65 text-[11px] mt-1">Marcos internacionales de calidad y gobernanza.</p>
+                  <div className="bg-white dark:bg-brand-carbon p-4 rounded-xl border border-brand-navy/10 dark:border-white/10">
+                    <span className="text-brand-coral font-mono text-[10px] block font-bold uppercase tracking-wider">{t('services.whyAlignmentLabel')}</span>
+                    <span className="text-brand-navy dark:text-white text-sm font-bold block mt-1">DAMA DMBOK</span>
+                    <p className="text-brand-navy/80 dark:text-white/80 text-[11px] mt-1">{t('services.whyAlignmentText')}</p>
                   </div>
-                  <div className="bg-brand-carbon/60 p-4 rounded-xl border border-brand-navy/60">
-                    <span className="text-brand-coral font-mono text-[10px] block font-bold uppercase tracking-wider">Soberanía</span>
-                    <span className="text-white text-sm font-bold block mt-1">IA 100% Privada</span>
-                    <p className="text-brand-lavender/65 text-[11px] mt-1">Sus secretos comerciales nunca abandonan su nube.</p>
+                  <div className="bg-white dark:bg-brand-carbon p-4 rounded-xl border border-brand-navy/10 dark:border-white/10">
+                    <span className="text-brand-coral font-mono text-[10px] block font-bold uppercase tracking-wider">{t('services.whySovereigntyLabel')}</span>
+                    <span className="text-brand-navy dark:text-white text-sm font-bold block mt-1">{t('services.whySovereigntyValue')}</span>
+                    <p className="text-brand-navy/80 dark:text-white/80 text-[11px] mt-1">{t('services.whySovereigntyText')}</p>
                   </div>
-                  <div className="bg-brand-carbon/60 p-4 rounded-xl border border-brand-navy/60">
-                    <span className="text-brand-coral font-mono text-[10px] block font-bold uppercase tracking-wider">Metodología</span>
-                    <span className="text-white text-sm font-bold block mt-1">API-First</span>
-                    <p className="text-brand-lavender/65 text-[11px] mt-1">Compatible con SAP, Salesforce, AWS y Google Cloud.</p>
+                  <div className="bg-white dark:bg-brand-carbon p-4 rounded-xl border border-brand-navy/10 dark:border-white/10">
+                    <span className="text-brand-coral font-mono text-[10px] block font-bold uppercase tracking-wider">{t('services.whyMethodologyLabel')}</span>
+                    <span className="text-brand-navy dark:text-white text-sm font-bold block mt-1">API-First</span>
+                    <p className="text-brand-navy/80 dark:text-white/80 text-[11px] mt-1">{t('services.whyMethodologyText')}</p>
                   </div>
-                  <div className="bg-brand-carbon/60 p-4 rounded-xl border border-brand-navy/60">
-                    <span className="text-brand-coral font-mono text-[10px] block font-bold uppercase tracking-wider">Ubicación</span>
-                    <span className="text-white text-sm font-bold block mt-1">Talento LatAm</span>
-                    <p className="text-brand-lavender/65 text-[11px] mt-1">Soporte inmediato en el mismo huso horario.</p>
+                  <div className="bg-white dark:bg-brand-carbon p-4 rounded-xl border border-brand-navy/10 dark:border-white/10">
+                    <span className="text-brand-coral font-mono text-[10px] block font-bold uppercase tracking-wider">{t('services.whyLocationLabel')}</span>
+                    <span className="text-brand-navy dark:text-white text-sm font-bold block mt-1">{t('services.whyLocationValue')}</span>
+                    <p className="text-brand-navy/80 dark:text-white/80 text-[11px] mt-1">{t('services.whyLocationText')}</p>
                   </div>
                 </div>
               </div>
@@ -199,42 +203,42 @@ export function ServicesView() {
     const relatedCase = SUCCESS_CASES_DATA.find((c) => c.id === 'social-listening-retail')!;
 
     return (
-      <div id="service-detail-social" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
-        <Seo title={service.title} description={service.shortDesc} />
+      <div id="service-detail-social" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
+        <Seo title={pickLang(service.title, lang)} description={pickLang(service.shortDesc, lang)} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
           {/* Breadcrumb / Back button */}
           <button
             onClick={handleBackToServices}
-            className="inline-flex items-center space-x-2 text-brand-lavender/60 hover:text-brand-coral text-sm font-bold transition-colors cursor-pointer"
+            className="inline-flex items-center space-x-2 text-brand-navy/75 dark:text-white/75 hover:text-brand-coral text-sm font-bold transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Volver a todos los servicios</span>
+            <span>{t('services.backToAll')}</span>
           </button>
 
           {/* Hero Header */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-brand-carbon">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-brand-navy/10 dark:border-white/10">
             <div className="lg:col-span-8 space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-brand-carbon border border-brand-coral/30 rounded-full px-3 py-1">
+              <div className="inline-flex items-center space-x-2 bg-brand-light-gray dark:bg-brand-carbon border border-brand-coral/30 rounded-full px-3 py-1">
                 <TrendingUp className="w-4 h-4 text-brand-coral" />
                 <span className="text-[11px] font-mono font-bold text-brand-coral uppercase tracking-widest">
-                  Foco Sectorial: Consumer & Brands
+                  {t('services.socialFocus')}
                 </span>
               </div>
-              <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-                {service.title}
+              <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-brand-navy dark:text-white tracking-tight">
+                {pickLang(service.title, lang)}
               </h1>
-              <p className="text-lg text-brand-lavender leading-relaxed">
-                {service.longDesc}
+              <p className="text-lg text-brand-navy/75 dark:text-white/75 leading-relaxed">
+                {pickLang(service.longDesc, lang)}
               </p>
             </div>
-            <div className="lg:col-span-4 bg-brand-carbon border border-brand-navy/60 p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-4 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 p-6 rounded-2xl flex flex-col justify-between space-y-4">
               <div>
-                <span className="text-brand-lavender/40 text-[10px] font-mono uppercase block">Métricas Promedio de Impacto</span>
+                <span className="text-brand-navy/55 dark:text-white/55 text-[10px] font-mono uppercase block">{t('services.avgImpactMetrics')}</span>
                 <div className="space-y-4 mt-4">
-                  {service.metrics.map((metric, idx) => (
-                    <div key={idx} className="flex items-center justify-between border-b border-brand-navy pb-2">
-                      <span className="text-xs text-brand-lavender">{metric.split(' ').slice(1).join(' ')}</span>
+                  {pickLang(service.metrics, lang).map((metric, idx) => (
+                    <div key={idx} className="flex items-center justify-between border-b border-brand-navy/10 dark:border-white/10 pb-2">
+                      <span className="text-xs text-brand-navy/75 dark:text-white/75">{metric.split(' ').slice(1).join(' ')}</span>
                       <span className="text-base font-display font-bold text-brand-coral">{metric.split(' ')[0]}</span>
                     </div>
                   ))}
@@ -247,7 +251,7 @@ export function ServicesView() {
                 }}
                 className="w-full py-3 bg-gradient-to-r from-brand-coral to-brand-cyan hover:brightness-110 text-brand-navy font-bold text-sm rounded-xl transition-all cursor-pointer text-center shadow-lg shadow-brand-coral/20"
               >
-                Solicitar Cotización de NLP
+                {t('services.requestNlpQuote')}
               </button>
             </div>
           </div>
@@ -256,15 +260,15 @@ export function ServicesView() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-4">
             {/* What includes */}
             <div className="space-y-6">
-              <h2 className="font-display text-2xl font-bold text-white flex items-center space-x-2">
+              <h2 className="font-display text-2xl font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                 <CheckCircle2 className="w-5 h-5 text-brand-coral" />
-                <span>¿Qué incluye esta línea de servicio?</span>
+                <span>{t('services.whatIncludes')}</span>
               </h2>
               <div className="grid grid-cols-1 gap-4">
-                {service.features.map((feature, idx) => (
-                  <div key={idx} className="bg-brand-carbon/60 border border-brand-navy/60 rounded-xl p-4 flex items-start space-x-3">
+                {pickLang(service.features, lang).map((feature, idx) => (
+                  <div key={idx} className="bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-xl p-4 flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-brand-coral mt-2 shrink-0" />
-                    <p className="text-brand-lavender text-sm">{feature}</p>
+                    <p className="text-brand-navy/75 dark:text-white/75 text-sm">{feature}</p>
                   </div>
                 ))}
               </div>
@@ -272,24 +276,24 @@ export function ServicesView() {
 
             {/* Target Audience & Benefits */}
             <div className="space-y-8">
-              <div className="bg-brand-carbon border border-brand-navy/60 rounded-2xl p-6 space-y-4">
-                <h3 className="font-display text-lg font-bold text-white flex items-center space-x-2">
+              <div className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-2xl p-6 space-y-4">
+                <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                   <Users className="w-5 h-5 text-brand-cyan" />
-                  <span>¿Para quién es esto?</span>
+                  <span>{t('services.forWhomHeading')}</span>
                 </h3>
-                <p className="text-brand-lavender text-sm leading-relaxed">
-                  {service.forWho}
+                <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed">
+                  {pickLang(service.forWho, lang)}
                 </p>
               </div>
 
               <div className="space-y-4">
-                <h3 className="font-display text-lg font-bold text-white flex items-center space-x-2">
+                <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                   <Target className="w-5 h-5 text-brand-coral" />
-                  <span>Beneficios Operativos</span>
+                  <span>{t('services.operationalBenefits')}</span>
                 </h3>
                 <ul className="space-y-3">
-                  {service.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start space-x-3 text-sm text-brand-lavender bg-brand-carbon/30 px-4 py-3 border border-brand-navy/60 rounded-xl">
+                  {pickLang(service.benefits, lang).map((benefit, idx) => (
+                    <li key={idx} className="flex items-start space-x-3 text-sm text-brand-navy/75 dark:text-white/75 bg-white dark:bg-brand-carbon px-4 py-3 border border-brand-navy/10 dark:border-white/10 rounded-xl">
                       <Check className="w-4 h-4 text-brand-coral shrink-0 mt-1" />
                       <span>{benefit}</span>
                     </li>
@@ -300,22 +304,22 @@ export function ServicesView() {
           </div>
 
           {/* Related success case banner */}
-          <div className="bg-brand-carbon border border-brand-navy/60 rounded-3xl p-8 md:p-12 relative overflow-hidden mt-12">
+          <div className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-3xl p-8 md:p-12 relative overflow-hidden mt-12">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-coral/5 rounded-full blur-3xl" />
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
-                <span className="text-xs font-mono text-brand-coral uppercase tracking-widest">Caso de éxito relacionado</span>
-                <h3 className="font-display text-2xl font-bold text-white">
-                  {relatedCase.title}
+                <span className="text-xs font-mono text-brand-coral uppercase tracking-widest">{t('services.relatedCase')}</span>
+                <h3 className="font-display text-2xl font-bold text-brand-navy dark:text-white">
+                  {pickLang(relatedCase.title, lang)}
                 </h3>
-                <p className="text-brand-lavender text-sm leading-relaxed max-w-xl">
-                  Descubra cómo implementamos este motor de NLP regional para {relatedCase.client} de modo que redujeran roturas de stock analizando jergas virales en redes sociales.
+                <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed max-w-xl">
+                  {t('services.socialCaseBlurb', { client: relatedCase.client })}
                 </p>
                 <div className="flex flex-wrap gap-6 pt-2">
                   {relatedCase.metrics.slice(0, 2).map((m, idx) => (
                     <div key={idx} className="border-l border-brand-coral/40 pl-3">
-                      <span className="text-xl font-display font-extrabold text-white block">{m.value}</span>
-                      <span className="text-[10px] font-mono text-brand-lavender/50 uppercase tracking-wider">{m.label}</span>
+                      <span className="text-xl font-display font-extrabold text-brand-navy dark:text-white block">{m.value}</span>
+                      <span className="text-[10px] font-mono text-brand-navy/65 dark:text-white/65 uppercase tracking-wider">{pickLang(m.label, lang)}</span>
                     </div>
                   ))}
                 </div>
@@ -323,9 +327,9 @@ export function ServicesView() {
               <div className="lg:col-span-4 flex justify-end">
                 <button
                   onClick={() => handleNavigateToCase(relatedCase.id)}
-                  className="px-6 py-4 bg-brand-navy border border-brand-carbon hover:border-brand-coral/40 hover:text-white rounded-xl text-brand-coral text-sm font-bold flex items-center space-x-2 transition-all cursor-pointer"
+                  className="px-6 py-4 bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 hover:text-brand-navy dark:hover:text-white rounded-xl text-brand-coral text-sm font-bold flex items-center space-x-2 transition-all cursor-pointer"
                 >
-                  <span>Ver Caso de Estudio Completo</span>
+                  <span>{t('services.viewFullCase')}</span>
                   <ArrowRight className="w-4 h-4 text-brand-coral" />
                 </button>
               </div>
@@ -342,42 +346,42 @@ export function ServicesView() {
     const relatedCase = SUCCESS_CASES_DATA.find((c) => c.id === 'asistente-llm-energia')!;
 
     return (
-      <div id="service-detail-llm" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
-        <Seo title={service.title} description={service.shortDesc} />
+      <div id="service-detail-llm" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
+        <Seo title={pickLang(service.title, lang)} description={pickLang(service.shortDesc, lang)} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
           {/* Breadcrumb / Back button */}
           <button
             onClick={handleBackToServices}
-            className="inline-flex items-center space-x-2 text-brand-lavender/60 hover:text-brand-coral text-sm font-bold transition-colors cursor-pointer"
+            className="inline-flex items-center space-x-2 text-brand-navy/75 dark:text-white/75 hover:text-brand-coral text-sm font-bold transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Volver a todos los servicios</span>
+            <span>{t('services.backToAll')}</span>
           </button>
 
           {/* Hero Header */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-brand-carbon">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-brand-navy/10 dark:border-white/10">
             <div className="lg:col-span-8 space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-brand-carbon border border-brand-coral/30 rounded-full px-3 py-1">
+              <div className="inline-flex items-center space-x-2 bg-brand-light-gray dark:bg-brand-carbon border border-brand-coral/30 rounded-full px-3 py-1">
                 <Cpu className="w-4 h-4 text-brand-coral" />
                 <span className="text-[11px] font-mono font-bold text-brand-coral uppercase tracking-widest">
-                  Foco Sectorial: Enterprise & Productivity
+                  {t('services.llmFocus')}
                 </span>
               </div>
-              <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-                {service.title}
+              <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-brand-navy dark:text-white tracking-tight">
+                {pickLang(service.title, lang)}
               </h1>
-              <p className="text-lg text-brand-lavender leading-relaxed">
-                {service.longDesc}
+              <p className="text-lg text-brand-navy/75 dark:text-white/75 leading-relaxed">
+                {pickLang(service.longDesc, lang)}
               </p>
             </div>
-            <div className="lg:col-span-4 bg-brand-carbon border border-brand-navy/60 p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-4 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 p-6 rounded-2xl flex flex-col justify-between space-y-4">
               <div>
-                <span className="text-brand-lavender/40 text-[10px] font-mono uppercase block">Métricas Promedio de Impacto</span>
+                <span className="text-brand-navy/55 dark:text-white/55 text-[10px] font-mono uppercase block">{t('services.avgImpactMetrics')}</span>
                 <div className="space-y-4 mt-4">
-                  {service.metrics.map((metric, idx) => (
-                    <div key={idx} className="flex items-center justify-between border-b border-brand-navy pb-2">
-                      <span className="text-xs text-brand-lavender">{metric.split(' ').slice(1).join(' ')}</span>
+                  {pickLang(service.metrics, lang).map((metric, idx) => (
+                    <div key={idx} className="flex items-center justify-between border-b border-brand-navy/10 dark:border-white/10 pb-2">
+                      <span className="text-xs text-brand-navy/75 dark:text-white/75">{metric.split(' ').slice(1).join(' ')}</span>
                       <span className="text-base font-display font-bold text-brand-coral">{metric.split(' ')[0]}</span>
                     </div>
                   ))}
@@ -390,7 +394,7 @@ export function ServicesView() {
                 }}
                 className="w-full py-3 bg-gradient-to-r from-brand-coral to-brand-cyan hover:brightness-110 text-brand-navy font-bold text-sm rounded-xl transition-all cursor-pointer text-center shadow-lg shadow-brand-coral/20"
               >
-                Solicitar Diagnóstico RAG Privado
+                {t('services.requestRagDiagnosis')}
               </button>
             </div>
           </div>
@@ -399,15 +403,15 @@ export function ServicesView() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-4">
             {/* What includes */}
             <div className="space-y-6">
-              <h2 className="font-display text-2xl font-bold text-white flex items-center space-x-2">
+              <h2 className="font-display text-2xl font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                 <CheckCircle2 className="w-5 h-5 text-brand-coral" />
-                <span>¿Qué incluye esta línea de servicio?</span>
+                <span>{t('services.whatIncludes')}</span>
               </h2>
               <div className="grid grid-cols-1 gap-4">
-                {service.features.map((feature, idx) => (
-                  <div key={idx} className="bg-brand-carbon/60 border border-brand-navy/60 rounded-xl p-4 flex items-start space-x-3">
+                {pickLang(service.features, lang).map((feature, idx) => (
+                  <div key={idx} className="bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-xl p-4 flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-brand-coral mt-2 shrink-0" />
-                    <p className="text-brand-lavender text-sm">{feature}</p>
+                    <p className="text-brand-navy/75 dark:text-white/75 text-sm">{feature}</p>
                   </div>
                 ))}
               </div>
@@ -415,24 +419,24 @@ export function ServicesView() {
 
             {/* Target Audience & Benefits */}
             <div className="space-y-8">
-              <div className="bg-brand-carbon border border-brand-navy/60 rounded-2xl p-6 space-y-4">
-                <h3 className="font-display text-lg font-bold text-white flex items-center space-x-2">
+              <div className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-2xl p-6 space-y-4">
+                <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                   <Users className="w-5 h-5 text-brand-cyan" />
-                  <span>¿Para quién es esto?</span>
+                  <span>{t('services.forWhomHeading')}</span>
                 </h3>
-                <p className="text-brand-lavender text-sm leading-relaxed">
-                  {service.forWho}
+                <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed">
+                  {pickLang(service.forWho, lang)}
                 </p>
               </div>
 
               <div className="space-y-4">
-                <h3 className="font-display text-lg font-bold text-white flex items-center space-x-2">
+                <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                   <Target className="w-5 h-5 text-brand-coral" />
-                  <span>Beneficios de Negocio</span>
+                  <span>{t('services.businessBenefits')}</span>
                 </h3>
                 <ul className="space-y-3">
-                  {service.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start space-x-3 text-sm text-brand-lavender bg-brand-carbon/30 px-4 py-3 border border-brand-navy/60 rounded-xl">
+                  {pickLang(service.benefits, lang).map((benefit, idx) => (
+                    <li key={idx} className="flex items-start space-x-3 text-sm text-brand-navy/75 dark:text-white/75 bg-white dark:bg-brand-carbon px-4 py-3 border border-brand-navy/10 dark:border-white/10 rounded-xl">
                       <Check className="w-4 h-4 text-brand-coral shrink-0 mt-1" />
                       <span>{benefit}</span>
                     </li>
@@ -443,47 +447,47 @@ export function ServicesView() {
           </div>
 
           {/* LLM Safety Checklist / Security infographic */}
-          <div className="bg-brand-carbon border border-brand-navy/60 rounded-3xl p-8 space-y-6">
-            <h3 className="font-display text-xl font-bold text-white flex items-center space-x-2">
+          <div className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-3xl p-8 space-y-6">
+            <h3 className="font-display text-xl font-bold text-brand-navy dark:text-white flex items-center space-x-2">
               <ShieldAlert className="w-5 h-5 text-brand-coral" />
-              <span>Garantía de Seguridad de Datos Corporativos en IA</span>
+              <span>{t('services.securityHeading')}</span>
             </h3>
-            <p className="text-brand-lavender text-sm">
-              Implementar IA de grado empresarial requiere controles estrictos de fuga de datos. Loopa Technology firma acuerdos NDA robustos y despliega arquitecturas que garantizan:
+            <p className="text-brand-navy/75 dark:text-white/75 text-sm">
+              {t('services.securityIntro')}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-brand-navy p-5 rounded-xl border border-brand-carbon/60">
-                <h4 className="text-white text-sm font-bold mb-2">Aislamiento de Tenant</h4>
-                <p className="text-brand-lavender/65 text-xs">Los vectores y documentos indexados residen en una instancia VPC dedicada para su empresa, sin comunicación con agentes externos.</p>
+              <div className="bg-white dark:bg-brand-navy p-5 rounded-xl border border-brand-navy/10 dark:border-white/10">
+                <h4 className="text-brand-navy dark:text-white text-sm font-bold mb-2">{t('services.tenantIsolationTitle')}</h4>
+                <p className="text-brand-navy/80 dark:text-white/80 text-xs">{t('services.tenantIsolationText')}</p>
               </div>
-              <div className="bg-brand-navy p-5 rounded-xl border border-brand-carbon/60">
-                <h4 className="text-white text-sm font-bold mb-2">Cero Re-entrenamiento Externo</h4>
-                <p className="text-brand-lavender/65 text-xs">Garantizamos por contrato de API que sus datos no serán procesados ni almacenados para entrenar modelos públicos comerciales.</p>
+              <div className="bg-white dark:bg-brand-navy p-5 rounded-xl border border-brand-navy/10 dark:border-white/10">
+                <h4 className="text-brand-navy dark:text-white text-sm font-bold mb-2">{t('services.noRetrainingTitle')}</h4>
+                <p className="text-brand-navy/80 dark:text-white/80 text-xs">{t('services.noRetrainingText')}</p>
               </div>
-              <div className="bg-brand-navy p-5 rounded-xl border border-brand-carbon/60">
-                <h4 className="text-white text-sm font-bold mb-2">Filtros Anti-alucinación</h4>
-                <p className="text-brand-lavender/65 text-xs">Nuestra capa middleware valida las respuestas contra hechos de la base vectorial, evitando respuestas engañosas u ofensivas.</p>
+              <div className="bg-white dark:bg-brand-navy p-5 rounded-xl border border-brand-navy/10 dark:border-white/10">
+                <h4 className="text-brand-navy dark:text-white text-sm font-bold mb-2">{t('services.antiHallucinationTitle')}</h4>
+                <p className="text-brand-navy/80 dark:text-white/80 text-xs">{t('services.antiHallucinationText')}</p>
               </div>
             </div>
           </div>
 
           {/* Related success case banner */}
-          <div className="bg-brand-carbon border border-brand-navy/60 rounded-3xl p-8 md:p-12 relative overflow-hidden">
+          <div className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-3xl p-8 md:p-12 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-coral/5 rounded-full blur-3xl" />
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
-                <span className="text-xs font-mono text-brand-coral uppercase tracking-widest">Caso de éxito relacionado</span>
-                <h3 className="font-display text-2xl font-bold text-white">
-                  {relatedCase.title}
+                <span className="text-xs font-mono text-brand-coral uppercase tracking-widest">{t('services.relatedCase')}</span>
+                <h3 className="font-display text-2xl font-bold text-brand-navy dark:text-white">
+                  {pickLang(relatedCase.title, lang)}
                 </h3>
-                <p className="text-brand-lavender text-sm leading-relaxed max-w-xl">
-                  Descubra cómo implementamos un asistente experto con RAG privado para el personal en campo de {relatedCase.client}, reduciendo un 40% el tiempo de diagnóstico operacional.
+                <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed max-w-xl">
+                  {t('services.llmCaseBlurb', { client: relatedCase.client })}
                 </p>
                 <div className="flex flex-wrap gap-6 pt-2">
                   {relatedCase.metrics.slice(0, 2).map((m, idx) => (
                     <div key={idx} className="border-l border-brand-coral/40 pl-3">
-                      <span className="text-xl font-display font-extrabold text-white block">{m.value}</span>
-                      <span className="text-[10px] font-mono text-brand-lavender/50 uppercase tracking-wider">{m.label}</span>
+                      <span className="text-xl font-display font-extrabold text-brand-navy dark:text-white block">{m.value}</span>
+                      <span className="text-[10px] font-mono text-brand-navy/65 dark:text-white/65 uppercase tracking-wider">{pickLang(m.label, lang)}</span>
                     </div>
                   ))}
                 </div>
@@ -491,9 +495,9 @@ export function ServicesView() {
               <div className="lg:col-span-4 flex justify-end">
                 <button
                   onClick={() => handleNavigateToCase(relatedCase.id)}
-                  className="px-6 py-4 bg-brand-navy border border-brand-carbon hover:border-brand-coral/40 hover:text-white rounded-xl text-brand-coral text-sm font-bold flex items-center space-x-2 transition-all cursor-pointer"
+                  className="px-6 py-4 bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 hover:text-brand-navy dark:hover:text-white rounded-xl text-brand-coral text-sm font-bold flex items-center space-x-2 transition-all cursor-pointer"
                 >
-                  <span>Ver Caso de Estudio Completo</span>
+                  <span>{t('services.viewFullCase')}</span>
                   <ArrowRight className="w-4 h-4 text-brand-coral" />
                 </button>
               </div>
@@ -508,38 +512,38 @@ export function ServicesView() {
   const service = SERVICES_DATA.find((s) => s.id === selectedServiceId);
   if (service) {
     return (
-      <div id={`service-detail-${service.id}`} className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
-        <Seo title={service.title} description={service.shortDesc} />
+      <div id={`service-detail-${service.id}`} className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
+        <Seo title={pickLang(service.title, lang)} description={pickLang(service.shortDesc, lang)} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
           <button
             onClick={handleBackToServices}
-            className="inline-flex items-center space-x-2 text-brand-lavender/60 hover:text-brand-coral text-sm font-bold transition-colors cursor-pointer"
+            className="inline-flex items-center space-x-2 text-brand-navy/75 dark:text-white/75 hover:text-brand-coral text-sm font-bold transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Volver a todos los servicios</span>
+            <span>{t('services.backToAll')}</span>
           </button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-brand-carbon">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-brand-navy/10 dark:border-white/10">
             <div className="lg:col-span-8 space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-brand-carbon border border-brand-coral/30 rounded-full px-3 py-1 w-fit">
+              <div className="inline-flex items-center space-x-2 bg-brand-light-gray dark:bg-brand-carbon border border-brand-coral/30 rounded-full px-3 py-1 w-fit">
                 <ServiceIcon name={service.iconName} />
                 <span className="text-[11px] font-mono font-bold text-brand-coral uppercase tracking-widest">
-                  Línea de Servicio
+                  {t('services.serviceLine')}
                 </span>
               </div>
-              <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-                {service.title}
+              <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-brand-navy dark:text-white tracking-tight">
+                {pickLang(service.title, lang)}
               </h1>
-              <p className="text-lg text-brand-lavender leading-relaxed">{service.longDesc}</p>
+              <p className="text-lg text-brand-navy/75 dark:text-white/75 leading-relaxed">{pickLang(service.longDesc, lang)}</p>
             </div>
-            <div className="lg:col-span-4 bg-brand-carbon border border-brand-navy/60 p-6 rounded-2xl flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-4 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 p-6 rounded-2xl flex flex-col justify-between space-y-4">
               <div>
-                <span className="text-brand-lavender/40 text-[10px] font-mono uppercase block">Métricas Promedio de Impacto</span>
+                <span className="text-brand-navy/55 dark:text-white/55 text-[10px] font-mono uppercase block">{t('services.avgImpactMetrics')}</span>
                 <div className="space-y-4 mt-4">
-                  {service.metrics.map((metric, idx) => (
-                    <div key={idx} className="flex items-center justify-between border-b border-brand-navy pb-2">
-                      <span className="text-xs text-brand-lavender">{metric.split(' ').slice(1).join(' ')}</span>
+                  {pickLang(service.metrics, lang).map((metric, idx) => (
+                    <div key={idx} className="flex items-center justify-between border-b border-brand-navy/10 dark:border-white/10 pb-2">
+                      <span className="text-xs text-brand-navy/75 dark:text-white/75">{metric.split(' ').slice(1).join(' ')}</span>
                       <span className="text-base font-display font-bold text-brand-coral">{metric.split(' ')[0]}</span>
                     </div>
                   ))}
@@ -552,44 +556,44 @@ export function ServicesView() {
                 }}
                 className="w-full py-3 bg-gradient-to-r from-brand-coral to-brand-cyan hover:brightness-110 text-brand-navy font-bold text-sm rounded-xl transition-all cursor-pointer text-center shadow-lg shadow-brand-coral/20"
               >
-                Solicitar Cotización
+                {t('services.requestQuote')}
               </button>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-4">
             <div className="space-y-6">
-              <h2 className="font-display text-2xl font-bold text-white flex items-center space-x-2">
+              <h2 className="font-display text-2xl font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                 <CheckCircle2 className="w-5 h-5 text-brand-coral" />
-                <span>¿Qué incluye esta línea de servicio?</span>
+                <span>{t('services.whatIncludes')}</span>
               </h2>
               <div className="grid grid-cols-1 gap-4">
-                {service.features.map((feature, idx) => (
-                  <div key={idx} className="bg-brand-carbon/60 border border-brand-navy/60 rounded-xl p-4 flex items-start space-x-3">
+                {pickLang(service.features, lang).map((feature, idx) => (
+                  <div key={idx} className="bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-xl p-4 flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-brand-coral mt-2 shrink-0" />
-                    <p className="text-brand-lavender text-sm">{feature}</p>
+                    <p className="text-brand-navy/75 dark:text-white/75 text-sm">{feature}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="space-y-8">
-              <div className="bg-brand-carbon border border-brand-navy/60 rounded-2xl p-6 space-y-4">
-                <h3 className="font-display text-lg font-bold text-white flex items-center space-x-2">
+              <div className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-2xl p-6 space-y-4">
+                <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                   <Users className="w-5 h-5 text-brand-cyan" />
-                  <span>¿Para quién es esto?</span>
+                  <span>{t('services.forWhomHeading')}</span>
                 </h3>
-                <p className="text-brand-lavender text-sm leading-relaxed">{service.forWho}</p>
+                <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed">{pickLang(service.forWho, lang)}</p>
               </div>
 
               <div className="space-y-4">
-                <h3 className="font-display text-lg font-bold text-white flex items-center space-x-2">
+                <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white flex items-center space-x-2">
                   <Target className="w-5 h-5 text-brand-coral" />
-                  <span>Beneficios de Negocio</span>
+                  <span>{t('services.businessBenefits')}</span>
                 </h3>
                 <ul className="space-y-3">
-                  {service.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start space-x-3 text-sm text-brand-lavender bg-brand-carbon/30 px-4 py-3 border border-brand-navy/60 rounded-xl">
+                  {pickLang(service.benefits, lang).map((benefit, idx) => (
+                    <li key={idx} className="flex items-start space-x-3 text-sm text-brand-navy/75 dark:text-white/75 bg-white dark:bg-brand-carbon px-4 py-3 border border-brand-navy/10 dark:border-white/10 rounded-xl">
                       <Check className="w-4 h-4 text-brand-coral shrink-0 mt-1" />
                       <span>{benefit}</span>
                     </li>

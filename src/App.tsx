@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Header } from './components/Header';
@@ -17,8 +18,14 @@ import { Analytics } from './components/Analytics';
 export default function App() {
   const location = useLocation();
 
+  // ponytail: single source of truth for scroll-to-top on route change,
+  // instead of scattered window.scrollTo calls in every nav handler/Link.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
-    <div className="flex flex-col min-h-screen bg-brand-navy text-white selection:bg-brand-coral/30 selection:text-brand-coral">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-brand-navy text-brand-navy dark:text-white selection:bg-brand-coral/30 selection:text-brand-coral transition-colors duration-300">
       <Header />
 
       <main className="flex-grow">

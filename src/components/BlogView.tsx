@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Share2, Clock, Calendar, ArrowRight, CheckCircle, Search, Linkedin } from 'lucide-react';
 import { BLOG_POSTS_DATA } from '../data';
+import { pickLang, useLang } from '../lib/i18nData';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
 import { MediaPlaceholder } from './MediaPlaceholder';
@@ -22,6 +24,8 @@ function splitContentForCTA(html: string) {
 export function BlogView() {
   const navigate = useNavigate();
   const { id: selectedPostId } = useParams<{ id: string }>();
+  const { t, i18n } = useTranslation();
+  const lang = useLang(i18n.language);
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [searchQuery, setSearchQuery] = useState('');
   const [isCopied, setIsCopied] = useState(false);
@@ -43,14 +47,15 @@ export function BlogView() {
   };
 
   const categories = ['Todos', 'Data Science', 'Inteligencia Artificial', 'Comercial'];
+  const featuredPost = BLOG_POSTS_DATA.find((p) => p.id === 'llm-privados-latam');
 
   const filteredPosts = BLOG_POSTS_DATA.filter((post) => {
     if (selectedCategory !== 'Todos' && post.category !== selectedCategory) return false;
     if (!searchQuery.trim()) return true;
     const q = searchQuery.trim().toLowerCase();
     return (
-      post.title.toLowerCase().includes(q) ||
-      post.excerpt.toLowerCase().includes(q) ||
+      pickLang(post.title, lang).toLowerCase().includes(q) ||
+      pickLang(post.excerpt, lang).toLowerCase().includes(q) ||
       post.tags.some((tag) => tag.toLowerCase().includes(q))
     );
   });
@@ -58,10 +63,10 @@ export function BlogView() {
   // Blog Index View
   if (!selectedPostId) {
     return (
-      <div id="blog-index" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
+      <div id="blog-index" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
         <Seo
-          title="Blog"
-          description="Loopa Insights: análisis y perspectivas técnicas sobre datos, IA generativa, gobernanza y social listening para líderes en LatAm."
+          title={t('blog.seoTitle')}
+          description={t('blog.seoDescription')}
         />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
@@ -69,32 +74,32 @@ export function BlogView() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header */}
           <Reveal className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-            <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-widest bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full">
+            <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-widest bg-brand-light-gray dark:bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full">
               Loopa Insights
             </span>
-            <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Pensamiento Estratégico en Datos e IA
+            <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-brand-navy dark:text-white tracking-tight">
+              {t('blog.heading')}
             </h1>
-            <p className="text-brand-lavender text-base">
-              Análisis, guías y perspectivas técnicas exclusivas para directores de tecnología, fundadores y CIOs en Latinoamérica.
+            <p className="text-brand-navy/75 dark:text-white/75 text-base">
+              {t('blog.subheading')}
             </p>
           </Reveal>
 
           {/* Search */}
           <div className="max-w-md mx-auto mb-8 relative">
-            <Search className="w-4 h-4 text-brand-lavender/40 absolute left-4 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-brand-navy/55 dark:text-white/55 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               id="blog-search-input"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Buscar artículos, temas, tags..."
-              className="w-full bg-brand-carbon border border-brand-navy/60 focus:border-brand-coral rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none placeholder-brand-lavender/40 transition-colors"
+              placeholder={t('blog.searchPlaceholder')}
+              className="w-full bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 focus:border-brand-coral rounded-xl pl-11 pr-4 py-3 text-sm text-brand-navy dark:text-white focus:outline-none placeholder-brand-lavender/40 transition-colors"
             />
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12 border-b border-brand-navy/40 pb-8">
+          <div className="flex flex-wrap justify-center gap-2 mb-12 border-b border-brand-navy/10 dark:border-white/10 pb-8">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -103,7 +108,7 @@ export function BlogView() {
                 className={`px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer border ${
                   selectedCategory === cat
                     ? 'bg-gradient-to-r from-brand-coral to-brand-cyan text-brand-navy border-transparent font-extrabold shadow-md shadow-brand-coral/10'
-                    : 'bg-brand-carbon text-brand-lavender/70 border-brand-navy/60 hover:text-white hover:border-brand-coral/40'
+                    : 'bg-brand-light-gray dark:bg-brand-carbon text-brand-navy/85 dark:text-white/85 border-brand-navy/10 dark:border-white/10 hover:text-brand-navy dark:hover:text-white hover:border-brand-coral/40'
                 }`}
               >
                 {cat}
@@ -112,43 +117,43 @@ export function BlogView() {
           </div>
 
           {/* Featured Post Hero Card (Only shown in 'Todos' or 'Inteligencia Artificial') */}
-          {!searchQuery.trim() && (selectedCategory === 'Todos' || selectedCategory === 'Inteligencia Artificial') && (
+          {!searchQuery.trim() && (selectedCategory === 'Todos' || selectedCategory === 'Inteligencia Artificial') && featuredPost && (
             <div
               id="blog-featured-hero"
-              className="bg-brand-carbon border border-brand-navy/60 hover:border-brand-coral/40 rounded-3xl p-8 mb-12 md:p-12 cursor-pointer transition-all duration-300 group relative overflow-hidden"
+              className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-3xl p-8 mb-12 md:p-12 cursor-pointer transition-all duration-300 group relative overflow-hidden"
               onClick={() => handleSelectPost('llm-privados-latam')}
             >
               <div className="absolute top-0 right-0 w-96 h-96 bg-brand-coral/5 rounded-full blur-3xl pointer-events-none" />
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
                 <div className="lg:col-span-7 space-y-6">
                   <div className="flex items-center space-x-3 text-xs font-mono">
-                    <span className="text-brand-coral bg-brand-navy/80 border border-brand-coral/25 px-2.5 py-1 rounded-full font-bold uppercase">
-                      Destacado · IA
+                    <span className="text-brand-coral bg-brand-light-gray dark:bg-brand-navy border border-brand-coral/25 px-2.5 py-1 rounded-full font-bold uppercase">
+                      {t('blog.featuredBadge')}
                     </span>
-                    <span className="text-brand-lavender/40">•</span>
-                    <span className="text-brand-lavender/70">6 min de lectura</span>
+                    <span className="text-brand-navy/55 dark:text-white/55">•</span>
+                    <span className="text-brand-navy/85 dark:text-white/85">{pickLang(featuredPost.readTime, lang)}</span>
                   </div>
-                  <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white group-hover:text-brand-coral transition-colors leading-tight">
-                    Cómo los Modelos LLM Privados están Transformando la Consulta de Datos Corporativos en LatAm
+                  <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy dark:text-white group-hover:text-brand-coral transition-colors leading-tight">
+                    {pickLang(featuredPost.title, lang)}
                   </h2>
-                  <p className="text-brand-lavender text-sm leading-relaxed max-w-2xl">
-                    ¿Por qué enviar los datos de tus clientes a APIs públicas es un riesgo reputacional letal? Analizamos el surgimiento de las arquitecturas de RAG privadas y seguras para corporativos tradicionales y fintechs.
+                  <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed max-w-2xl">
+                    {pickLang(featuredPost.excerpt, lang)}
                   </p>
 
                   <div className="flex items-center space-x-3 pt-4">
-                    <div className="w-9 h-9 rounded-full bg-brand-navy border border-brand-navy/60 flex items-center justify-center text-xs font-bold text-brand-coral">
-                      AS
+                    <div className="w-9 h-9 rounded-full bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 flex items-center justify-center text-xs font-bold text-brand-coral">
+                      {featuredPost.author.avatar}
                     </div>
                     <div>
-                      <span className="text-xs font-bold text-white block">Anita Sancho</span>
-                      <span className="text-[10px] text-brand-lavender/50 block font-semibold">Content Lead en Loopa Technology</span>
+                      <span className="text-xs font-bold text-brand-navy dark:text-white block">{featuredPost.author.name}</span>
+                      <span className="text-[10px] text-brand-navy/65 dark:text-white/65 block font-semibold">{pickLang(featuredPost.author.role, lang)}</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="lg:col-span-5 relative">
-                  <MediaPlaceholder ratio="4/3" label="Imagen destacada" className="w-full" />
-                  <div className="absolute -bottom-4 -right-4 w-12 h-12 rounded-2xl bg-brand-navy border border-brand-navy/40 flex items-center justify-center text-brand-cyan group-hover:bg-gradient-to-r group-hover:from-brand-coral group-hover:to-brand-cyan group-hover:text-brand-navy transition-all duration-300 shadow-md">
+                  <MediaPlaceholder ratio="4/3" label={t('blog.featuredImageLabel')} className="w-full" />
+                  <div className="absolute -bottom-4 -right-4 w-12 h-12 rounded-2xl bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 flex items-center justify-center text-brand-cyan group-hover:bg-gradient-to-r group-hover:from-brand-coral group-hover:to-brand-cyan group-hover:text-brand-navy transition-all duration-300 shadow-md">
                     <ArrowRight className="w-5 h-5" />
                   </div>
                 </div>
@@ -158,8 +163,8 @@ export function BlogView() {
 
           {/* Posts Grid */}
           {filteredPosts.length === 0 ? (
-            <p className="text-center text-brand-lavender/60 text-sm py-12">
-              Sin resultados para "{searchQuery}". Probá con otro término.
+            <p className="text-center text-brand-navy/75 dark:text-white/75 text-sm py-12">
+              {t('blog.noResults', { query: searchQuery })}
             </p>
           ) : (
           <Reveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -169,7 +174,7 @@ export function BlogView() {
                 <article
                   key={post.id}
                   id={`blog-index-card-${post.id}`}
-                  className="bg-brand-carbon/60 border border-brand-navy/60 hover:border-brand-coral/40 rounded-2xl overflow-hidden flex flex-col justify-between hover:bg-brand-carbon transition-all duration-300 group cursor-pointer animate-fade-in"
+                  className="bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl overflow-hidden flex flex-col justify-between hover:bg-brand-light-gray dark:hover:bg-brand-navy transition-all duration-300 group cursor-pointer animate-fade-in"
                   onClick={() => handleSelectPost(post.id)}
                 >
                   <MediaPlaceholder ratio="16/9" className="rounded-none border-x-0 border-t-0" />
@@ -177,31 +182,31 @@ export function BlogView() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between text-xs font-mono">
                         <span className="text-brand-coral font-bold uppercase tracking-wider">{post.category}</span>
-                        <span className="text-brand-lavender/50">{post.readTime}</span>
+                        <span className="text-brand-navy/65 dark:text-white/65">{pickLang(post.readTime, lang)}</span>
                       </div>
-                      <h3 className="font-display text-lg font-bold text-white group-hover:text-brand-cyan transition-colors leading-snug">
-                        {post.title}
+                      <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white group-hover:text-brand-cyan transition-colors leading-snug">
+                        {pickLang(post.title, lang)}
                       </h3>
-                      <p className="text-brand-lavender/80 text-xs leading-relaxed line-clamp-3">
-                        {post.excerpt}
+                      <p className="text-brand-navy/90 dark:text-white/90 text-xs leading-relaxed line-clamp-3">
+                        {pickLang(post.excerpt, lang)}
                       </p>
                     </div>
 
-                    <div className="pt-4 border-t border-brand-navy/40 flex items-center justify-between">
+                    <div className="pt-4 border-t border-brand-navy/10 dark:border-white/10 flex items-center justify-between">
                       <div className="flex items-center space-x-2.5">
-                        <div className="w-7 h-7 rounded-full bg-brand-navy border border-brand-navy/60 flex items-center justify-center text-[10px] font-bold text-brand-coral">
+                        <div className="w-7 h-7 rounded-full bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 flex items-center justify-center text-[10px] font-bold text-brand-coral">
                           {post.author.avatar}
                         </div>
                         <div>
-                          <span className="text-[11px] font-bold text-slate-300 block leading-tight">
+                          <span className="text-[11px] font-bold text-brand-navy dark:text-white block leading-tight">
                             {post.author.name}
                           </span>
-                          <span className="text-[9px] text-brand-lavender/40 block font-semibold">
-                            {post.author.role}
+                          <span className="text-[9px] text-brand-navy/55 dark:text-white/55 block font-semibold">
+                            {pickLang(post.author.role, lang)}
                           </span>
                         </div>
                       </div>
-                      <span className="text-[11px] font-mono text-brand-lavender/50">{post.date}</span>
+                      <span className="text-[11px] font-mono text-brand-navy/65 dark:text-white/65">{post.date}</span>
                     </div>
                   </div>
                 </article>
@@ -215,11 +220,11 @@ export function BlogView() {
 
   // Article Detail View
   const post = BLOG_POSTS_DATA.find((p) => p.id === selectedPostId) || BLOG_POSTS_DATA[0];
-  const { before, after } = splitContentForCTA(post.content);
+  const { before, after } = splitContentForCTA(pickLang(post.content, lang));
 
   return (
-      <div id="blog-detail-page" className="bg-brand-navy text-brand-lavender min-h-screen pt-32 pb-24 font-sans relative">
-        <Seo title={post.title} description={post.excerpt} />
+      <div id="blog-detail-page" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
+        <Seo title={pickLang(post.title, lang)} description={pickLang(post.excerpt, lang)} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
 
@@ -227,61 +232,61 @@ export function BlogView() {
           {/* Back to index button */}
           <button
             onClick={handleBackToBlog}
-            className="inline-flex items-center space-x-2 text-brand-lavender/70 hover:text-brand-cyan text-sm font-bold transition-colors cursor-pointer mb-8"
+            className="inline-flex items-center space-x-2 text-brand-navy/85 dark:text-white/85 hover:text-brand-cyan text-sm font-bold transition-colors cursor-pointer mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Volver a todos los artículos</span>
+            <span>{t('blog.backToAll')}</span>
           </button>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Main article column */}
             <div className="lg:col-span-8 space-y-8">
               {/* Article Header Metadata */}
-              <div className="space-y-6 pb-8 border-b border-brand-navy/40">
+              <div className="space-y-6 pb-8 border-b border-brand-navy/10 dark:border-white/10">
                 <div className="flex items-center space-x-3 text-xs font-mono">
-                  <span className="text-brand-coral bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full font-bold uppercase">
+                  <span className="text-brand-coral bg-brand-light-gray dark:bg-brand-carbon border border-brand-coral/30 px-3 py-1 rounded-full font-bold uppercase">
                     {post.category}
                   </span>
-                  <span className="text-brand-lavender/30">•</span>
-                  <span className="text-brand-lavender/70 flex items-center space-x-1">
+                  <span className="text-brand-navy/45 dark:text-white/45">•</span>
+                  <span className="text-brand-navy/85 dark:text-white/85 flex items-center space-x-1">
                     <Clock className="w-3.5 h-3.5" />
-                    <span>{post.readTime}</span>
+                    <span>{pickLang(post.readTime, lang)}</span>
                   </span>
-                  <span className="text-brand-lavender/30">•</span>
-                  <span className="text-brand-lavender/70 flex items-center space-x-1">
+                  <span className="text-brand-navy/45 dark:text-white/45">•</span>
+                  <span className="text-brand-navy/85 dark:text-white/85 flex items-center space-x-1">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{post.date}</span>
                   </span>
                 </div>
-                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                  {post.title}
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy dark:text-white tracking-tight leading-tight">
+                  {pickLang(post.title, lang)}
                 </h1>
 
                 {/* Author Profile Card */}
                 <div className="flex items-center justify-between flex-wrap gap-4 pt-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-full bg-brand-carbon border border-brand-navy/60 flex items-center justify-center font-bold text-brand-coral">
+                    <div className="w-10 h-10 rounded-full bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 flex items-center justify-center font-bold text-brand-coral">
                       {post.author.avatar}
                     </div>
                     <div>
-                      <span className="text-sm font-bold text-white block">{post.author.name}</span>
-                      <span className="text-xs text-brand-lavender/50 block font-semibold">{post.author.role}</span>
+                      <span className="text-sm font-bold text-brand-navy dark:text-white block">{post.author.name}</span>
+                      <span className="text-xs text-brand-navy/65 dark:text-white/65 block font-semibold">{pickLang(post.author.role, lang)}</span>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={handleShare}
-                      className="inline-flex items-center space-x-2 bg-brand-carbon border border-brand-navy/60 hover:border-brand-coral/40 text-brand-lavender/80 hover:text-white px-4 py-2 rounded-xl text-xs transition-colors cursor-pointer"
+                      className="inline-flex items-center space-x-2 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 text-brand-navy/90 dark:text-white/90 hover:text-brand-navy dark:hover:text-white px-4 py-2 rounded-xl text-xs transition-colors cursor-pointer"
                     >
                       {isCopied ? (
                         <>
                           <CheckCircle className="w-4 h-4 text-emerald-400" />
-                          <span className="text-emerald-400 font-bold">¡Enlace Copiado!</span>
+                          <span className="text-emerald-400 font-bold">{t('blog.linkCopied')}</span>
                         </>
                       ) : (
                         <>
                           <Share2 className="w-4 h-4" />
-                          <span>Compartir Artículo</span>
+                          <span>{t('blog.shareArticle')}</span>
                         </>
                       )}
                     </button>
@@ -289,8 +294,8 @@ export function BlogView() {
                       href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center justify-center w-9 h-9 bg-brand-carbon border border-brand-navy/60 hover:border-brand-coral/40 text-brand-lavender/80 hover:text-white rounded-xl transition-colors"
-                      aria-label="Compartir en LinkedIn"
+                      className="inline-flex items-center justify-center w-9 h-9 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 text-brand-navy/90 dark:text-white/90 hover:text-brand-navy dark:hover:text-white rounded-xl transition-colors"
+                      aria-label={t('blog.shareOnLinkedin')}
                     >
                       <Linkedin className="w-4 h-4" />
                     </a>
@@ -299,11 +304,11 @@ export function BlogView() {
               </div>
 
               {/* Featured Image */}
-              <MediaPlaceholder ratio="16/9" label="Imagen destacada del artículo" className="w-full" />
+              <MediaPlaceholder ratio="16/9" label={t('blog.articleImageLabel')} className="w-full" />
 
               {/* Article Body Content */}
-              <div className="prose prose-invert max-w-none text-brand-lavender leading-relaxed space-y-6 text-base">
-                {post.content ? (
+              <div className="prose dark:prose-invert max-w-none text-brand-navy/75 dark:text-white/75 leading-relaxed space-y-6 text-base">
+                {pickLang(post.content, lang) ? (
                   <>
                     <div className="space-y-6" dangerouslySetInnerHTML={{ __html: before }} />
                     <InnerCTA />
@@ -312,28 +317,22 @@ export function BlogView() {
                 ) : (
                   <div className="space-y-6">
                     <p>
-                      <em>[Contenido de demostración de alta fidelidad]</em>
+                      <em>{t('blog.placeholderTag')}</em>
                     </p>
-                    <p>
-                      Este artículo está actualmente configurado como plantilla de demostración visual para la propuesta de Loopa Technology. En el sitio de producción definitivo, este espacio contendrá el desarrollo editorial extendido, gráficos explicativos, flujos lógicos de bases de datos y fragmentos de código de referencia.
-                    </p>
+                    <p>{t('blog.placeholderText1')}</p>
                     <InnerCTA />
-                    <p>
-                      Nuestra línea de publicaciones en <strong>{post.category}</strong> busca deconstruir problemas analíticos complejos para directores de TI y gerentes generales en Latinoamérica. Abordamos temas que van desde diccionarios de gobernanza de datos hasta la optimización de servidores locales de inferencia para procesar redes sociales en tiempo real.
-                    </p>
-                    <p>
-                      Si desea conocer a profundidad nuestras investigaciones o colaborar con nuestro equipo de ingeniería en un reporte sectorial para LatAm, no dude en contactarnos de forma directa.
-                    </p>
+                    <p>{t('blog.placeholderText2', { category: post.category })}</p>
+                    <p>{t('blog.placeholderText3')}</p>
                   </div>
                 )}
               </div>
 
               {/* Article Tags */}
-              <div className="flex flex-wrap gap-2 pt-8 border-t border-brand-navy/40">
+              <div className="flex flex-wrap gap-2 pt-8 border-t border-brand-navy/10 dark:border-white/10">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-brand-carbon border border-brand-navy/60 text-brand-coral font-mono text-xs font-bold px-3 py-1 rounded-lg"
+                    className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 text-brand-coral font-mono text-xs font-bold px-3 py-1 rounded-lg"
                   >
                     #{tag}
                   </span>
@@ -341,11 +340,11 @@ export function BlogView() {
               </div>
 
               {/* Related CTA Card */}
-              <div className="bg-brand-carbon border border-brand-navy/60 rounded-2xl p-8 space-y-6 relative overflow-hidden">
+              <div className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-2xl p-8 space-y-6 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/5 rounded-full blur-2xl" />
-                <h3 className="font-display text-lg font-bold text-white">¿Quieres implementar estas prácticas en tu organización?</h3>
-                <p className="text-brand-lavender text-sm">
-                  En Loopa Technology ayudamos a corporativos de LatAm a diseñar arquitecturas de RAG y LLMs con total privacidad y soberanía de datos, alineadas con sus políticas internas.
+                <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white">{t('blog.relatedCtaHeading')}</h3>
+                <p className="text-brand-navy/75 dark:text-white/75 text-sm">
+                  {t('blog.relatedCtaText')}
                 </p>
                 <button
                   onClick={() => {
@@ -354,7 +353,7 @@ export function BlogView() {
                   }}
                   className="px-5 py-3 bg-gradient-to-r from-brand-coral to-brand-cyan hover:brightness-110 text-brand-navy font-bold rounded-xl text-xs transition-all cursor-pointer inline-flex items-center space-x-2 shadow-lg shadow-brand-coral/15"
                 >
-                  <span>Agendar Reunión Técnica</span>
+                  <span>{t('blog.scheduleTechnicalMeeting')}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
