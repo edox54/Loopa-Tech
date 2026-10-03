@@ -121,16 +121,6 @@ export function Footer() {
                 </button>
               </li>
               <li>
-                <button onClick={() => navigateTo('/datalab')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
-                  {t('footer.linkDataLab')}
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigateTo('/casos')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
-                  {t('nav.cases')}
-                </button>
-              </li>
-              <li>
                 <button onClick={() => navigateTo('/blog')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
                   {t('footer.linkBlogInsights')}
                 </button>

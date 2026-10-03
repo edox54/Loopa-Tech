@@ -16,10 +16,8 @@ export function Header() {
   const { theme, toggleTheme } = useTheme();
 
   const navItems = [
-    { label: t('nav.home'), to: '/' },
+    // Home = logo; Lab de Datos and Casos hidden until real cases/demo exist (routes still live).
     { label: t('nav.services'), to: '/servicios' },
-    { label: t('nav.datalab'), to: '/datalab' },
-    { label: t('nav.cases'), to: '/casos' },
     { label: t('nav.blog'), to: '/blog' },
     { label: t('nav.about'), to: '/nosotros' },
     { label: t('nav.contact'), to: '/contacto' },
@@ -86,7 +84,7 @@ export function Header() {
                 key={item.to}
                 id={`nav-link-${item.to.replace(/\//g, '') || 'home'}`}
                 onClick={() => handleNavClick(item.to)}
-                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 cursor-pointer ${
+                className={`px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 cursor-pointer ${
                   isSelected(item.to)
                     ? 'text-brand-coral bg-brand-light-gray dark:bg-brand-carbon border border-brand-coral/20'
                     : 'text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white hover:bg-white dark:hover:bg-brand-carbon border border-transparent'

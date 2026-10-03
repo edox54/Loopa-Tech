@@ -10,7 +10,13 @@
 
   --color-brand-navy: #252D4B;
   --color-brand-carbon: #2D2B2C;
-  --color-brand-light-gray: #FAFAFB; /* whiter per client: "fondos más blancos" */
+  /* Bone white instead of pure white (client: "blanco hueso"). Overriding --color-white
+     re-tints every bg-white/text-white at once; light-gray is the warmer panel tone. */
+  --color-white: #F6F2EA;
+  --color-brand-light-gray: #EEE8DC;
+  /* AA-contrast text variants of coral/cyan for light backgrounds (raw ones are ~1.8:1). */
+  --color-brand-coral-ink: #A84A2A;
+  --color-brand-cyan-ink: #006B75;
   --color-brand-lavender: #AAB2CD;
   --color-brand-coral: #F2A38A;
   --color-brand-cyan: #00D1E4;
@@ -27,6 +33,15 @@
     100% { transform: translateX(200%); }
   }
 }
+
+/* ponytail: coral/cyan stay as fills; as TEXT on light backgrounds they swap to the ink
+   variants here instead of editing ~140 class lists. Dark mode keeps the bright originals. */
+html:not(.dark) .text-brand-coral,
+html:not(.dark) .hover\:text-brand-coral:hover,
+html:not(.dark) .group:hover .group-hover\:text-brand-coral { color: var(--color-brand-coral-ink); }
+html:not(.dark) .text-brand-cyan,
+html:not(.dark) .hover\:text-brand-cyan:hover,
+html:not(.dark) .group:hover .group-hover\:text-brand-cyan { color: var(--color-brand-cyan-ink); }
 
 /* Subtle grid/dot backgrounds for the light, minimal theme */
 .bg-grid-pattern {
@@ -54,7 +69,7 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F7F7;
+  background: #F6F2EA;
 }
 ::-webkit-scrollbar-thumb {
   background: #AAB2CD;
