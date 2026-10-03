@@ -3,6 +3,7 @@ import { useNavigate, Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { Mail, ArrowRight, Linkedin, Sparkles, CheckCircle2 } from 'lucide-react';
 import { SERVICES_DATA } from '../data';
+import { Logo } from './Logo';
 import { pickLang, useLang } from '../lib/i18nData';
 
 export function Footer() {
@@ -73,10 +74,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Info */}
           <div className="space-y-6">
-            <div className="flex flex-col items-center cursor-pointer w-fit" onClick={() => navigateTo('/')}>
-              <img src="/logo.png" alt="Loopa Technology" className="h-12 w-auto" />
-              <span className="text-xs font-semibold tracking-wide text-brand-coral">{t('brand.tagline')}</span>
-            </div>
+            <button className="cursor-pointer" onClick={() => navigateTo('/')}>
+              <Logo size="lg" />
+            </button>
             <p className="text-sm leading-relaxed text-brand-navy/75 dark:text-white/75">
               {t('footer.brandBlurb')}
             </p>

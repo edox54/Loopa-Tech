@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Menu, X, ArrowRight, Languages, Sun, Moon } from 'lucide-react';
 import { PlatformDemoButton } from './PlatformDemoButton';
 import { useTheme } from '../ThemeContext';
+import { Logo } from './Logo';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -64,17 +65,10 @@ export function Header() {
           <Link
             id="header-logo"
             to="/"
-            className="flex flex-col items-center cursor-pointer group"
+            className="cursor-pointer"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            <img
-              src="/logo.png"
-              alt="Loopa Technology"
-              className="h-14 w-auto"
-            />
-            <span className="-mt-1 text-[10px] font-semibold tracking-wide text-brand-coral whitespace-nowrap">
-              {t('brand.tagline')}
-            </span>
+            <Logo />
           </Link>
 
           {/* Desktop Navigation */}
