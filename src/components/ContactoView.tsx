@@ -3,9 +3,8 @@ import { Mail, MapPin, CheckCircle2, Send, Clock, Globe, ArrowRight, ShieldCheck
 import { useTranslation } from 'react-i18next';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
-
-// TODO(env): set VITE_CALENDLY_URL to the real Calendly scheduling link once available.
-const CALENDLY_URL = import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/loopa-technology/demo';
+import { CALENDLY_URL, SERVICES_DATA } from '../data';
+import { pickLang, useLang } from '../lib/i18nData';
 
 const BUDGET_OPTIONS = [
   { value: 'menos-5000', labelKey: 'contact.budgetOptionUnder5000' },
@@ -21,13 +20,14 @@ interface CityOffice {
 }
 
 export function ContactoView() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = useLang(i18n.language);
   const [formData, setFormData] = useState({
     nombre: '',
     empresa: '',
     email: '',
     telefono: '',
-    servicio: 'social-listening',
+    servicio: SERVICES_DATA[0].id,
     presupuesto: '' as '' | (typeof BUDGET_OPTIONS)[number]['value'],
     mensaje: '',
   });
@@ -55,7 +55,7 @@ export function ContactoView() {
       empresa: '',
       email: '',
       telefono: '',
-      servicio: 'social-listening',
+      servicio: SERVICES_DATA[0].id,
       presupuesto: '',
       mensaje: '',
     });
@@ -230,12 +230,9 @@ export function ContactoView() {
                     onChange={(e) => setFormData({ ...formData, servicio: e.target.value })}
                     className="w-full bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 focus:border-brand-coral rounded-xl px-4 py-3.5 text-sm text-brand-navy dark:text-white focus:outline-none transition-colors cursor-pointer font-sans"
                   >
-                    <option value="rentabilizacion">{t('contact.serviceOptionRentabilizacion')}</option>
-                    <option value="social-listening">{t('contact.serviceOptionSocialListening')}</option>
-                    <option value="inteligencia-comercial">{t('contact.serviceOptionInteligenciaComercial')}</option>
-                    <option value="prediccion-ventas">{t('contact.serviceOptionPrediccionVentas')}</option>
-                    <option value="consentimiento-blockchain">{t('contact.serviceOptionConsentimientoBlockchain')}</option>
-                    <option value="implementacion-llm">{t('contact.serviceOptionImplementacionLlm')}</option>
+                    {SERVICES_DATA.map((s) => (
+                      <option key={s.id} value={s.id}>{pickLang(s.title, lang)}</option>
+                    ))}
                   </select>
                 </div>
 

@@ -66,7 +66,7 @@ export function Header() {
           <Link
             id="header-logo"
             to="/"
-            className="flex items-center space-x-3 cursor-pointer group"
+            className="flex flex-col items-center cursor-pointer group"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <img
@@ -74,6 +74,9 @@ export function Header() {
               alt="Loopa Technology"
               className="h-14 w-auto"
             />
+            <span className="-mt-1 text-[10px] font-semibold tracking-wide text-brand-coral whitespace-nowrap">
+              {t('brand.tagline')}
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -15,43 +15,99 @@
     "scheduleDemo": "Agenda tu demo"
   },
   "home": {
-    "heroSubtitle": "Arquitecturas de datos dinámicas, modelos predictivos y LLMs privados. Transformamos el ruido en flujos de valor ininterrumpidos.",
-    "seoTitle": "Inicio",
-    "seoDescription": "Loopa Technology: consultora de datos e IA de alta gama para empresas en LatAm. Rentabilización, gobernanza, social listening y analítica predictiva.",
-    "statusPill": "Loopa Data Engine • Online",
-    "heroLine1": "Inteligencia",
-    "heroLine2": "En Movimiento.",
-    "simulateButton": "Simular Engine en Vivo",
-    "deployButton": "Desplegar Proyecto",
-    "demoBadge": "Loopa en 90 segundos",
-    "demoHeading": "Míralo funcionando.",
-    "demoText": "Un recorrido rápido por cómo Loopa conecta datos, IA y decisiones comerciales en tiempo real.",
-    "demoVideoLabel": "Video demo",
-    "simulatorBadge": "Rendimiento en Tiempo Real",
-    "simulatorHeadingPart1": "Ingesta de datos a",
-    "simulatorHeadingPart2": "velocidad luz.",
-    "simulatorText": "Olvídate de procesos batch nocturnos. Inyecta millones de registros y observa cómo nuestra arquitectura limpia, procesa y predice en milisegundos. Pruébalo ahora.",
-    "processingLoad": "Procesando Carga...",
-    "injectButton": "Inyectar 10k Registros",
-    "clusterTelemetry": "Telemetría del Clúster",
-    "recordsProcessed": "Registros Procesados",
-    "systemHealth": "Salud del Sistema",
-    "networkTraffic": "Tráfico de Red",
-    "anomaliesLabel": "Anomalías: {{count}}",
-    "capabilitiesHeading": "Capacidades Core",
-    "capabilitiesText": "Módulos de ingeniería especializados para dominar el ciclo de vida del dato corporativo.",
-    "exploreModule": "EXPLORAR MÓDULO",
-    "metricUptime": "Uptime Garantizado",
-    "metricRoi": "Retorno de Inversión",
-    "metricBreaches": "Brechas de Datos",
-    "metricMonitoring": "Monitoreo AI",
-    "impactHeading": "Impacto Comprobado",
-    "impactText": "No hacemos pruebas de concepto eternas. Entregamos arquitecturas en producción que mueven la aguja financiera.",
-    "viewAllCases": "Ver todos los casos",
-    "finalCtaLine1": "Listo para evolucionar",
-    "finalCtaLine2": "tu infraestructura?",
-    "finalCtaText": "Despliega inteligencia de datos soberana en tu propia nube en semanas, no en años.",
-    "startProject": "Iniciar Proyecto"
+    "seoTitle": "IA aplicada a la rentabilidad comercial",
+    "seoDescription": "Loopa Technology: IA aplicada a la rentabilidad comercial en los segmentos complementarios de tu empresa. Plataforma multi-agéntica, limpieza de datos, analítica predictiva e imagen política.",
+    "eyebrow": "IA aplicada",
+    "heroLine1": "IA aplicada a la",
+    "heroLine2": "rentabilidad comercial.",
+    "heroSubtitle": "Ayudamos a los segmentos complementarios de tu empresa —los que tienen metas comerciales fijas pero no reciben toda la atención ni todos los recursos— a cumplir sus metas, con el presupuesto que realmente necesitan.",
+    "ctaMeeting": "Agenda una reunión",
+    "ctaSolutions": "Ver soluciones",
+    "problemEyebrow": "El poder del negocio complementario",
+    "problemStatLabel": "USD anuales incrementales",
+    "problemStatText": "Caso aerolínea: un segmento que no era ni turista ni corporativo generó más de US$20M anuales adicionales. Replicar movimientos así es un gran desafío para cualquier empresa.",
+    "problemPoints": [
+      {
+        "title": "Causa: la prioridad está en el core",
+        "text": "Las oportunidades ignoradas dejan millones de dólares sobre la mesa todos los años."
+      },
+      {
+        "title": "La máxima eficiencia tiene un costo",
+        "text": "Cuando todo el equipo comercial apunta al negocio principal, las líneas complementarias se quedan sin atención: eso es costo de oportunidad."
+      }
+    ],
+    "platformEyebrow": "Plataforma multi-agéntica",
+    "platformHeading": "Mercados ignorados + capacidad disponible.",
+    "platformText": "LOOPA conecta mercados existentes que hoy se ignoran con la capacidad disponible interna, mientras tu empresa mantiene la atención en su foco operativo principal.",
+    "agents": [
+      {
+        "title": "Agente Predictivo",
+        "text": "Identifica sobrestock o capacidad ociosa con meses de anticipación. Se conecta con tu ERP."
+      },
+      {
+        "title": "Agente de Mercado",
+        "text": "Un solo clic para optimizar precio, distribución y promoción, con contenido visual y guion de video, apoyado en big data para social listening."
+      },
+      {
+        "title": "Agente de Cercanía",
+        "text": "Evalúa qué empresas de nuestra cartera pueden aportarse máximo valor entre sí y recomienda la alianza."
+      }
+    ],
+    "platformOneClick": "Conecta intereses de mercados existentes con tu capacidad ociosa en un clic.",
+    "demoVideoLabel": "Video demo de la plataforma",
+    "edgeEyebrow": "Diferenciación",
+    "edgeHeading": "LOOPA se destaca donde la IA genérica y los MCPs les fallan a las líneas de negocio complementarias.",
+    "edges": [
+      {
+        "title": "Data flywheel",
+        "text": "Cada interacción de los usuarios perfecciona los modelos de ML e IA. La plataforma mejora con el uso."
+      },
+      {
+        "title": "Más allá de LLMs y agentes",
+        "text": "Infraestructura telecom y big data con miles de datos especializados, no solo costo en tokens o GPUs."
+      },
+      {
+        "title": "Comunidad corporativa humana",
+        "text": "Las recomendaciones combinan datos con acceso a una comunidad de empresas que pueden hacer negocios entre sí."
+      }
+    ],
+    "solutionsEyebrow": "Soluciones",
+    "solutionsHeading": "Lo que hacemos",
+    "mainOfferLabel": "Propuesta principal",
+    "viewSolution": "Ver solución",
+    "complementaryLabel": "Productos complementarios",
+    "icpEyebrow": "Para quién",
+    "icpHeading": "Hecho para quienes tienen metas que cumplir.",
+    "icp": [
+      "Gerentes financieros con KPIs de optimización de inventarios.",
+      "Jefaturas de productos o mercados complementarios: accesorios, repuestos, blindaje, overgrips, segmento estudiantil.",
+      "Agencias de marketing."
+    ],
+    "partnersHeading": "Partners",
+    "partnersText": "Trabajamos con ERPs y CRMs de gran penetración en el mercado, como Odoo y Mercately, y tenemos un plan de partners para agencias de marketing y personas bien conectadas que quieran recomendarnos.",
+    "validationEyebrow": "Validación de mercado",
+    "validationHeading": "Ya está funcionando.",
+    "validation": [
+      {
+        "title": "SZK",
+        "text": "Compra y recompra."
+      },
+      {
+        "title": "Corporativos Ecuador",
+        "text": "Clientes en múltiples sectores."
+      },
+      {
+        "title": "Gobierno",
+        "text": "Licitación de $1,1M de social listening sobre 500 fuentes de información de radio, televisión y medios digitales."
+      },
+      {
+        "title": "Expansión internacional",
+        "text": "Cliente recurrente en el Reino Unido."
+      }
+    ],
+    "ecosystemText": "Somos organizadores de sala en una comunidad apoyada por Big Tech (Google DeepMind, Apple, Amazon), LatamGPT y Accel Ventures, y parte de una red de talentos LATAM con mentoría y acceso a PhDs.",
+    "finalCtaHeading": "Conectemos.",
+    "finalCtaText": "Cuéntanos qué línea de negocio necesita cumplir su meta y te mostramos cómo la hacemos rentable."
   },
   "shared": {
     "innerCtaText": "¿Esto suena al reto que tienes hoy? Hablemos de cómo aplicarlo en tu empresa.",
@@ -59,59 +115,41 @@
   },
   "services": {
     "seoTitle": "Servicios",
-    "seoDescription": "Rentabilización de datos, social listening, inteligencia comercial, predicción de ventas, blockchain de consentimiento e implementación de LLMs para empresas en LatAm.",
-    "eyebrow": "Catálogo de Capacidades",
-    "heading": "Ingeniería de Datos e Inteligencia Artificial Corporativa",
-    "subheading": "Ofrecemos soluciones consultivas de alto nivel calibradas para el ecosistema empresarial de Latinoamérica.",
-    "highFidelityAvailable": "Detalle de Alta Fidelidad disponible",
-    "consultingServices": "Servicios de Consultoría",
-    "viewDetail": "Ver Detalle del Servicio",
+    "seoDescription": "IA aplicada a la rentabilidad comercial, limpieza de datos, analítica predictiva e imagen política para empresas e instituciones en LatAm.",
+    "eyebrow": "Soluciones",
+    "heading": "IA aplicada a la rentabilidad comercial",
+    "subheading": "Nuestra propuesta principal es una plataforma multi-agéntica para las líneas complementarias de tu empresa. Además ofrecemos productos complementarios de datos e inteligencia.",
+    "consultingServices": "Línea de servicio",
+    "viewDetail": "Ver detalle",
     "requestQuote": "Solicitar Cotización",
-    "matchNewLine": "Nueva línea de servicio",
-    "matchDescription": "Oportunidades de mercado conectadas a productos non-core: cruzamos demanda detectada con inventario o capacidad ociosa de tu negocio.",
     "comingSoon": "Próximamente",
     "processHeading": "Nuestro Proceso de Trabajo Ágil",
     "processSubheading": "Evitamos la burocracia tradicional de las consultoras multinacionales. Nos enfocamos en sprints rápidos de ingeniería orientados a obtener resultados medibles desde el primer mes.",
     "step1Title": "Descubrimiento y Auditoría (Semanas 1-2)",
     "step1Text": "Mapeamos sus orígenes de datos y flujos analíticos actuales sin costo de instalación.",
     "step2Title": "MVP Funcional en Sandbox (Semanas 3-6)",
-    "step2Text": "Calibramos el modelo predictivo o RAG con un dataset cerrado para verificar tasas de precisión.",
+    "step2Text": "Validamos los modelos con tus datos reales en un entorno controlado antes de escalar.",
     "step3Title": "Integración y Pase a Producción (Semana 8+)",
     "step3Text": "Conectamos mediante APIs seguras a su infraestructura productiva (ERP, CRM, Cloud).",
     "whyLoopa": "¿Por qué Loopa?",
-    "whyAlignmentLabel": "Alineación",
-    "whyAlignmentText": "Marcos internacionales de calidad y gobernanza.",
-    "whySovereigntyLabel": "Soberanía",
-    "whySovereigntyValue": "IA 100% Privada",
-    "whySovereigntyText": "Sus secretos comerciales nunca abandonan su nube.",
-    "whyMethodologyLabel": "Metodología",
-    "whyMethodologyText": "Compatible con SAP, Salesforce, AWS y Google Cloud.",
+    "whyAlignmentLabel": "Enfoque",
+    "whyAlignmentText": "Donde la IA genérica no llega.",
+    "whySovereigntyLabel": "Mejora continua",
+    "whySovereigntyValue": "Data flywheel",
+    "whySovereigntyText": "Cada interacción perfecciona los modelos.",
+    "whyMethodologyLabel": "Integración",
+    "whyMethodologyText": "Compatible con Odoo, Mercately y tu stack actual.",
     "whyLocationLabel": "Ubicación",
     "whyLocationValue": "Talento LatAm",
-    "whyLocationText": "Soporte inmediato en el mismo huso horario.",
+    "whyLocationText": "Equipo en Quito con red de talento y PhDs en la región.",
     "backToAll": "Volver a todos los servicios",
-    "socialFocus": "Foco Sectorial: Consumer & Brands",
     "avgImpactMetrics": "Métricas Promedio de Impacto",
-    "requestNlpQuote": "Solicitar Cotización de NLP",
     "whatIncludes": "¿Qué incluye esta línea de servicio?",
     "forWhomHeading": "¿Para quién es esto?",
-    "operationalBenefits": "Beneficios Operativos",
-    "relatedCase": "Caso de éxito relacionado",
-    "socialCaseBlurb": "Descubra cómo implementamos este motor de NLP regional para {{client}} de modo que redujeran roturas de stock analizando jergas virales en redes sociales.",
-    "viewFullCase": "Ver Caso de Estudio Completo",
-    "llmFocus": "Foco Sectorial: Enterprise & Productivity",
-    "requestRagDiagnosis": "Solicitar Diagnóstico RAG Privado",
     "businessBenefits": "Beneficios de Negocio",
-    "securityHeading": "Garantía de Seguridad de Datos Corporativos en IA",
-    "securityIntro": "Implementar IA de grado empresarial requiere controles estrictos de fuga de datos. Loopa Technology firma acuerdos NDA robustos y despliega arquitecturas que garantizan:",
-    "tenantIsolationTitle": "Aislamiento de Tenant",
-    "tenantIsolationText": "Los vectores y documentos indexados residen en una instancia VPC dedicada para su empresa, sin comunicación con agentes externos.",
-    "noRetrainingTitle": "Cero Re-entrenamiento Externo",
-    "noRetrainingText": "Garantizamos por contrato de API que sus datos no serán procesados ni almacenados para entrenar modelos públicos comerciales.",
-    "antiHallucinationTitle": "Filtros Anti-alucinación",
-    "antiHallucinationText": "Nuestra capa middleware valida las respuestas contra hechos de la base vectorial, evitando respuestas engañosas u ofensivas.",
-    "llmCaseBlurb": "Descubra cómo implementamos un asistente experto con RAG privado para el personal en campo de {{client}}, reduciendo un 40% el tiempo de diagnóstico operacional.",
-    "serviceLine": "Línea de Servicio"
+    "serviceLine": "Línea de Servicio",
+    "whyAlignmentValue": "Líneas complementarias",
+    "whyMethodologyValue": "ERP y CRM"
   },
   "cases": {
     "seoTitle": "Casos de Éxito",
@@ -232,12 +270,6 @@
     "phoneFieldLabel": "Teléfono Móvil / Whatsapp",
     "phonePlaceholder": "Ej. +52 55 4123 4567",
     "serviceFieldLabel": "Servicio de Interés Principal",
-    "serviceOptionRentabilizacion": "Rentabilización y Gobernanza de Datos",
-    "serviceOptionSocialListening": "Social Listening & NLP Avanzado",
-    "serviceOptionInteligenciaComercial": "Inteligencia Comercial y BI de Alta Gama",
-    "serviceOptionPrediccionVentas": "Predicción de Ventas e Inventarios",
-    "serviceOptionConsentimientoBlockchain": "Gestión de Consentimiento (Blockchain)",
-    "serviceOptionImplementacionLlm": "Implementación de LLMs e IA para Negocio",
     "budgetFieldLabel": "Presupuesto Anual Disponible",
     "budgetPlaceholderOption": "Selecciona un rango",
     "budgetOptionUnder5000": "Menos de $5,000 USD/año",
@@ -381,13 +413,7 @@
     "newsletterSuccess": "¡Gracias por suscribirte! Recibirás nuestro próximo análisis de IA en tu bandeja.",
     "newsletterPlaceholder": "Tu correo corporativo",
     "newsletterSubmit": "Unirme",
-    "brandBlurb": "Consultora de datos e IA de alta gama. Ayudamos a corporativos y scaleups de Latinoamérica a estructurar, predecir y monetizar su activo de información más valioso.",
-    "linkDataGovernance": "Gobernanza de Datos",
-    "linkSocialListening": "Social Listening & NLP",
-    "linkCommercialIntelligence": "Inteligencia Comercial",
-    "linkSalesForecasting": "Predicción de Ventas",
-    "linkBlockchainConsent": "Consentimiento Blockchain",
-    "linkLlmImplementation": "Implementación de LLMs",
+    "brandBlurb": "IA aplicada a la rentabilidad comercial. Ayudamos a los segmentos complementarios de las empresas a cumplir sus metas comerciales.",
     "companyHeading": "Compañía",
     "linkDataLab": "Lab de Datos (Interactivo)",
     "linkBlogInsights": "Blog Insights",
@@ -399,5 +425,8 @@
     "privacyNotice": "Aviso de Privacidad",
     "termsOfService": "Términos de Servicio",
     "dataRightsGuarantee": "Garantía Habeas Data"
+  },
+  "brand": {
+    "tagline": "Crea océanos de negocios"
   }
 }

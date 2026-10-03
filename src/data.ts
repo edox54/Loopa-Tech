@@ -1,308 +1,198 @@
 import { Service, ProjectCase, BlogPost, TeamMember, FAQItem } from './types';
 
-// NOTE: English copy below is a direct professional translation, not yet client-reviewed
-// for market-specific tone/positioning. Treat as a solid first draft, not final marketing copy.
+// Real scheduling link from the client deck; env var overrides it (`?.`: sitemap script imports this under plain Node).
+export const CALENDLY_URL = import.meta.env?.VITE_CALENDLY_URL || 'https://calendly.com/asancho-6u/30min';
 
+// Content source: client deck "Loopa info para pagina web" (2026-10). Main offer first,
+// complementary products after. No impact metrics until the client provides real ones.
 export const SERVICES_DATA: Service[] = [
   {
-    id: 'rentabilizacion-gobernanza',
+    id: 'rentabilidad-comercial',
     title: {
-      es: 'Rentabilización y Gobernanza de Datos',
-      en: 'Data Monetization & Governance',
+      es: 'IA para la Rentabilidad Comercial',
+      en: 'AI for Commercial Profitability',
     },
     shortDesc: {
-      es: 'Diseño de arquitecturas modernas y marcos de gobernanza bajo estándares globales para transformar datos crudos en activos rentables y seguros.',
-      en: 'We design modern architectures and governance frameworks built on global standards to turn raw data into profitable, secure assets.',
+      es: 'Plataforma multi-agéntica que ayuda a las líneas complementarias de tu empresa a cumplir sus metas comerciales, con el presupuesto que realmente necesitan.',
+      en: 'A multi-agent platform that helps your company’s complementary business lines hit their commercial targets, on the budget they actually need.',
     },
     longDesc: {
-      es: 'Ayudamos a grandes corporativos y scaleups de LatAm a mapear, estructurar, catalogar y monetizar sus fuentes de información. Implementamos marcos ágiles alineados con DAMA-DMBOK que garantizan la calidad de datos, reducen costos operativos y abren nuevas líneas de ingresos basadas en datos.',
-      en: 'We help large corporations and scaleups across LatAm map, structure, catalog and monetize their information sources. We implement agile frameworks aligned with DAMA-DMBOK that guarantee data quality, reduce operating costs and open new data-driven revenue lines.',
-    },
-    iconName: 'Database',
-    features: {
-      es: [
-        'Auditoría y diagnóstico de madurez de datos',
-        'Modelado de arquitectura de datos (Data Lakehouse & Mesh)',
-        'Establecimiento de políticas de calidad, diccionarios y linaje de datos',
-        'Estrategia de monetización interna y externa de activos de información',
-      ],
-      en: [
-        'Data maturity audit and diagnostics',
-        'Data architecture modeling (Data Lakehouse & Mesh)',
-        'Data quality policies, dictionaries and lineage setup',
-        'Internal and external monetization strategy for information assets',
-      ],
-    },
-    benefits: {
-      es: [
-        'Reducción de hasta un 30% en costos de almacenamiento y reprocesamiento de datos.',
-        'Democratización segura: accesibilidad inmediata de datos confiables para los tomadores de decisiones.',
-        'Preparación óptima de datos para entrenar modelos de Inteligencia Artificial.',
-      ],
-      en: [
-        'Up to 30% reduction in storage and data-reprocessing costs.',
-        'Secure democratization: immediate access to trustworthy data for decision-makers.',
-        'Data optimally prepared for training Artificial Intelligence models.',
-      ],
-    },
-    forWho: {
-      es: 'Empresas consolidadas con múltiples silos de datos (Retail, Banca, Telcos, Aseguradoras) que buscan operar bajo una única verdad de datos y evitar riesgos regulatorios.',
-      en: 'Established companies with multiple data silos (Retail, Banking, Telcos, Insurance) that want to operate on a single source of truth and avoid regulatory risk.',
-    },
-    metrics: {
-      es: ['+40% eficiencia en consultas analíticas', '99% calidad de datos garantizada', '-30% costos de infraestructura cloud'],
-      en: ['+40% efficiency in analytical queries', '99% guaranteed data quality', '-30% cloud infrastructure costs'],
-    },
-  },
-  {
-    id: 'social-listening',
-    title: {
-      es: 'Social Listening & NLP Avanzado',
-      en: 'Social Listening & Advanced NLP',
-    },
-    shortDesc: {
-      es: 'Análisis automatizado en tiempo real de la conversación digital en LatAm para capturar tendencias, prevenir crisis y entender al consumidor regional.',
-      en: 'Real-time automated analysis of digital conversation across LatAm to capture trends, prevent crises and understand the regional consumer.',
-    },
-    longDesc: {
-      es: 'Nuestra plataforma y motores personalizados de Procesamiento de Lenguaje Natural (NLP) están calibrados específicamente para comprender las jergas, modismos y expresiones locales de cada país de Latinoamérica. No solo contamos menciones; interpretamos la intención, la ironía y el sentimiento detrás de millones de publicaciones diarias.',
-      en: 'Our platform and custom Natural Language Processing (NLP) engines are calibrated specifically to understand the slang, idioms and local expressions of every LatAm country. We don’t just count mentions; we interpret the intent, irony and sentiment behind millions of daily posts.',
+      es: 'Muchas empresas tienen segmentos con metas comerciales fijas que no reciben toda la atención ni todos los recursos, porque la prioridad está en el core. Ahí se quedan millones de dólares sobre la mesa cada año. LOOPA conecta mercados existentes que hoy se ignoran con la capacidad disponible interna, mientras tu equipo mantiene el foco en la operación principal.',
+      en: 'Many companies have segments with fixed commercial targets that don’t get full attention or resources, because the priority is the core business. That leaves millions of dollars on the table every year. LOOPA connects existing, overlooked markets with your available internal capacity, while your team stays focused on the main operation.',
     },
     iconName: 'TrendingUp',
     features: {
       es: [
-        'Monitoreo multicanal en vivo (redes sociales, foros, blogs, prensa digital)',
-        'Modelos de sentimiento localizados para dialectos latinos (México, Colombia, Chile, etc.)',
-        'Sistemas automáticos de alerta temprana y mitigación de crisis reputacionales',
-        'Extracción automática de insights de producto para equipos de innovación',
+        'Agente Predictivo: identifica sobrestock o capacidad ociosa con meses de anticipación, conectado a tu ERP',
+        'Agente de Mercado: optimiza precio, distribución y promoción en un solo clic, con contenido visual y guion de video',
+        'Agente de Cercanía: evalúa qué empresas de nuestra cartera pueden aportarse máximo valor entre sí y recomienda alianzas',
+        'Big data para social listening y recomendaciones basadas en miles de datos especializados',
       ],
       en: [
-        'Live multichannel monitoring (social networks, forums, blogs, digital press)',
-        'Sentiment models localized for Latin dialects (Mexico, Colombia, Chile, etc.)',
-        'Automatic early-warning and reputational crisis mitigation systems',
-        'Automatic extraction of product insights for innovation teams',
+        'Predictive Agent: spots overstock or idle capacity months in advance, connected to your ERP',
+        'Market Agent: optimizes price, distribution and promotion in a single click, with visual content and a video script',
+        'Proximity Agent: evaluates which companies in our portfolio can bring each other the most value and recommends partnerships',
+        'Big data for social listening and recommendations built on thousands of specialized data points',
       ],
     },
     benefits: {
       es: [
-        'Detección de tendencias emergentes semanas antes de que impacten los reportes tradicionales de mercado.',
-        'Respuesta inmediata a quejas de clientes de alto impacto, reduciendo la deserción escolar o comercial (churn).',
-        'Estudio preciso de la percepción de marca frente a los principales competidores del sector.',
+        'Convierte capacidad ociosa e inventario sin rotación en ingresos incrementales.',
+        'Tu equipo comercial mantiene el foco en el core mientras las líneas complementarias avanzan.',
+        'Cada interacción perfecciona los modelos de ML e IA: la plataforma mejora con el uso (data flywheel).',
       ],
       en: [
-        'Detect emerging trends weeks before they show up in traditional market reports.',
-        'Immediate response to high-impact customer complaints, reducing churn.',
-        'Precise measurement of brand perception against the sector’s main competitors.',
+        'Turn idle capacity and slow-moving inventory into incremental revenue.',
+        'Your commercial team keeps its focus on the core while complementary lines move forward.',
+        'Every interaction refines the ML and AI models: the platform improves with use (data flywheel).',
       ],
     },
     forWho: {
-      es: 'Marcas de consumo masivo, retail, aerolíneas, fintechs y agencias gubernamentales que necesitan sintonizar de manera ultra-precisa con la voz del cliente digital.',
-      en: 'Mass-consumer brands, retail, airlines, fintechs and government agencies that need to tune in with ultra-precision to the digital customer’s voice.',
+      es: 'Gerentes financieros con KPIs de optimización de inventarios, jefaturas de productos o mercados complementarios (accesorios, repuestos, blindaje, overgrips, segmento estudiantil) y agencias de marketing.',
+      en: 'Finance managers with inventory-optimization KPIs, heads of complementary products or markets (accessories, spare parts, armoring, overgrips, student segment) and marketing agencies.',
     },
-    metrics: {
-      es: ['+35% detección de tendencias de mercado', '< 15min tiempo de alerta de crisis', '94% precisión de sentimiento regional'],
-      en: ['+35% market trend detection', '< 15min crisis alert time', '94% regional sentiment accuracy'],
-    },
+    metrics: { es: [], en: [] },
   },
   {
-    id: 'inteligencia-comercial',
+    id: 'limpieza-datos',
     title: {
-      es: 'Inteligencia Comercial y BI de Alta Gama',
-      en: 'Commercial Intelligence & Premium BI',
+      es: 'Limpieza y Calidad de Datos',
+      en: 'Data Cleansing & Quality',
     },
     shortDesc: {
-      es: 'Visualizaciones dinámicas y tableros interactivos de última generación para empoderar la toma de decisiones basada en datos comerciales reales.',
-      en: 'Dynamic visualizations and next-generation interactive dashboards that empower decisions grounded in real commercial data.',
+      es: 'Depuramos, estandarizamos y estructuramos tus bases para que las decisiones comerciales y los modelos de IA trabajen sobre datos confiables.',
+      en: 'We clean, standardize and structure your databases so commercial decisions and AI models run on data you can trust.',
     },
     longDesc: {
-      es: 'Creamos soluciones analíticas que van más allá del clásico reporte estático. Diseñamos dashboards ejecutivos integrados, interactivos e inteligentes que conectan CRM, ERP, pautas publicitarias y canales de ventas en una consola unificada de control en tiempo real.',
-      en: 'We build analytics solutions that go beyond the classic static report. We design integrated, interactive, intelligent executive dashboards that connect CRM, ERP, ad spend and sales channels into a single real-time control console.',
+      es: 'Ningún modelo predice bien con datos duplicados, incompletos o dispersos. Diagnosticamos la calidad de tus bases de clientes, productos e inventario, las depuramos y dejamos una estructura lista para analítica e inteligencia artificial.',
+      en: 'No model predicts well on duplicated, incomplete or scattered data. We assess the quality of your customer, product and inventory databases, clean them up and leave a structure ready for analytics and artificial intelligence.',
+    },
+    iconName: 'Database',
+    features: {
+      es: [
+        'Diagnóstico de calidad y completitud de datos',
+        'Deduplicación y estandarización de registros de clientes, productos e inventario',
+        'Integración de fuentes dispersas (ERP, CRM, hojas de cálculo)',
+        'Datos preparados para analítica predictiva e IA',
+      ],
+      en: [
+        'Data quality and completeness assessment',
+        'Deduplication and standardization of customer, product and inventory records',
+        'Integration of scattered sources (ERP, CRM, spreadsheets)',
+        'Data prepared for predictive analytics and AI',
+      ],
+    },
+    benefits: {
+      es: [
+        'Una sola versión confiable de tus datos comerciales.',
+        'Menos tiempo perdido corrigiendo reportes a mano.',
+        'Base sólida para cualquier proyecto de IA posterior.',
+      ],
+      en: [
+        'A single, trustworthy version of your commercial data.',
+        'Less time lost fixing reports by hand.',
+        'A solid foundation for any later AI project.',
+      ],
+    },
+    forWho: {
+      es: 'Empresas con información dispersa o duplicada entre ERP, CRM y hojas de cálculo que quieren tomar decisiones con datos confiables.',
+      en: 'Companies with information scattered or duplicated across ERP, CRM and spreadsheets that want to make decisions on reliable data.',
+    },
+    metrics: { es: [], en: [] },
+  },
+  {
+    id: 'analitica-predictiva',
+    title: {
+      es: 'Analítica Predictiva',
+      en: 'Predictive Analytics',
+    },
+    shortDesc: {
+      es: 'Modelos que anticipan demanda, ventas y capacidad ociosa para que actúes antes de que el problema llegue al estado de resultados.',
+      en: 'Models that anticipate demand, sales and idle capacity so you can act before the problem reaches the income statement.',
+    },
+    longDesc: {
+      es: 'Construimos modelos de machine learning sobre tus datos históricos y de mercado para pronosticar demanda y ventas, detectar inventario en riesgo y simular escenarios de precio y promoción.',
+      en: 'We build machine learning models on your historical and market data to forecast demand and sales, detect at-risk inventory and simulate pricing and promotion scenarios.',
     },
     iconName: 'BarChart3',
     features: {
       es: [
-        'Estrategia e implementación de Business Intelligence empresarial (PowerBI, Tableau, Looker)',
-        'Integración automática de fuentes de marketing digital, ventas físicas y e-commerce',
-        'Paneles personalizados para directores y gerentes de territorio en LatAm',
-        'Configuración de alertas push comerciales basadas en desviaciones de metas',
+        'Pronóstico de demanda y ventas',
+        'Detección temprana de sobrestock y capacidad ociosa',
+        'Simulación de escenarios de precio y promoción',
+        'Tableros de seguimiento para el equipo comercial y financiero',
       ],
       en: [
-        'Enterprise Business Intelligence strategy and rollout (PowerBI, Tableau, Looker)',
-        'Automatic integration of digital marketing, in-store sales and e-commerce sources',
-        'Custom dashboards for directors and territory managers across LatAm',
-        'Push-alert setup for commercial targets and goal deviations',
+        'Demand and sales forecasting',
+        'Early detection of overstock and idle capacity',
+        'Pricing and promotion scenario simulation',
+        'Tracking dashboards for commercial and finance teams',
       ],
     },
     benefits: {
       es: [
-        'Visibilidad completa del embudo comercial en un solo vistazo sin necesidad de consolidar Excels manualmente.',
-        'Detección instantánea de fugas de ingresos o ineficiencias de conversión por región.',
-        'Cultura "Data-Driven" real e inmediata en toda la fuerza de ventas.',
+        'Decisiones de compra, producción y precio con meses de anticipación.',
+        'Menos capital inmovilizado en inventario.',
+        'Metas comerciales respaldadas por datos, no por intuición.',
       ],
       en: [
-        'Full visibility of the commercial funnel at a glance, with no manual spreadsheet consolidation.',
-        'Instant detection of revenue leaks or conversion inefficiencies by region.',
-        'A real, immediate data-driven culture across the entire sales force.',
+        'Purchasing, production and pricing decisions months in advance.',
+        'Less capital tied up in inventory.',
+        'Commercial targets backed by data, not intuition.',
       ],
     },
     forWho: {
-      es: 'Equipos comerciales y directores de marketing que pierden valiosas horas semanales consolidando reportes manuales o que operan a ciegas respecto al desempeño diario.',
-      en: 'Sales teams and marketing directors losing valuable hours every week consolidating manual reports, or operating blind on day-to-day performance.',
+      es: 'Equipos financieros y comerciales que necesitan anticipar la demanda y optimizar inventarios.',
+      en: 'Finance and commercial teams that need to anticipate demand and optimize inventory.',
     },
-    metrics: {
-      es: ['+250 dashboards implementados', '0h semanales perdidas en reportes manuales', '100% visibilidad del margen comercial'],
-      en: ['+250 dashboards deployed', '0h/week lost on manual reporting', '100% visibility into commercial margin'],
-    },
+    metrics: { es: [], en: [] },
   },
   {
-    id: 'prediccion-ventas',
+    id: 'imagen-politica',
     title: {
-      es: 'Predicción de Ventas e Inventarios',
-      en: 'Sales & Inventory Forecasting',
+      es: 'Imagen Política y Social Listening',
+      en: 'Political Image & Social Listening',
     },
     shortDesc: {
-      es: 'Modelos de Machine Learning predictivo para pronosticar la demanda, evitar roturas de stock y optimizar la cadena de suministro.',
-      en: 'Predictive Machine Learning models to forecast demand, avoid stockouts and optimize the supply chain.',
+      es: 'Monitoreo de radio, televisión y medios digitales para medir percepción, anticipar crisis y orientar la estrategia de comunicación.',
+      en: 'Radio, TV and digital media monitoring to measure perception, anticipate crises and guide communication strategy.',
     },
     longDesc: {
-      es: 'Desarrollamos algoritmos predictivos adaptados a la volatilidad macroeconómica y estacional de Latinoamérica. Cruzamos históricos de ventas con factores externos (clima, eventos locales, inflación, tipo de cambio) para predecir con exactitud qué se venderá, cuándo y dónde.',
-      en: 'We build predictive algorithms adapted to LatAm’s macroeconomic and seasonal volatility, cross-referencing sales history with external factors (weather, local events, inflation, exchange rate) to accurately predict what will sell, when and where.',
+      es: 'Aplicamos big data y procesamiento de lenguaje natural a la conversación pública. Nuestra experiencia incluye una licitación de gobierno de $1,1M para social listening sobre 500 fuentes de información de radio, televisión y medios digitales.',
+      en: 'We apply big data and natural language processing to public conversation. Our track record includes a $1.1M government tender for social listening across 500 radio, TV and digital information sources.',
     },
     iconName: 'Sparkles',
     features: {
       es: [
-        'Modelos predictivos de series de tiempo (XGBoost, Prophet, Redes Neuronales LSTM)',
-        'Pronóstico dinámico de demanda SKU a nivel de tienda o sucursal',
-        'Algoritmos de optimización de niveles de stock de seguridad y órdenes de compra automáticas',
-        'Simuladores de escenarios de precios y promociones',
+        'Monitoreo de radio, televisión, prensa y redes sociales',
+        'Análisis de sentimiento y temas de conversación',
+        'Alertas tempranas de crisis reputacionales',
+        'Reportes de percepción para equipos de comunicación',
       ],
       en: [
-        'Time-series predictive models (XGBoost, Prophet, LSTM neural networks)',
-        'Dynamic SKU-level demand forecasting per store or branch',
-        'Safety-stock optimization algorithms and automatic purchase orders',
-        'Pricing and promotion scenario simulators',
+        'Radio, TV, press and social media monitoring',
+        'Sentiment and topic analysis',
+        'Early warnings for reputational crises',
+        'Perception reports for communication teams',
       ],
     },
     benefits: {
       es: [
-        'Reducción drástica del capital inmovilizado en bodegas por sobre-stock de productos de baja rotación.',
-        'Eliminación de ventas perdidas por quiebres de stock en productos de alta demanda.',
-        'Planificación financiera de alta precisión basada en flujos de ingresos proyectados.',
+        'Saber qué se dice, dónde y con qué tono, casi en tiempo real.',
+        'Reaccionar a una crisis antes de que escale.',
+        'Medir el efecto real de cada mensaje y campaña.',
       ],
       en: [
-        'Drastic reduction in capital tied up in warehouses due to overstock of slow-moving products.',
-        'Elimination of lost sales from stockouts on high-demand products.',
-        'High-precision financial planning based on projected revenue flows.',
+        'Know what is being said, where and in what tone, in near real time.',
+        'React to a crisis before it escalates.',
+        'Measure the real effect of every message and campaign.',
       ],
     },
     forWho: {
-      es: 'Empresas de retail, manufactura, logística y e-commerce con catálogos complejos que buscan optimizar su flujo de caja y rentabilizar su capital de trabajo.',
-      en: 'Retail, manufacturing, logistics and e-commerce companies with complex catalogs looking to optimize cash flow and get more out of their working capital.',
+      es: 'Gobiernos, instituciones públicas, candidatos y equipos de comunicación política, además de marcas que necesitan cuidar su reputación.',
+      en: 'Governments, public institutions, candidates and political communication teams, as well as brands that need to protect their reputation.',
     },
-    metrics: {
-      es: ['-22% stock inactivo en bodegas', '+18% incremento en disponibilidad de stock', '92% exactitud de pronóstico mensual'],
-      en: ['-22% idle warehouse stock', '+18% increase in stock availability', '92% monthly forecast accuracy'],
-    },
-  },
-  {
-    id: 'consentimiento-blockchain',
-    title: {
-      es: 'Gestión de Consentimiento de Datos con Blockchain',
-      en: 'Blockchain-Based Data Consent Management',
-    },
-    shortDesc: {
-      es: 'Soluciones inmutables y transparentes para la recolección, auditoría y trazabilidad de permisos de privacidad y consentimiento de usuarios.',
-      en: 'Immutable, transparent solutions for collecting, auditing and tracing privacy permissions and user consent.',
-    },
-    longDesc: {
-      es: 'Con las crecientes exigencias regulatorias en LatAm (como la Ley de Protección de Datos Personales en Colombia/México y la LGPD en Brasil), las empresas necesitan probar de forma irrefutable que cuentan con la autorización de uso de datos de sus clientes. Diseñamos arquitecturas de "Zero-Trust Ledger" usando blockchain privada para registrar consentimientos de forma inmutable, segura y auditable en milisegundos.',
-      en: 'With growing regulatory demands across LatAm (such as the Personal Data Protection Law in Colombia/Mexico and Brazil’s LGPD), companies need irrefutable proof that they hold authorization to use customer data. We design "Zero-Trust Ledger" architectures using private blockchain to record consent immutably, securely and auditably in milliseconds.',
-    },
-    iconName: 'ShieldCheck',
-    features: {
-      es: [
-        'Registro inmutable en blockchain para autorizaciones de Habeas Data',
-        'Integración nativa vía API con formularios de registro, aplicaciones móviles y centros de contacto',
-        'Módulo de auditoría automática para compliance legal instantáneo',
-        'Portal de autogestión de privacidad para clientes finales',
-      ],
-      en: [
-        'Immutable blockchain record for Habeas Data authorizations',
-        'Native API integration with sign-up forms, mobile apps and contact centers',
-        'Automatic audit module for instant legal compliance',
-        'Self-service privacy portal for end customers',
-      ],
-    },
-    benefits: {
-      es: [
-        'Blindaje absoluto frente a multas millonarias por uso indebido de bases de datos.',
-        'Máxima confianza y transparencia para tus clientes, mejorando la reputación de la marca.',
-        'Auditorías internas y regulatorias resueltas en minutos en vez de semanas.',
-      ],
-      en: [
-        'Absolute protection against multi-million fines for misuse of databases.',
-        'Maximum trust and transparency for your customers, strengthening brand reputation.',
-        'Internal and regulatory audits resolved in minutes instead of weeks.',
-      ],
-    },
-    forWho: {
-      es: 'Fintechs, bancos, instituciones de salud y empresas digitales que manejan información sensible de usuarios y requieren un estándar de cumplimiento a prueba de fallas.',
-      en: 'Fintechs, banks, healthcare institutions and digital companies that handle sensitive user data and need a fail-proof compliance standard.',
-    },
-    metrics: {
-      es: ['0 incidentes de compliance', '100% inmutabilidad en permisos de datos', '10x velocidad en auditorías legales'],
-      en: ['0 compliance incidents', '100% immutability on data permissions', '10x faster legal audits'],
-    },
-  },
-  {
-    id: 'implementacion-llm',
-    title: {
-      es: 'Implementación de LLMs e IA para Negocios',
-      en: 'LLM & Business AI Implementation',
-    },
-    shortDesc: {
-      es: 'Despliegue de asistentes de inteligencia artificial privados, sistemas RAG de consulta experta e hiper-automatización inteligente de procesos.',
-      en: 'Deployment of private AI assistants, expert-query RAG systems and intelligent hyper-automation of processes.',
-    },
-    longDesc: {
-      es: 'Llevamos el poder de la Inteligencia Artificial generativa a tu infraestructura de forma segura y privada. Diseñamos e implementamos sistemas RAG (Retrieval-Augmented Generation) que permiten a tus colaboradores consultar miles de contratos, manuales, políticas de precios o bases de conocimiento técnico utilizando lenguaje natural, garantizando que tus secretos comerciales nunca salgan de tu nube corporativa.',
-      en: 'We bring the power of generative AI to your infrastructure safely and privately. We design and implement RAG (Retrieval-Augmented Generation) systems that let your team query thousands of contracts, manuals, pricing policies or technical knowledge bases in natural language, guaranteeing your trade secrets never leave your corporate cloud.',
-    },
-    iconName: 'Cpu',
-    features: {
-      es: [
-        'Arquitectura de RAG seguro con LLMs líderes (Gemini, Llama) hospedados de forma privada',
-        'Agentes de IA para atención a clientes e internas integrados a ERP/CRM',
-        'Automatización inteligente de flujos de trabajo documentales complejos (clasificación, extracción y resumen)',
-        'Fine-tuning o ajuste fino de modelos fundacionales con terminología corporativa',
-      ],
-      en: [
-        'Secure RAG architecture with leading LLMs (Gemini, Llama) privately hosted',
-        'AI agents for customer and internal support, integrated with ERP/CRM',
-        'Intelligent automation of complex document workflows (classification, extraction and summarization)',
-        'Fine-tuning of foundation models on your corporate terminology',
-      ],
-    },
-    benefits: {
-      es: [
-        'Ahorro del 80% del tiempo que dedican analistas y técnicos a buscar información en manuales complejos.',
-        'Soporte a clientes de primer nivel 24/7 con respuestas precisas, contextualizadas y libres de alucinaciones.',
-        'Aceleración de procesos de onboarding de personal y transferencia de conocimiento corporativo.',
-      ],
-      en: [
-        '80% time savings for analysts and technicians searching complex manuals.',
-        '24/7 first-tier customer support with accurate, contextualized, hallucination-free answers.',
-        'Faster employee onboarding and corporate knowledge transfer.',
-      ],
-    },
-    forWho: {
-      es: 'Organizaciones complejas que desean implementar IA Generativa real para aumentar su productividad y rentabilidad corporativa, sin comprometer la seguridad de sus datos.',
-      en: 'Complex organizations that want to implement real generative AI to boost corporate productivity and profitability, without compromising data security.',
-    },
-    metrics: {
-      es: ['-40% tiempo en resolución de incidencias', '+28% incremento en productividad', '100% de aislamiento y privacidad de datos'],
-      en: ['-40% incident resolution time', '+28% productivity increase', '100% data isolation and privacy'],
-    },
+    metrics: { es: [], en: [] },
   },
 ];
 

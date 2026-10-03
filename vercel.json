@@ -1,4 +1,10 @@
 {
+  "redirects": [
+    { "source": "/terms-and-conditions", "destination": "/terminos", "permanent": true },
+    { "source": "/terms-and-conditions/", "destination": "/terminos", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/privacidad", "permanent": true },
+    { "source": "/privacy-policy/", "destination": "/privacidad", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { Mail, ArrowRight, Linkedin, Sparkles, CheckCircle2 } from 'lucide-react';
+import { SERVICES_DATA } from '../data';
+import { pickLang, useLang } from '../lib/i18nData';
 
 export function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = useLang(i18n.language);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,8 +73,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Info */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigateTo('/')}>
+            <div className="flex flex-col items-center cursor-pointer w-fit" onClick={() => navigateTo('/')}>
               <img src="/logo.png" alt="Loopa Technology" className="h-12 w-auto" />
+              <span className="text-xs font-semibold tracking-wide text-brand-coral">{t('brand.tagline')}</span>
             </div>
             <p className="text-sm leading-relaxed text-brand-navy/75 dark:text-white/75">
               {t('footer.brandBlurb')}
@@ -95,36 +99,13 @@ export function Footer() {
               {t('nav.services')}
             </h4>
             <ul className="space-y-3 text-sm">
-              <li>
-                <button onClick={() => navigateTo('/servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
-                  {t('footer.linkDataGovernance')}
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigateTo('/servicios/social-listening')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
-                  {t('footer.linkSocialListening')}
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigateTo('/servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
-                  {t('footer.linkCommercialIntelligence')}
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigateTo('/servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
-                  {t('footer.linkSalesForecasting')}
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigateTo('/servicios')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
-                  {t('footer.linkBlockchainConsent')}
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigateTo('/servicios/implementacion-llm')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
-                  {t('footer.linkLlmImplementation')}
-                </button>
-              </li>
+              {SERVICES_DATA.map((s) => (
+                <li key={s.id}>
+                  <button onClick={() => navigateTo(`/servicios/${s.id}`)} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                    {pickLang(s.title, lang)}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
