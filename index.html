@@ -2,14 +2,28 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#F6F2EA" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="180x180" href="/favicon.png" />
-    <title>Loopa Technology | Consultora de Datos e IA para LatAm</title>
-    <meta
-      name="description"
-      content="Consultora de datos e IA de alta gama para empresas en LatAm: rentabilización, gobernanza, social listening y analítica predictiva."
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800;900&display=swap"
     />
+    <script>
+      // Runs before first paint: saved dark theme, and the `js` class that enables scroll reveals.
+      (function () {
+        var h = document.documentElement;
+        h.classList.add('js');
+        try {
+          if (localStorage.getItem('loopa-theme-choice') === 'dark') h.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+    <title>Loopa Technology</title>
+    <meta name="description" content="Loopa Technology: IA predictiva para la rentabilidad comercial." />
   </head>
   <body>
     <div id="root"></div>

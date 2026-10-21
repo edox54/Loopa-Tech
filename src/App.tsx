@@ -1,19 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense, type ComponentType } from 'react';
 import { Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'motion/react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
-import { ServicesView } from './components/ServicesView';
-import { CasesView } from './components/CasesView';
-import { BlogView } from './components/BlogView';
-import { NosotrosView } from './components/NosotrosView';
-import { ContactoView } from './components/ContactoView';
-import { DataLabView } from './components/DataLabView';
-import { ResourcesView } from './components/ResourcesView';
-import { PrivacyPolicyView } from './components/PrivacyPolicyView';
-import { TermsView } from './components/TermsView';
+import { WhatsAppFloat } from './components/WhatsAppFloat';
+import { useSpotlight } from './lib/useSpotlight';
+
+// Inner pages load on demand so the home page ships less JavaScript.
+const page = <T extends string>(load: () => Promise<Record<T, ComponentType>>, name: T) =>
+  lazy(() => load().then((m) => ({ default: m[name] })));
+const ServicesView = page(() => import('./components/ServicesView'), 'ServicesView');
+const CasesView = page(() => import('./components/CasesView'), 'CasesView');
+const BlogView = page(() => import('./components/BlogView'), 'BlogView');
+const NosotrosView = page(() => import('./components/NosotrosView'), 'NosotrosView');
+const ContactoView = page(() => import('./components/ContactoView'), 'ContactoView');
+const DataLabView = page(() => import('./components/DataLabView'), 'DataLabView');
+const ResourcesView = page(() => import('./components/ResourcesView'), 'ResourcesView');
+const PrivacyPolicyView = page(() => import('./components/PrivacyPolicyView'), 'PrivacyPolicyView');
+const TermsView = page(() => import('./components/TermsView'), 'TermsView');
+const NotFoundView = page(() => import('./components/NotFoundView'), 'NotFoundView');
 import { MercatelyChat } from './components/MercatelyChat';
 import { Analytics } from './components/Analytics';
 
@@ -48,13 +54,14 @@ function PageRoutes() {
       <Route path="privacidad" element={<PrivacyPolicyView />} />
       <Route path="terminos" element={<TermsView />} />
       <Route path="legal" element={<Navigate to="../privacidad" replace />} />
-      <Route path="*" element={<HomeView />} />
+      <Route path="*" element={<NotFoundView />} />
     </>
   );
 }
 
 export default function App() {
   const location = useLocation();
+  useSpotlight();
 
   // ponytail: single source of truth for scroll-to-top on route change,
   // instead of scattered window.scrollTo calls in every nav handler/Link.
@@ -67,12 +74,8 @@ export default function App() {
       <Header />
 
       <main className="flex-grow">
-        <motion.div
-          key={location.pathname}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-        >
+        <div key={location.pathname} className="page-enter">
+          <Suspense fallback={<div className="min-h-screen" />}>
           <Routes>
             <Route path="/en" element={<LangLayout lang="en" />}>
               {PageRoutes()}
@@ -81,10 +84,12 @@ export default function App() {
               {PageRoutes()}
             </Route>
           </Routes>
-        </motion.div>
+          </Suspense>
+        </div>
       </main>
 
       <Footer />
+      <WhatsAppFloat />
       <MercatelyChat />
       <Analytics />
     </div>

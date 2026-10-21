@@ -15,8 +15,8 @@
     "platformLogin": "Log in"
   },
   "home": {
-    "seoTitle": "Applied AI for commercial profitability",
-    "seoDescription": "Loopa Technology: applied AI for commercial profitability in your company’s complementary segments. Multi-agent platform, data cleansing, predictive analytics and political image.",
+    "seoTitle": "Predictive AI against overstock",
+    "seoDescription": "Loopa Technology: predictive technology with AI agents that rotates your inventory before it becomes overstock and connects complementary lines with new markets.",
     "eyebrow": "Applied AI",
     "heroLine1": "Yield enhancement: rotate every product in your inventory",
     "heroLine2": "before it becomes overstock.",
@@ -116,7 +116,7 @@
     "innerCtaLink": "Book a consultation"
   },
   "services": {
-    "seoTitle": "Services",
+    "seoTitle": "AI and data services",
     "seoDescription": "Applied AI for commercial profitability, data cleansing, predictive analytics and political image for companies and institutions in LatAm.",
     "eyebrow": "Solutions",
     "heading": "Applied AI for commercial profitability",
@@ -180,7 +180,7 @@
     "talkToEngineer": "Talk to an Engineer"
   },
   "blog": {
-    "seoTitle": "Blog",
+    "seoTitle": "Blog: AI and data for LatAm",
     "seoDescription": "Loopa Insights: technical analysis and perspectives on data, generative AI, governance and social listening for leaders across LatAm.",
     "heading": "Strategic Thinking on Data & AI",
     "subheading": "Exclusive analysis, guides and technical perspectives for technology directors, founders and CIOs across Latin America.",
@@ -430,5 +430,10 @@
   },
   "brand": {
     "tagline": "Creates oceans of business"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or has moved.",
+    "cta": "Back to home"
   }
 }

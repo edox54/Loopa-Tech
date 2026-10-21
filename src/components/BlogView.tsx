@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from '../lib/i18nRouter';
+import { Link, useNavigate, localizePath } from '../lib/i18nRouter';
+import { SITE_URL, breadcrumb, spanishDateToIso } from '../lib/seoHead';
+import { NotFoundView } from './NotFoundView';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Share2, Clock, Calendar, ArrowRight, CheckCircle, Search, Linkedin } from 'lucide-react';
 import { BLOG_POSTS_DATA } from '../data';
@@ -33,11 +35,6 @@ export function BlogView() {
 
   const handleBackToBlog = () => {
     navigate('/blog');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSelectPost = (id: string) => {
-    navigate(`/blog/${id}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -121,8 +118,7 @@ export function BlogView() {
           {!searchQuery.trim() && (selectedCategory === 'Todos' || selectedCategory === 'Inteligencia Artificial') && featuredPost && (
             <div
               id="blog-featured-hero"
-              className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-3xl p-8 mb-12 md:p-12 cursor-pointer transition-all duration-300 group relative overflow-hidden"
-              onClick={() => handleSelectPost('llm-privados-latam')}
+              className="spotlight bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-3xl p-8 mb-12 md:p-12 group relative overflow-hidden focus-within:ring-2 focus-within:ring-brand-coral"
             >
               <div className="absolute top-0 right-0 w-96 h-96 bg-brand-coral/5 rounded-full blur-3xl pointer-events-none" />
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
@@ -135,7 +131,7 @@ export function BlogView() {
                     <span className="text-brand-navy/85 dark:text-white/85">{pickLang(featuredPost.readTime, lang)}</span>
                   </div>
                   <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy dark:text-white group-hover:text-brand-coral transition-colors leading-tight">
-                    {pickLang(featuredPost.title, lang)}
+                    <Link to={`/blog/${featuredPost.id}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">{pickLang(featuredPost.title, lang)}</Link>
                   </h2>
                   <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed max-w-2xl">
                     {pickLang(featuredPost.excerpt, lang)}
@@ -175,8 +171,7 @@ export function BlogView() {
                 <article
                   key={post.id}
                   id={`blog-index-card-${post.id}`}
-                  className="bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl overflow-hidden flex flex-col justify-between hover:bg-brand-light-gray dark:hover:bg-brand-navy transition-all duration-300 group cursor-pointer animate-fade-in"
-                  onClick={() => handleSelectPost(post.id)}
+                  className="spotlight relative bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl overflow-hidden flex flex-col justify-between hover:bg-brand-light-gray dark:hover:bg-brand-navy group focus-within:ring-2 focus-within:ring-brand-coral"
                 >
                   <MediaPlaceholder ratio="16/9" className="rounded-none border-x-0 border-t-0" />
                   <div className="p-6 space-y-4 flex flex-col justify-between flex-grow">
@@ -186,7 +181,7 @@ export function BlogView() {
                         <span className="text-brand-navy/65 dark:text-white/65">{pickLang(post.readTime, lang)}</span>
                       </div>
                       <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white group-hover:text-brand-cyan transition-colors leading-snug">
-                        {pickLang(post.title, lang)}
+                        <Link to={`/blog/${post.id}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">{pickLang(post.title, lang)}</Link>
                       </h3>
                       <p className="text-brand-navy/90 dark:text-white/90 text-xs leading-relaxed line-clamp-3">
                         {pickLang(post.excerpt, lang)}
@@ -220,12 +215,37 @@ export function BlogView() {
   }
 
   // Article Detail View
-  const post = BLOG_POSTS_DATA.find((p) => p.id === selectedPostId) || BLOG_POSTS_DATA[0];
+  const post = BLOG_POSTS_DATA.find((p) => p.id === selectedPostId);
+  if (!post) return <NotFoundView />;
   const { before, after } = splitContentForCTA(pickLang(post.content, lang));
 
   return (
       <div id="blog-detail-page" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
-        <Seo title={pickLang(post.title, lang)} description={pickLang(post.excerpt, lang)} />
+        <Seo
+          title={pickLang(post.seoTitle || post.title, lang)}
+          description={pickLang(post.excerpt, lang)}
+          type="article"
+          jsonLd={[
+            {
+              '@type': 'BlogPosting',
+              headline: pickLang(post.title, lang),
+              description: pickLang(post.excerpt, lang),
+              datePublished: spanishDateToIso(post.date),
+              inLanguage: lang,
+              keywords: post.tags.join(', '),
+              articleSection: post.category,
+              author: { '@type': 'Person', name: post.author.name, jobTitle: pickLang(post.author.role, lang) },
+              publisher: { '@id': `${SITE_URL}/#organization` },
+              mainEntityOfPage: `${SITE_URL}${localizePath(`/blog/${post.id}`, lang)}`,
+              image: `${SITE_URL}/og-image.jpg`,
+            },
+            breadcrumb([
+              { name: t('nav.home'), path: localizePath('/', lang) },
+              { name: t('nav.blog'), path: localizePath('/blog', lang) },
+              { name: pickLang(post.title, lang), path: localizePath(`/blog/${post.id}`, lang) },
+            ]),
+          ]}
+        />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
 
@@ -292,7 +312,7 @@ export function BlogView() {
                       )}
                     </button>
                     <a
-                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_URL}${localizePath(`/blog/${post.id}`, lang)}`)}`}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center justify-center w-9 h-9 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 text-brand-navy/90 dark:text-white/90 hover:text-brand-navy dark:hover:text-white rounded-xl transition-colors"

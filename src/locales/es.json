@@ -15,8 +15,8 @@
     "platformLogin": "Iniciar sesión"
   },
   "home": {
-    "seoTitle": "IA aplicada a la rentabilidad comercial",
-    "seoDescription": "Loopa Technology: IA aplicada a la rentabilidad comercial en los segmentos complementarios de tu empresa. Plataforma multi-agéntica, limpieza de datos, analítica predictiva e imagen política.",
+    "seoTitle": "IA predictiva contra el overstock",
+    "seoDescription": "Loopa Technology: tecnología predictiva con agentes de IA que rota tu inventario antes del overstock y conecta tus líneas complementarias con nuevos mercados.",
     "eyebrow": "IA aplicada",
     "heroLine1": "Rota todos los productos de tu inventario",
     "heroLine2": "antes de que se vuelva overstock.",
@@ -116,7 +116,7 @@
     "innerCtaLink": "Agenda una consultoría"
   },
   "services": {
-    "seoTitle": "Servicios",
+    "seoTitle": "Servicios de IA y datos",
     "seoDescription": "IA aplicada a la rentabilidad comercial, limpieza de datos, analítica predictiva e imagen política para empresas e instituciones en LatAm.",
     "eyebrow": "Soluciones",
     "heading": "IA aplicada a la rentabilidad comercial",
@@ -180,7 +180,7 @@
     "talkToEngineer": "Conversar con un Ingeniero"
   },
   "blog": {
-    "seoTitle": "Blog",
+    "seoTitle": "Blog: IA y datos para LatAm",
     "seoDescription": "Loopa Insights: análisis y perspectivas técnicas sobre datos, IA generativa, gobernanza y social listening para líderes en LatAm.",
     "heading": "Pensamiento Estratégico en Datos e IA",
     "subheading": "Análisis, guías y perspectivas técnicas exclusivas para directores de tecnología, fundadores y CIOs en Latinoamérica.",
@@ -430,5 +430,10 @@
   },
   "brand": {
     "tagline": "Crea océanos de negocios"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "La página que buscas no existe o cambió de dirección.",
+    "cta": "Volver al inicio"
   }
 }

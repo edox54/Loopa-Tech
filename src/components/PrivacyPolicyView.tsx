@@ -19,6 +19,7 @@ export function PrivacyPolicyView() {
       <Seo
         title="Política de Privacidad"
         description="Política de Privacidad de Loopa Technology: qué datos personales recolectamos, cómo los usamos y tus derechos sobre tu información."
+        esOnly
       />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
 

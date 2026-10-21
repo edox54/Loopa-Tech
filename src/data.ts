@@ -386,6 +386,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
       es: 'Cómo los Modelos LLM Privados están Transformando la Consulta de Datos Corporativos en LatAm',
       en: 'How Private LLMs Are Transforming Corporate Data Search Across LatAm',
     },
+    seoTitle: { es: 'LLM privados para consultar datos corporativos', en: 'Private LLMs for corporate data search' },
     excerpt: {
       es: '¿Por qué enviar los datos de tus clientes a APIs públicas es un riesgo reputacional letal? Analizamos el surgimiento del RAG privado y seguro para corporativos.',
       en: 'Why is sending your customers’ data to public APIs a lethal reputational risk? We look at the rise of private, secure RAG for enterprises.',
@@ -450,6 +451,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
       es: 'Gobernanza de Datos (DAMA) vs. Agilidad: El equilibrio perfecto para Scaleups de LatAm',
       en: 'Data Governance (DAMA) vs. Agility: The Perfect Balance for LatAm Scaleups',
     },
+    seoTitle: { es: 'Gobernanza de datos DAMA vs. agilidad', en: 'DAMA data governance vs. agility' },
     excerpt: {
       es: '¿La gobernanza frena el crecimiento? Te mostramos cómo adoptar estándares mundiales como DAMA-DMBOK de forma pragmática y sin burocracia.',
       en: 'Does governance slow growth down? We show you how to adopt global standards like DAMA-DMBOK pragmatically, without red tape.',
@@ -471,6 +473,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
       es: 'Social Listening en Español: Por qué la jerga regional de LatAm arruina tus modelos tradicionales',
       en: 'Social Listening in Spanish: Why LatAm Regional Slang Breaks Your Traditional Models',
     },
+    seoTitle: { es: 'Social listening en español y jerga de LatAm', en: 'Spanish social listening and LatAm slang' },
     excerpt: {
       es: '¿"Chido", "bacán", "fome", "parce"? Descubre por qué los algoritmos genéricos de sentimiento fallan rotundamente al analizar el mercado latinoamericano.',
       en: '“Chido”, “bacán”, “fome”, “parce”? Discover why generic sentiment algorithms fail outright when analyzing the Latin American market.',
@@ -492,6 +495,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
       es: 'Modelos Predictivos en Tiempos de Volatilidad: Adaptando algoritmos en economías cambiantes',
       en: 'Predictive Models in Times of Volatility: Adapting Algorithms to Shifting Economies',
     },
+    seoTitle: { es: 'Modelos predictivos en economías volátiles', en: 'Predictive models in volatile economies' },
     excerpt: {
       es: 'Los datos históricos limpios ya no bastan. Cómo integrar variables de contexto macroeconómico para que tu predicción de ventas siga siendo precisa.',
       en: 'Clean historical data is no longer enough. How to integrate macroeconomic context variables to keep your sales forecast accurate.',
@@ -513,6 +517,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
       es: 'Blockchain y Privacidad: Cómo cumplir con la Ley de Protección de Datos de forma inmutable',
       en: 'Blockchain & Privacy: How to Comply with Data Protection Law Immutably',
     },
+    seoTitle: { es: 'Blockchain y protección de datos personales', en: 'Blockchain and personal data protection' },
     excerpt: {
       es: 'Una guía para Oficiales de Privacidad sobre el uso de tecnologías de registro distribuido para auditar consentimientos digitales sin vulnerar la criptografía.',
       en: 'A guide for Privacy Officers on using distributed-ledger technology to audit digital consent without breaking the cryptography.',
@@ -534,6 +539,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
       es: 'De Dashboards Estáticos a Decisiones Proactivas: Rediseñando la Inteligencia Comercial',
       en: 'From Static Dashboards to Proactive Decisions: Redesigning Commercial Intelligence',
     },
+    seoTitle: { es: 'De dashboards estáticos a decisiones proactivas', en: 'From static dashboards to proactive decisions' },
     excerpt: {
       es: 'La analítica del pasado ya no es suficiente. Te enseñamos a configurar alertas proactivas y automatizar acciones a partir de tus paneles de BI.',
       en: 'Analytics of the past is no longer enough. We show you how to set up proactive alerts and automate actions from your BI dashboards.',

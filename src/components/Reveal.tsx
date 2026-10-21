@@ -1,53 +1,42 @@
-import { useEffect, useLayoutEffect, useRef, ReactNode } from 'react';
-import { animate, stagger } from 'animejs';
+import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 
 interface RevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  as?: 'div' | 'section';
+  as?: 'div' | 'section' | 'ul';
 }
 
-// ponytail: one IntersectionObserver-driven anime.js primitive, reused across every section
-// header instead of hand-rolling scroll-reveal timelines per view (refero/createtoday-style staggered entrances).
+// Fades children in, one after another, when the block scrolls into view.
+// The motion itself lives in index.css (.reveal); this only flips the class.
 export function Reveal({ children, className = '', delay = 0, as = 'div' }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  // Hide before first paint so there's no flash of visible content pre-animation.
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const targets = el.children.length > 0 ? Array.from(el.children) : [el];
-    targets.forEach((t) => ((t as HTMLElement).style.opacity = '0'));
-  }, []);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    const targets = el.children.length > 0 ? Array.from(el.children) : [el];
-
+    let settle: number | undefined;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
-        animate(targets, {
-          opacity: [0, 1],
-          translateY: [24, 0],
-          delay: stagger(90, { start: delay }),
-          duration: 700,
-          ease: 'outQuad',
-        });
+        el.classList.add('is-visible');
+        // Drop the stagger delay afterwards so hover effects on children respond instantly.
+        settle = window.setTimeout(() => el.classList.add('is-settled'), 1400 + delay);
         observer.disconnect();
       },
-      { threshold: 0.2 }
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(settle);
+    };
   }, [delay]);
 
   const Tag = as;
+  const style = delay ? ({ '--reveal-delay': `${delay}ms` } as CSSProperties) : undefined;
   return (
-    <Tag ref={ref as any} className={className}>
+    <Tag ref={ref as never} className={`reveal ${className}`} style={style}>
       {children}
     </Tag>
   );

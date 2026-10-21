@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useNavigate } from '../lib/i18nRouter';
+import { Link, useNavigate, localizePath } from '../lib/i18nRouter';
+import { SITE_URL, breadcrumb } from '../lib/seoHead';
+import { NotFoundView } from './NotFoundView';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight, CheckCircle2, Users, Target, Lightbulb, Check } from 'lucide-react';
 import { SERVICES_DATA } from '../data';
@@ -16,11 +18,6 @@ export function ServicesView() {
 
   const handleBackToServices = () => {
     navigate('/servicios');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleNavigateToServiceDetail = (id: string) => {
-    navigate(`/servicios/${id}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -56,8 +53,7 @@ export function ServicesView() {
                 <div
                   key={service.id}
                   id={`service-detail-card-${service.id}`}
-                  className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl p-8 flex flex-col justify-between hover:bg-white dark:hover:bg-brand-navy transition-all duration-300 group cursor-pointer"
-                  onClick={() => handleNavigateToServiceDetail(service.id)}
+                  className="spotlight relative bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl p-8 flex flex-col justify-between hover:bg-white dark:hover:bg-brand-navy group focus-within:ring-2 focus-within:ring-brand-coral"
                 >
                   <div className="space-y-6">
                     <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 text-brand-coral group-hover:text-brand-cyan transition-colors">
@@ -65,7 +61,9 @@ export function ServicesView() {
                     </div>
                     <div>
                       <h3 className="font-display text-xl font-bold text-brand-navy dark:text-white group-hover:text-brand-coral transition-colors">
-                        {pickLang(service.title, lang)}
+                        <Link to={`/servicios/${service.id}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
+                          {pickLang(service.title, lang)}
+                        </Link>
                       </h3>
                       <p className="text-brand-navy/55 dark:text-white/55 text-xs font-mono mt-1">
                         {t('services.consultingServices')}
@@ -172,7 +170,26 @@ export function ServicesView() {
   if (service) {
     return (
       <div id={`service-detail-${service.id}`} className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
-        <Seo title={pickLang(service.title, lang)} description={pickLang(service.shortDesc, lang)} />
+        <Seo
+          title={pickLang(service.title, lang)}
+          description={pickLang(service.shortDesc, lang)}
+          jsonLd={[
+            {
+              '@type': 'Service',
+              name: pickLang(service.title, lang),
+              description: pickLang(service.longDesc, lang),
+              serviceType: pickLang(service.title, lang),
+              provider: { '@id': `${SITE_URL}/#organization` },
+              areaServed: { '@type': 'Place', name: 'Latinoamérica' },
+              url: `${SITE_URL}${localizePath(`/servicios/${service.id}`, lang)}`,
+            },
+            breadcrumb([
+              { name: t('nav.home'), path: localizePath('/', lang) },
+              { name: t('nav.services'), path: localizePath('/servicios', lang) },
+              { name: pickLang(service.title, lang), path: localizePath(`/servicios/${service.id}`, lang) },
+            ]),
+          ]}
+        />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
           <button
@@ -267,5 +284,5 @@ export function ServicesView() {
     );
   }
 
-  return null;
+  return <NotFoundView />;
 }

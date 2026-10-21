@@ -5,16 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "tsx scripts/generate-sitemap.mjs && vite build",
+    "build": "tsx scripts/generate-sitemap.mjs && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "sitemap": "tsx scripts/generate-sitemap.mjs",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist dist-ssr",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
-    "animejs": "^4.5.0",
     "i18next": "^26.3.6",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",

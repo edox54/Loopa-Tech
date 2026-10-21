@@ -35,6 +35,8 @@ export interface ProjectCase {
 export interface BlogPost {
   id: string;
   title: Localized<string>;
+  /** Shorter title for search results (~45 chars); falls back to `title`. */
+  seoTitle?: Localized<string>;
   excerpt: Localized<string>;
   content: Localized<string>; // Markdown or simple HTML-capable text
   category: 'Data Science' | 'Inteligencia Artificial' | 'Comercial';

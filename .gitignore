@@ -9,3 +9,4 @@ coverage/
 .claude/
 .claude-flow/
 PROJECT_CONTEXT.md
+dist-ssr/

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from '../lib/i18nRouter';
+import { Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { Mail, ArrowRight, Linkedin, Sparkles, CheckCircle2 } from 'lucide-react';
 import { SERVICES_DATA } from '../data';
@@ -9,7 +9,6 @@ import { pickLang, useLang } from '../lib/i18nData';
 export function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const lang = useLang(i18n.language);
 
@@ -19,11 +18,6 @@ export function Footer() {
       setSubscribed(true);
       setEmail('');
     }
-  };
-
-  const navigateTo = (to: string) => {
-    navigate(to);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -74,9 +68,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Info */}
           <div className="space-y-6">
-            <button className="cursor-pointer" onClick={() => navigateTo('/')}>
+            <Link className="cursor-pointer" to={'/'}>
               <Logo size="lg" />
-            </button>
+            </Link>
             <p className="text-sm leading-relaxed text-brand-navy/75 dark:text-white/75">
               {t('footer.brandBlurb')}
             </p>
@@ -101,9 +95,9 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               {SERVICES_DATA.map((s) => (
                 <li key={s.id}>
-                  <button onClick={() => navigateTo(`/servicios/${s.id}`)} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                  <Link to={`/servicios/${s.id}`} className="hover:text-brand-coral transition-colors text-left">
                     {pickLang(s.title, lang)}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -116,29 +110,29 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <button onClick={() => navigateTo('/')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <Link to={'/'} className="hover:text-brand-coral transition-colors text-left">
                   {t('nav.home')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => navigateTo('/blog')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <Link to={'/blog'} className="hover:text-brand-coral transition-colors text-left">
                   {t('footer.linkBlogInsights')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => navigateTo('/nosotros')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <Link to={'/nosotros'} className="hover:text-brand-coral transition-colors text-left">
                   {t('nav.about')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => navigateTo('/recursos')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <Link to={'/recursos'} className="hover:text-brand-coral transition-colors text-left">
                   {t('nav.resources')}
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => navigateTo('/contacto')} className="hover:text-brand-coral transition-colors cursor-pointer text-left">
+                <Link to={'/contacto'} className="hover:text-brand-coral transition-colors text-left">
                   {t('nav.contact')}
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

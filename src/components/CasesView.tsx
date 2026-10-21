@@ -32,6 +32,7 @@ export function CasesView() {
         <Seo
           title={t('cases.seoTitle')}
           description={t('cases.seoDescription')}
+          noindex
         />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
@@ -111,7 +112,7 @@ export function CasesView() {
 
   return (
       <div id="case-detail-page" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
-        <Seo title={pickLang(kase.title, lang)} description={pickLang(kase.shortDesc, lang)} />
+        <Seo title={pickLang(kase.title, lang)} description={pickLang(kase.shortDesc, lang)} noindex />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.25] pointer-events-none z-0" />
 

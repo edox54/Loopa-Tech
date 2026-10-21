@@ -1,11 +1,64 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/terms-and-conditions", "destination": "/terminos", "permanent": true },
-    { "source": "/terms-and-conditions/", "destination": "/terminos", "permanent": true },
-    { "source": "/privacy-policy", "destination": "/privacidad", "permanent": true },
-    { "source": "/privacy-policy/", "destination": "/privacidad", "permanent": true }
+    {
+      "source": "/terms-and-conditions/:path*",
+      "destination": "/terminos",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/:path*",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/legal",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/en/legal",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/en/privacidad",
+      "destination": "/privacidad",
+      "permanent": true
+    },
+    {
+      "source": "/en/terminos",
+      "destination": "/terminos",
+      "permanent": true
+    }
   ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        }
+      ]
+    }
   ]
 }

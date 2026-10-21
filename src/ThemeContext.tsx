@@ -8,21 +8,28 @@ const ThemeContext = createContext<{ theme: Theme; toggleTheme: () => void } | n
 // New storage key so the old auto-saved OS preference doesn't keep people in dark.
 const KEY = 'loopa-theme-choice';
 
-function getInitialTheme(): Theme {
-  return localStorage.getItem(KEY) === 'dark' ? 'dark' : 'light';
-}
-
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  // Starts as light to match the prerendered HTML; the inline script in index.html already
+  // painted the dark class, so this only syncs the toggle icon after hydration.
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
+    try {
+      if (localStorage.getItem(KEY) === 'dark') setTheme('dark');
+    } catch {
+      /* storage blocked: stay light */
+    }
+  }, []);
 
   const toggleTheme = () =>
     setTheme((t) => {
       const next = t === 'dark' ? 'light' : 'dark';
-      localStorage.setItem(KEY, next);
+      document.documentElement.classList.toggle('dark', next === 'dark');
+      try {
+        localStorage.setItem(KEY, next);
+      } catch {
+        /* storage blocked */
+      }
       return next;
     });
 

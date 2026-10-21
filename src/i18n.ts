@@ -7,7 +7,8 @@ import en from './locales/en.json';
 // Translating the ~4000 lines of view copy with real cultural adaptation is Phase 2 (client-reviewed, not literal translation).
 i18next.use(initReactI18next).init({
   resources: { es: { translation: es }, en: { translation: en } },
-  lng: localStorage.getItem('loopa-lang') || 'es',
+  // Language comes from the URL so the browser starts in the same language the prerendered HTML used.
+  lng: typeof window !== 'undefined' && /^\/en(\/|$)/.test(window.location.pathname) ? 'en' : 'es',
   fallbackLng: 'es',
   interpolation: { escapeValue: false },
 });

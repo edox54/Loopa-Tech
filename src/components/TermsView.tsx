@@ -8,7 +8,8 @@ export function TermsView() {
     <div id="terms-view" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
       <Seo
         title="Términos y Condiciones"
-        description="Términos y Condiciones de uso de los servicios de Loopa Technology."
+        description="Términos y Condiciones que regulan el uso del sitio web, la plataforma y los servicios de Loopa Technology."
+        esOnly
       />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
 

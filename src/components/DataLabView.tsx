@@ -257,6 +257,7 @@ export function DataLabView() {
       <Seo
         title={t('datalab.seoTitle')}
         description={t('datalab.seoDescription')}
+        noindex
       />
       {/* Background visual effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />

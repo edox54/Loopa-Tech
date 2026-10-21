@@ -1,55 +1,21 @@
-import { useEffect } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { applyHead, buildHead, type SeoData } from '../lib/seoHead';
 
-interface SeoProps {
-  title: string;
-  description: string;
-}
+// During prerender the page's SEO data is written into this object, then turned into <head> tags.
+export const SeoCollector = createContext<{ seo?: SeoData } | null>(null);
 
-const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://loopa-tech.vercel.app';
-
-function setLinkTag(rel: string, hreflang: string | undefined, href: string) {
-  const selector = hreflang
-    ? `link[rel="${rel}"][hreflang="${hreflang}"]`
-    : `link[rel="${rel}"]`;
-  let link = document.querySelector(selector);
-  if (!link) {
-    link = document.createElement('link');
-    link.setAttribute('rel', rel);
-    if (hreflang) link.setAttribute('hreflang', hreflang);
-    document.head.appendChild(link);
-  }
-  link.setAttribute('href', href);
-}
-
-// ponytail: no react-helmet dependency needed — plain DOM API covers per-route title/meta/hreflang.
-export function Seo({ title, description }: SeoProps) {
+// ponytail: no react-helmet — one context for the build step, plain DOM updates in the browser.
+export function Seo(props: SeoData) {
   const { pathname } = useLocation();
+  const collector = useContext(SeoCollector);
+  if (collector) collector.seo = props;
 
+  const key = JSON.stringify(props);
   useEffect(() => {
-    document.title = `${title} | Loopa Technology`;
-
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.setAttribute('name', 'description');
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute('content', description);
-
-    // Language lives in the URL: strip /en to get the canonical (Spanish) path,
-    // then rebuild both language variants from it for hreflang + canonical.
-    const esPath = pathname.startsWith('/en') ? pathname.slice(3) || '/' : pathname;
-    const isEn = pathname.startsWith('/en');
-    const enPath = esPath === '/' ? '/en' : `/en${esPath}`;
-
-    document.documentElement.lang = isEn ? 'en' : 'es';
-
-    setLinkTag('alternate', 'es', `${SITE_URL}${esPath}`);
-    setLinkTag('alternate', 'en', `${SITE_URL}${enPath}`);
-    setLinkTag('alternate', 'x-default', `${SITE_URL}${esPath}`);
-    setLinkTag('canonical', undefined, `${SITE_URL}${isEn ? enPath : esPath}`);
-  }, [title, description, pathname]);
+    applyHead(buildHead(props, pathname));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key, pathname]);
 
   return null;
 }
