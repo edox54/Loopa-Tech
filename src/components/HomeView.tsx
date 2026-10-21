@@ -11,6 +11,7 @@ import { Seo } from './Seo';
 import { HeroTitle } from './HeroTitle';
 import { Reveal } from './Reveal';
 import { ServiceIcon } from './ServiceIcon';
+import { LineChart, INVENTORY_CHART } from './Charts';
 
 type Item = { title: string; text: string };
 
@@ -96,6 +97,9 @@ export function HomeView() {
               </div>
             ))}
           </div>
+        </Reveal>
+        <Reveal className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+          <LineChart {...INVENTORY_CHART} />
         </Reveal>
       </section>
 

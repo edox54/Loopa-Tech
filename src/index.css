@@ -153,6 +153,13 @@ html:not(.dark) .group:hover .group-hover\:text-brand-cyan { color: var(--color-
   .wa-float { animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both; }
   .wa-ring { animation: ping 2.8s cubic-bezier(0, 0, 0.2, 1) 2s infinite; }
 
+  /* Charts (Charts.tsx): lines draw themselves, band and marker fade in once the chart is in view. */
+  .chart-line { stroke-dasharray: 1; transition: stroke-dashoffset 1.6s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms); }
+  .chart-fade, .chart-band, .chart-marker { transition: opacity 0.8s ease-out 1s; }
+  .js .chart:not(.is-drawn) .chart-line { stroke-dashoffset: 1; }
+  .js .chart:not(.is-drawn) :is(.chart-fade, .chart-band, .chart-marker) { opacity: 0; }
+  .chart-ping { transform-box: fill-box; transform-origin: center; animation: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
   /* Reading progress bar under the header (browsers with scroll-driven animations only). */
   .scroll-progress { transform-origin: 0 50%; transform: scaleX(0); }
   @supports (animation-timeline: scroll()) {

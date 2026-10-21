@@ -9,6 +9,7 @@ import { pickLang, useLang } from '../lib/i18nData';
 import { ServiceIcon } from './ServiceIcon';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
+import { ServiceChart } from './Charts';
 
 export function ServicesView() {
   const navigate = useNavigate();
@@ -243,6 +244,8 @@ export function ServicesView() {
               </button>
             </div>
           </div>
+
+          <ServiceChart id={service.id} />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-4">
             <div className="space-y-6">
