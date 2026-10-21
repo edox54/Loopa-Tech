@@ -3,7 +3,7 @@ import { useLocation, useNavigate as useRawNavigate } from 'react-router-dom';
 import { Link, useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, ArrowRight, Languages, Sun, Moon } from 'lucide-react';
-import { PlatformDemoButton } from './PlatformDemoButton';
+import { PlatformLoginButton } from './PlatformLoginButton';
 import { useTheme } from '../ThemeContext';
 import { Logo } from './Logo';
 
@@ -108,7 +108,7 @@ export function Header() {
               <Languages className="w-4 h-4" />
               <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
             </button>
-            <PlatformDemoButton className="px-4 py-2.5 rounded-xl text-sm font-semibold text-brand-navy/75 dark:text-white/75 border border-brand-navy/10 dark:border-white/10 hover:text-brand-navy dark:hover:text-white hover:border-brand-coral/40 transition-all" />
+            <PlatformLoginButton className="px-4 py-2.5 rounded-xl text-sm font-semibold text-brand-navy/75 dark:text-white/75 border border-brand-navy/10 dark:border-white/10 hover:text-brand-navy dark:hover:text-white hover:border-brand-coral/40 transition-all" />
             <button
               id="cta-agendar-header"
               onClick={() => handleNavClick('/contacto')}
@@ -171,7 +171,8 @@ export function Header() {
               <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
             </button>
           </div>
-          <div className="px-4">
+          <div className="px-4 space-y-2">
+            <PlatformLoginButton className="w-full py-3 rounded-xl text-sm font-semibold text-brand-navy dark:text-white border border-brand-navy/15 dark:border-white/15" />
             <button
               id="mobile-cta-agendar"
               onClick={() => handleNavClick('/contacto')}

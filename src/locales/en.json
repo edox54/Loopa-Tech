@@ -11,21 +11,21 @@
   },
   "cta": {
     "scheduleConsult": "Schedule Consultation",
-    "viewDemo": "View Live Demo",
-    "scheduleDemo": "Book Your Demo"
+    "scheduleDemo": "Book Your Demo",
+    "platformLogin": "Log in"
   },
   "home": {
     "seoTitle": "Applied AI for commercial profitability",
     "seoDescription": "Loopa Technology: applied AI for commercial profitability in your company’s complementary segments. Multi-agent platform, data cleansing, predictive analytics and political image.",
     "eyebrow": "Applied AI",
-    "heroLine1": "Applied AI for",
-    "heroLine2": "commercial profitability.",
-    "heroSubtitle": "We help your company’s complementary segments —the ones with fixed commercial targets that don’t get full attention or resources— hit their goals, on the budget they actually need.",
+    "heroLine1": "Yield enhancement: rotate every product in your inventory",
+    "heroLine2": "before it becomes overstock.",
+    "heroSubtitle": "Predictive technology with AI agents that improves commercial performance, preventing overstock and connecting with markets. It benefits, but is not limited to, business lines that don’t get prioritized by their marketing or technology/BI departments.",
     "ctaMeeting": "Book a meeting",
     "ctaSolutions": "See solutions",
     "problemEyebrow": "The power of complementary business",
     "problemStatLabel": "USD in incremental annual revenue",
-    "problemStatText": "Airline case: a segment that was neither leisure nor corporate generated more than US$20M in additional annual revenue. Replicating moves like that is a major challenge for any company.",
+    "problemStatText": "Airline case: a route with overstock generated more than US$20M in additional annual revenue. Replicating moves like that is a major challenge for any company.",
     "problemPoints": [
       {
         "title": "Root cause: the core comes first",
@@ -33,7 +33,7 @@
       },
       {
         "title": "Peak efficiency has a cost",
-        "text": "When the whole commercial team targets the main business, complementary lines get no attention: that is opportunity cost."
+        "text": "When the whole commercial team targets the main business, complementary lines get no attention, creating an opportunity cost in the form of overstock."
       }
     ],
     "platformEyebrow": "Multi-agent platform",
@@ -81,6 +81,7 @@
     "icp": [
       "Finance managers with inventory-optimization KPIs.",
       "Heads of complementary products or markets: accessories, spare parts, armoring, overgrips, student segment.",
+      "Financial brokers.",
       "Marketing agencies."
     ],
     "partnersHeading": "Partners",
@@ -89,7 +90,7 @@
     "validationHeading": "Already working.",
     "validation": [
       {
-        "title": "SZK",
+        "title": "Automotive industry",
         "text": "Purchase and repurchase."
       },
       {
@@ -105,9 +106,10 @@
         "text": "Recurring client in the United Kingdom."
       }
     ],
-    "ecosystemText": "We are room organizers in a community backed by Big Tech (Google DeepMind, Apple, Amazon), LatamGPT and Accel Ventures, and part of a LATAM talent network with mentoring and access to PhDs.",
+    "ecosystemText": "We are part of a community backed by Big Tech (Google DeepMind, Apple, Amazon), LatamGPT and Accel Ventures, and of a LATAM talent network with mentoring and access to PhDs.",
     "finalCtaHeading": "Let’s connect.",
-    "finalCtaText": "Tell us which business line needs to hit its target and we’ll show you how we make it profitable."
+    "finalCtaText": "Tell us which business line needs to hit its target and we’ll show you how we make it profitable.",
+    "ctaWhatsapp": "Message us on WhatsApp"
   },
   "shared": {
     "innerCtaText": "Does this sound like the challenge you're facing today? Let's talk about how to apply it in your company.",

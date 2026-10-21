@@ -11,21 +11,21 @@
   },
   "cta": {
     "scheduleConsult": "Agendar Consultoría",
-    "viewDemo": "Ver demo en vivo",
-    "scheduleDemo": "Agenda tu demo"
+    "scheduleDemo": "Agenda tu demo",
+    "platformLogin": "Iniciar sesión"
   },
   "home": {
     "seoTitle": "IA aplicada a la rentabilidad comercial",
     "seoDescription": "Loopa Technology: IA aplicada a la rentabilidad comercial en los segmentos complementarios de tu empresa. Plataforma multi-agéntica, limpieza de datos, analítica predictiva e imagen política.",
     "eyebrow": "IA aplicada",
-    "heroLine1": "IA aplicada a la",
-    "heroLine2": "rentabilidad comercial.",
-    "heroSubtitle": "Ayudamos a los segmentos complementarios de tu empresa —los que tienen metas comerciales fijas pero no reciben toda la atención ni todos los recursos— a cumplir sus metas, con el presupuesto que realmente necesitan.",
+    "heroLine1": "Rota todos los productos de tu inventario",
+    "heroLine2": "antes de que se vuelva overstock.",
+    "heroSubtitle": "Tecnología predictiva con agentes de IA que mejora el rendimiento comercial, evitando el overstock y conectando con mercados. Beneficia, pero no se limita, a las líneas de negocio que no alcanzan a ser priorizadas por sus departamentos de marketing ni de tecnología/BI.",
     "ctaMeeting": "Agenda una reunión",
     "ctaSolutions": "Ver soluciones",
     "problemEyebrow": "El poder del negocio complementario",
     "problemStatLabel": "USD anuales incrementales",
-    "problemStatText": "Caso aerolínea: un segmento que no era ni turista ni corporativo generó más de US$20M anuales adicionales. Replicar movimientos así es un gran desafío para cualquier empresa.",
+    "problemStatText": "Caso aerolínea: una ruta donde había overstock generó más de US$20M anuales adicionales. Replicar movimientos así es un gran desafío para cualquier empresa.",
     "problemPoints": [
       {
         "title": "Causa: la prioridad está en el core",
@@ -33,7 +33,7 @@
       },
       {
         "title": "La máxima eficiencia tiene un costo",
-        "text": "Cuando todo el equipo comercial apunta al negocio principal, las líneas complementarias se quedan sin atención: eso es costo de oportunidad."
+        "text": "Cuando todo el equipo comercial apunta al negocio principal, las líneas complementarias se quedan sin atención, generando un costo de oportunidad en forma de overstock."
       }
     ],
     "platformEyebrow": "Plataforma multi-agéntica",
@@ -81,6 +81,7 @@
     "icp": [
       "Gerentes financieros con KPIs de optimización de inventarios.",
       "Jefaturas de productos o mercados complementarios: accesorios, repuestos, blindaje, overgrips, segmento estudiantil.",
+      "Brokers financieros.",
       "Agencias de marketing."
     ],
     "partnersHeading": "Partners",
@@ -89,7 +90,7 @@
     "validationHeading": "Ya está funcionando.",
     "validation": [
       {
-        "title": "SZK",
+        "title": "Industria automotriz",
         "text": "Compra y recompra."
       },
       {
@@ -105,9 +106,10 @@
         "text": "Cliente recurrente en el Reino Unido."
       }
     ],
-    "ecosystemText": "Somos organizadores de sala en una comunidad apoyada por Big Tech (Google DeepMind, Apple, Amazon), LatamGPT y Accel Ventures, y parte de una red de talentos LATAM con mentoría y acceso a PhDs.",
+    "ecosystemText": "Somos parte de una comunidad apoyada por Big Tech (Google DeepMind, Apple, Amazon), LatamGPT y Accel Ventures, y de una red de talentos LATAM con mentoría y acceso a PhDs.",
     "finalCtaHeading": "Conectemos.",
-    "finalCtaText": "Cuéntanos qué línea de negocio necesita cumplir su meta y te mostramos cómo la hacemos rentable."
+    "finalCtaText": "Cuéntanos qué línea de negocio necesita cumplir su meta y te mostramos cómo la hacemos rentable.",
+    "ctaWhatsapp": "Escríbenos por WhatsApp"
   },
   "shared": {
     "innerCtaText": "¿Esto suena al reto que tienes hoy? Hablemos de cómo aplicarlo en tu empresa.",

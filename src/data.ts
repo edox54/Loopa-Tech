@@ -3,6 +3,11 @@ import { Service, ProjectCase, BlogPost, TeamMember, FAQItem } from './types';
 // Real scheduling link from the client deck; env var overrides it (`?.`: sitemap script imports this under plain Node).
 export const CALENDLY_URL = import.meta.env?.VITE_CALENDLY_URL || 'https://calendly.com/asancho-6u/30min';
 
+// Links provided by the client (doc 2026-10-20).
+export const PLATFORM_URL = import.meta.env?.VITE_PLATFORM_URL || 'https://loopa-platform-dev-409690690590.us-central1.run.app/dashboard/';
+export const DEMO_VIDEO_EMBED = 'https://drive.google.com/file/d/1J_HqXKexQWradNAjQDv940HBNk8o3LRY/preview';
+export const WHATSAPP_URL = 'https://wa.me/593996905953';
+
 // Content source: client deck "Loopa info para pagina web" (2026-10). Main offer first,
 // complementary products after. No impact metrics until the client provides real ones.
 export const SERVICES_DATA: Service[] = [
@@ -13,8 +18,8 @@ export const SERVICES_DATA: Service[] = [
       en: 'AI for Commercial Profitability',
     },
     shortDesc: {
-      es: 'Plataforma multi-agéntica que ayuda a las líneas complementarias de tu empresa a cumplir sus metas comerciales, con el presupuesto que realmente necesitan.',
-      en: 'A multi-agent platform that helps your company’s complementary business lines hit their commercial targets, on the budget they actually need.',
+      es: 'Plataforma multi-agéntica que ayuda a las líneas complementarias de tu empresa a cumplir sus metas comerciales.',
+      en: 'A multi-agent platform that helps your company’s complementary business lines hit their commercial targets.',
     },
     longDesc: {
       es: 'Muchas empresas tienen segmentos con metas comerciales fijas que no reciben toda la atención ni todos los recursos, porque la prioridad está en el core. Ahí se quedan millones de dólares sobre la mesa cada año. LOOPA conecta mercados existentes que hoy se ignoran con la capacidad disponible interna, mientras tu equipo mantiene el foco en la operación principal.',
@@ -60,8 +65,8 @@ export const SERVICES_DATA: Service[] = [
       en: 'Data Cleansing & Quality',
     },
     shortDesc: {
-      es: 'Depuramos, estandarizamos y estructuramos tus bases para que las decisiones comerciales y los modelos de IA trabajen sobre datos confiables.',
-      en: 'We clean, standardize and structure your databases so commercial decisions and AI models run on data you can trust.',
+      es: 'Depuramos, estandarizamos y estructuramos tus bases para que las decisiones comerciales y los modelos de IA trabajen sobre datos confiables. Incluye transaccionabilidad de datos.',
+      en: 'We clean, standardize and structure your databases so commercial decisions and AI models run on data you can trust. Includes data transactability.',
     },
     longDesc: {
       es: 'Ningún modelo predice bien con datos duplicados, incompletos o dispersos. Diagnosticamos la calidad de tus bases de clientes, productos e inventario, las depuramos y dejamos una estructura lista para analítica e inteligencia artificial.',
@@ -74,12 +79,14 @@ export const SERVICES_DATA: Service[] = [
         'Deduplicación y estandarización de registros de clientes, productos e inventario',
         'Integración de fuentes dispersas (ERP, CRM, hojas de cálculo)',
         'Datos preparados para analítica predictiva e IA',
+        'Transaccionabilidad de datos',
       ],
       en: [
         'Data quality and completeness assessment',
         'Deduplication and standardization of customer, product and inventory records',
         'Integration of scattered sources (ERP, CRM, spreadsheets)',
         'Data prepared for predictive analytics and AI',
+        'Data transactability',
       ],
     },
     benefits: {
@@ -107,8 +114,8 @@ export const SERVICES_DATA: Service[] = [
       en: 'Predictive Analytics',
     },
     shortDesc: {
-      es: 'Modelos que anticipan demanda, ventas y capacidad ociosa para que actúes antes de que el problema llegue al estado de resultados.',
-      en: 'Models that anticipate demand, sales and idle capacity so you can act before the problem reaches the income statement.',
+      es: 'Modelos que anticipan demanda, ventas y capacidad ociosa para que actúes antes de que el problema llegue al estado de resultados. También recomendamos tickers para portafolios de inversión en small y mid caps y prospectamos posibles escenarios en cripto.',
+      en: 'Models that anticipate demand, sales and idle capacity so you can act before the problem reaches the income statement. We also recommend tickers for small- and mid-cap investment portfolios and prospect possible crypto scenarios.',
     },
     longDesc: {
       es: 'Construimos modelos de machine learning sobre tus datos históricos y de mercado para pronosticar demanda y ventas, detectar inventario en riesgo y simular escenarios de precio y promoción.',
@@ -121,12 +128,16 @@ export const SERVICES_DATA: Service[] = [
         'Detección temprana de sobrestock y capacidad ociosa',
         'Simulación de escenarios de precio y promoción',
         'Tableros de seguimiento para el equipo comercial y financiero',
+        'Recomendación de tickers para portafolios de inversión en small y mid caps',
+        'Prospección de posibles escenarios en cripto',
       ],
       en: [
         'Demand and sales forecasting',
         'Early detection of overstock and idle capacity',
         'Pricing and promotion scenario simulation',
         'Tracking dashboards for commercial and finance teams',
+        'Ticker recommendations for small- and mid-cap investment portfolios',
+        'Prospecting of possible crypto scenarios',
       ],
     },
     benefits: {

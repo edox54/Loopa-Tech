@@ -1,12 +1,12 @@
-import { ArrowRight, CalendarClock, Radar, Megaphone, Network, RefreshCw, Users, Layers, Check } from 'lucide-react';
+import { ArrowRight, CalendarClock, Radar, Megaphone, Network, RefreshCw, Users, Layers, Check, MessageCircle } from 'lucide-react';
 import { useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
-import { SERVICES_DATA, CALENDLY_URL } from '../data';
+import { SERVICES_DATA, CALENDLY_URL, DEMO_VIDEO_EMBED, WHATSAPP_URL } from '../data';
+import { PlatformLoginButton } from './PlatformLoginButton';
 import { pickLang, useLang } from '../lib/i18nData';
 import { Seo } from './Seo';
 import { HeroTitle } from './HeroTitle';
 import { Reveal } from './Reveal';
-import { MediaPlaceholder } from './MediaPlaceholder';
 import { ServiceIcon } from './ServiceIcon';
 
 type Item = { title: string; text: string };
@@ -47,7 +47,7 @@ export function HomeView() {
             {t('home.eyebrow')}
           </span>
           <HeroTitle
-            className="text-5xl sm:text-6xl md:text-7xl"
+            className="text-4xl sm:text-5xl md:text-6xl"
             lines={[
               <span>{t('home.heroLine1')}</span>,
               <span className="text-brand-coral">{t('home.heroLine2')}</span>,
@@ -113,7 +113,17 @@ export function HomeView() {
           </Reveal>
           <p className="mt-10 text-center font-display text-xl md:text-2xl font-bold">{t('home.platformOneClick')}</p>
           <Reveal className="mt-12 max-w-4xl mx-auto">
-            <MediaPlaceholder ratio="16/9" kind="video" label={t('home.demoVideoLabel')} className="w-full" />
+            <iframe
+              src={DEMO_VIDEO_EMBED}
+              title={t('home.demoVideoLabel')}
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              loading="lazy"
+              className="w-full aspect-video rounded-2xl border border-brand-navy/10 dark:border-white/10"
+            />
+            <div className="mt-8 flex justify-center">
+              <PlatformLoginButton className="px-8 py-3.5 rounded-full bg-brand-navy text-white dark:bg-white dark:text-brand-navy font-bold hover:brightness-110 transition" />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -219,6 +229,16 @@ export function HomeView() {
             <CalendarClock className="w-5 h-5" />
             {t('home.ctaMeeting')}
           </button>
+          <a
+            id="cta-whatsapp"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-10 py-4 rounded-full bg-[#25D366] text-brand-navy font-bold inline-flex items-center gap-2 hover:brightness-105 transition"
+          >
+            <MessageCircle className="w-5 h-5" />
+            {t('home.ctaWhatsapp')}
+          </a>
         </Reveal>
       </section>
     </div>

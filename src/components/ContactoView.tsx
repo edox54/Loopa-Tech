@@ -357,8 +357,8 @@ export function ContactoView() {
                   </div>
                   <div>
                     <span className="text-[11px] text-brand-navy/55 dark:text-white/55 block uppercase font-mono">{t('contact.corporateEmailLabel')}</span>
-                    <a href="mailto:info@loopa.technology" className="text-brand-navy dark:text-white hover:text-brand-coral transition-colors font-semibold">
-                      info@loopa.technology
+                    <a href="mailto:asancho@loopa.technology" className="text-brand-navy dark:text-white hover:text-brand-coral transition-colors font-semibold">
+                      asancho@loopa.technology
                     </a>
                   </div>
                 </div>
