@@ -15,6 +15,7 @@ export interface Service {
   forWho: Localized<string>;
   metrics: Localized<string[]>;
   comingSoon?: boolean;
+  highlight?: Localized<{ title: string; text: string }>;
 }
 
 export interface ProjectCase {

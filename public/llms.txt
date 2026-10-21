@@ -5,7 +5,8 @@
 ## Servicios
 - [IA para la Rentabilidad Comercial](https://loopa-tech.vercel.app/servicios/rentabilidad-comercial): plataforma multi-agéntica (Agente Predictivo, Agente de Mercado, Agente de Cercanía).
 - [Limpieza y Calidad de Datos](https://loopa-tech.vercel.app/servicios/limpieza-datos): depuración, estandarización y transaccionabilidad de datos.
-- [Analítica Predictiva](https://loopa-tech.vercel.app/servicios/analitica-predictiva): pronóstico de demanda, detección de sobrestock, tickers de small y mid caps, escenarios en cripto.
+- [Analítica Predictiva](https://loopa-tech.vercel.app/servicios/analitica-predictiva): pronóstico de demanda, detección de sobrestock, tickets de small y mid caps, escenarios en cripto, modelos propios de machine learning (Deep Tech).
+- [Servicios Econométricos](https://loopa-tech.vercel.app/servicios/servicios-econometricos): qué esfuerzos comerciales y operativos impactan más en tus ingresos y dónde crecer.
 - [Imagen Política y Social Listening](https://loopa-tech.vercel.app/servicios/imagen-politica): monitoreo de radio, televisión y medios digitales.
 
 ## Empresa

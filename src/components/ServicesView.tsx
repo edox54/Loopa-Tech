@@ -212,6 +212,12 @@ export function ServicesView() {
                 {pickLang(service.title, lang)}
               </h1>
               <p className="text-lg text-brand-navy/75 dark:text-white/75 leading-relaxed">{pickLang(service.longDesc, lang)}</p>
+              {service.highlight && (
+                <div className="spotlight rounded-2xl border border-brand-coral/40 p-6 space-y-2">
+                  <h2 className="font-display text-xl font-bold text-brand-coral">{pickLang(service.highlight, lang).title}</h2>
+                  <p className="text-brand-navy/75 dark:text-white/75 leading-relaxed">{pickLang(service.highlight, lang).text}</p>
+                </div>
+              )}
             </div>
             <div className="lg:col-span-4 self-start bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 p-6 rounded-2xl flex flex-col space-y-6">
               {pickLang(service.metrics, lang).length > 0 && <div>

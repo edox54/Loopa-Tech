@@ -173,7 +173,7 @@ export function HomeView() {
               </span>
             </Link>
             <p className="pt-6 text-sm font-bold uppercase tracking-widest text-brand-navy/60 dark:text-white/60">{t('home.complementaryLabel')}</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {complementary.map((s) => (
                 <Link
                   key={s.id}
@@ -220,7 +220,10 @@ export function HomeView() {
               </div>
             ))}
           </Reveal>
-          <p className="mt-12 text-brand-navy/75 dark:text-white/75 max-w-3xl">{t('home.ecosystemText')}</p>
+          <Reveal className="mt-12 max-w-3xl space-y-3">
+            <h3 className="font-display text-2xl font-bold">{t('home.socialTitle')}</h3>
+            <p className="text-brand-navy/75 dark:text-white/75">{t('home.socialText')}</p>
+          </Reveal>
         </div>
       </section>
 

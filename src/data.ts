@@ -114,7 +114,7 @@ export const SERVICES_DATA: Service[] = [
       en: 'Predictive Analytics',
     },
     shortDesc: {
-      es: 'Modelos que anticipan demanda, ventas y capacidad ociosa para que actúes antes de que el problema llegue al estado de resultados. También recomendamos tickers para portafolios de inversión en small y mid caps y prospectamos posibles escenarios en cripto.',
+      es: 'Modelos que anticipan demanda, ventas y capacidad ociosa para que actúes antes de que el problema llegue al estado de resultados. También recomendamos tickets para portafolios de inversión en small y mid caps y prospectamos posibles escenarios en cripto.',
       en: 'Models that anticipate demand, sales and idle capacity so you can act before the problem reaches the income statement. We also recommend tickers for small- and mid-cap investment portfolios and prospect possible crypto scenarios.',
     },
     longDesc: {
@@ -122,13 +122,23 @@ export const SERVICES_DATA: Service[] = [
       en: 'We build machine learning models on your historical and market data to forecast demand and sales, detect at-risk inventory and simulate pricing and promotion scenarios.',
     },
     iconName: 'BarChart3',
+    highlight: {
+      es: {
+        title: 'Tecnología disruptiva (Deep Tech)',
+        text: 'Entendimos cómo se conecta la conciencia colectiva humana para volverse predictiva; por eso nos anticipamos a tendencias de mercado y activos financieros mejor que las inteligencias artificiales tradicionales. Generamos nuestros propios modelos de machine learning, como Palantir.',
+      },
+      en: {
+        title: 'Disruptive technology (Deep Tech)',
+        text: 'We understood how collective human consciousness connects and becomes predictive; that is why we anticipate market trends and financial assets better than traditional artificial intelligence. We build our own machine learning models, like Palantir.',
+      },
+    },
     features: {
       es: [
         'Pronóstico de demanda y ventas',
         'Detección temprana de sobrestock y capacidad ociosa',
         'Simulación de escenarios de precio y promoción',
         'Tableros de seguimiento para el equipo comercial y financiero',
-        'Recomendación de tickers para portafolios de inversión en small y mid caps',
+        'Recomendación de tickets para portafolios de inversión en small y mid caps',
         'Prospección de posibles escenarios en cripto',
       ],
       en: [
@@ -202,6 +212,51 @@ export const SERVICES_DATA: Service[] = [
     forWho: {
       es: 'Gobiernos, instituciones públicas, candidatos y equipos de comunicación política, además de marcas que necesitan cuidar su reputación.',
       en: 'Governments, public institutions, candidates and political communication teams, as well as brands that need to protect their reputation.',
+    },
+    metrics: { es: [], en: [] },
+  },
+  {
+    id: 'servicios-econometricos',
+    title: {
+      es: 'Servicios Econométricos',
+      en: 'Econometric Services',
+    },
+    shortDesc: {
+      es: 'Te decimos qué parte de tus esfuerzos comerciales y operativos impacta más en tus ingresos y dónde tienes más oportunidad de crecer.',
+      en: 'We tell you which of your commercial and operational efforts have the biggest impact on your revenue and where you have the most room to grow.',
+    },
+    longDesc: {
+      es: 'Aplicamos modelos econométricos a tus datos comerciales y operativos para medir cuánto aporta cada esfuerzo a tus ingresos. Así sabes qué funciona, qué no y dónde tienes más oportunidad de crecer.',
+      en: 'We apply econometric models to your commercial and operational data to measure how much each effort contributes to your revenue. That way you know what works, what does not and where you have the most room to grow.',
+    },
+    iconName: 'LineChart',
+    features: {
+      es: [
+        'Medición del impacto de cada esfuerzo comercial y operativo en tus ingresos',
+        'Identificación de las palancas con mayor retorno',
+        'Detección de oportunidades de crecimiento',
+      ],
+      en: [
+        'Measurement of each commercial and operational effort’s impact on revenue',
+        'Identification of the levers with the highest return',
+        'Detection of growth opportunities',
+      ],
+    },
+    benefits: {
+      es: [
+        'Inviertes donde más impacta en tus ingresos.',
+        'Dejas de gastar en esfuerzos que no mueven la aguja.',
+        'Decisiones de crecimiento respaldadas por datos.',
+      ],
+      en: [
+        'Invest where it has the most impact on revenue.',
+        'Stop spending on efforts that do not move the needle.',
+        'Growth decisions backed by data.',
+      ],
+    },
+    forWho: {
+      es: 'Gerencias comerciales, financieras y de operaciones que necesitan saber qué esfuerzos generan ingresos y dónde crecer.',
+      en: 'Commercial, finance and operations leaders who need to know which efforts drive revenue and where to grow.',
     },
     metrics: { es: [], en: [] },
   },
