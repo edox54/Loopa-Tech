@@ -101,7 +101,7 @@ export function Header() {
               <Languages className="w-4 h-4" />
               <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
             </button>
-            <PlatformLoginButton className="px-4 py-2.5 rounded-xl text-sm font-semibold text-brand-navy/75 dark:text-white/75 border border-brand-navy/10 dark:border-white/10 hover:text-brand-navy dark:hover:text-white hover:border-brand-coral/40 transition-all" />
+            <PlatformLoginButton className="px-4 py-2.5 rounded-xl text-sm font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy hover:bg-brand-cyan hover:text-brand-navy dark:hover:bg-brand-cyan shadow-[0_0_0_3px_rgba(34,211,238,0.25)] transition-all" />
             <Link
               id="cta-agendar-header"
               to={'/contacto'} onClick={() => setIsMobileMenuOpen(false)}
@@ -116,19 +116,22 @@ export function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-1 md:hidden">
+          <div className="flex items-center gap-1 md:hidden">
             <button
-              id="theme-toggle-mobile"
-              onClick={toggleTheme}
-              className="p-2 text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white focus:outline-none cursor-pointer"
-              aria-label="Toggle theme"
+              id="language-toggle-mobile"
+              onClick={toggleLanguage}
+              className="p-1.5 rounded-xl text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white cursor-pointer flex items-center gap-1"
+              aria-label="Toggle language"
             >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              <Languages className="w-4 h-4 hidden min-[400px]:block" />
+              <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
             </button>
+            <PlatformLoginButton compact className="px-3 py-1.5 rounded-full text-xs font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy" />
             <button
               id="mobile-menu-toggle"
+              aria-label="Menu"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white focus:outline-none cursor-pointer"
+              className="p-1.5 -mr-1.5 text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white focus:outline-none cursor-pointer"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -155,17 +158,17 @@ export function Header() {
           ))}
           <div className="flex items-center justify-between pt-4 px-4">
             <button
-              id="language-toggle-mobile"
-              onClick={toggleLanguage}
-              className="p-2 rounded-xl text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white border border-brand-navy/10 dark:border-white/10 cursor-pointer flex items-center space-x-1.5"
-              aria-label="Toggle language"
+              id="theme-toggle-mobile"
+              onClick={toggleTheme}
+              className="p-2 rounded-xl text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white border border-brand-navy/10 dark:border-white/10 cursor-pointer flex items-center gap-2 text-xs font-semibold"
+              aria-label="Toggle theme"
             >
-              <Languages className="w-4 h-4" />
-              <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              <span>{i18n.language === 'en' ? (theme === 'dark' ? 'Light mode' : 'Dark mode') : theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}</span>
             </button>
           </div>
           <div className="px-4 space-y-2">
-            <PlatformLoginButton className="flex w-full py-3 rounded-xl text-sm font-semibold text-brand-navy dark:text-white border border-brand-navy/15 dark:border-white/15" />
+            <PlatformLoginButton className="flex w-full py-3 rounded-xl text-sm font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy" />
             <Link
               id="mobile-cta-agendar"
               to={'/contacto'} onClick={() => setIsMobileMenuOpen(false)}

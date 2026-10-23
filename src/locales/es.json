@@ -12,7 +12,8 @@
   "cta": {
     "scheduleConsult": "Agendar Consultoría",
     "scheduleDemo": "Agenda tu demo",
-    "platformLogin": "Iniciar sesión"
+    "platformLogin": "Iniciar sesión · Demo",
+    "demo": "Demo"
   },
   "home": {
     "seoTitle": "IA predictiva contra el overstock",
@@ -436,5 +437,114 @@
     "title": "Página no encontrada",
     "text": "La página que buscas no existe o cambió de dirección.",
     "cta": "Volver al inicio"
+  },
+  "plans": {
+    "eyebrow": "Planes",
+    "heading": "Elige el plan para tu línea de negocio.",
+    "text": "Empieza gratis y escala cuando necesites más contenido, conexiones y al agente de IA.",
+    "feature": "Funcionalidad",
+    "paid": "Pago",
+    "free": "Gratis",
+    "recommended": "Más completo",
+    "quote": "Cotiza",
+    "tryFree": "Probar gratis",
+    "plans": [
+      "Free",
+      "Plan 1",
+      "Plan 2",
+      "Plan 3"
+    ],
+    "rows": [
+      {
+        "label": "Visualización de scatters disponibles",
+        "values": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "label": "Generación de imágenes",
+        "values": [
+          "1 imagen",
+          "1 imagen",
+          "Múltiples imágenes",
+          "Múltiples imágenes"
+        ]
+      },
+      {
+        "label": "Generación de guiones",
+        "values": [
+          "1 guion",
+          "1 guion",
+          "Múltiples guiones",
+          "Múltiples guiones"
+        ]
+      },
+      {
+        "label": "Burbujas de engagement",
+        "values": [
+          "Bloqueadas",
+          "Desbloqueadas",
+          "Desbloqueadas",
+          "Desbloqueadas"
+        ]
+      },
+      {
+        "label": "Imágenes con tu logo",
+        "values": [
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "label": "Conexión con MCPs",
+        "values": [
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "label": "Manual de marca",
+        "values": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "Integración con más herramientas de IA",
+        "values": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "Conexión con ERP",
+        "values": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "Acceso al agente de IA",
+        "values": [
+          false,
+          false,
+          false,
+          true
+        ]
+      }
+    ]
   }
 }

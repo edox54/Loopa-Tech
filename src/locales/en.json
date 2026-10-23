@@ -12,7 +12,8 @@
   "cta": {
     "scheduleConsult": "Schedule Consultation",
     "scheduleDemo": "Book Your Demo",
-    "platformLogin": "Log in"
+    "platformLogin": "Log in · Demo",
+    "demo": "Demo"
   },
   "home": {
     "seoTitle": "Predictive AI against overstock",
@@ -436,5 +437,114 @@
     "title": "Page not found",
     "text": "The page you are looking for does not exist or has moved.",
     "cta": "Back to home"
+  },
+  "plans": {
+    "eyebrow": "Plans",
+    "heading": "Pick the plan for your business line.",
+    "text": "Start free and scale up when you need more content, connections and the AI agent.",
+    "feature": "Feature",
+    "paid": "Paid",
+    "free": "Free",
+    "recommended": "Most complete",
+    "quote": "Get a quote",
+    "tryFree": "Try it free",
+    "plans": [
+      "Free",
+      "Plan 1",
+      "Plan 2",
+      "Plan 3"
+    ],
+    "rows": [
+      {
+        "label": "Available scatter views",
+        "values": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "label": "Image generation",
+        "values": [
+          "1 image",
+          "1 image",
+          "Multiple images",
+          "Multiple images"
+        ]
+      },
+      {
+        "label": "Script generation",
+        "values": [
+          "1 script",
+          "1 script",
+          "Multiple scripts",
+          "Multiple scripts"
+        ]
+      },
+      {
+        "label": "Engagement bubbles",
+        "values": [
+          "Locked",
+          "Unlocked",
+          "Unlocked",
+          "Unlocked"
+        ]
+      },
+      {
+        "label": "Images with your logo",
+        "values": [
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "label": "MCP connection",
+        "values": [
+          false,
+          false,
+          true,
+          true
+        ]
+      },
+      {
+        "label": "Brand manual",
+        "values": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "Integration with more AI tools",
+        "values": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "ERP connection",
+        "values": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "AI agent access",
+        "values": [
+          false,
+          false,
+          false,
+          true
+        ]
+      }
+    ]
   }
 }

@@ -12,6 +12,7 @@ import { HeroTitle } from './HeroTitle';
 import { Reveal } from './Reveal';
 import { ServiceIcon } from './ServiceIcon';
 import { LineChart, INVENTORY_CHART } from './Charts';
+import { PlansTable } from './PlansTable';
 
 type Item = { title: string; text: string };
 
@@ -138,6 +139,8 @@ export function HomeView() {
           </Reveal>
         </div>
       </section>
+
+      <PlansTable />
 
       {/* DIFFERENTIATION */}
       <section className="py-24 border-t border-brand-navy/10 dark:border-white/10">
