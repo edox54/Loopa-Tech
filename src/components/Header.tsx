@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate as useRawNavigate } from 'react-router-dom';
 import { Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, ArrowRight, Languages, Sun, Moon } from 'lucide-react';
+import { Menu, X, ArrowRight, Sun, Moon } from 'lucide-react';
 import { PlatformLoginButton } from './PlatformLoginButton';
 import { useTheme } from '../ThemeContext';
 import { Logo } from './Logo';
+import { Flag } from './Flag';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -65,7 +66,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav id="desktop-nav" className="hidden md:flex items-center space-x-1">
+          <nav id="desktop-nav" className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.to}
@@ -83,7 +84,7 @@ export function Header() {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-3">
             <button
               id="theme-toggle"
               onClick={toggleTheme}
@@ -98,7 +99,7 @@ export function Header() {
               className="p-2.5 rounded-xl text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white border border-transparent hover:border-brand-coral/40 transition-all cursor-pointer flex items-center space-x-1.5"
               aria-label="Toggle language"
             >
-              <Languages className="w-4 h-4" />
+              <Flag lang={i18n.language} />
               <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
             </button>
             <PlatformLoginButton className="px-4 py-2.5 rounded-xl text-sm font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy hover:bg-brand-cyan hover:text-brand-navy dark:hover:bg-brand-cyan shadow-[0_0_0_3px_rgba(34,211,238,0.25)] transition-all" />
@@ -116,14 +117,14 @@ export function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-1 md:hidden">
+          <div className="flex items-center gap-1 lg:hidden">
             <button
               id="language-toggle-mobile"
               onClick={toggleLanguage}
               className="p-1.5 rounded-xl text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white cursor-pointer flex items-center gap-1"
               aria-label="Toggle language"
             >
-              <Languages className="w-4 h-4 hidden min-[400px]:block" />
+              <Flag lang={i18n.language} />
               <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
             </button>
             <PlatformLoginButton compact className="px-3 py-1.5 rounded-full text-xs font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy" />
@@ -141,7 +142,7 @@ export function Header() {
 
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
-        <div id="mobile-nav-drawer" className="md:hidden bg-white dark:bg-brand-navy border-b border-brand-navy/10 dark:border-white/10 px-4 pt-4 pb-6 space-y-2">
+        <div id="mobile-nav-drawer" className="lg:hidden bg-white dark:bg-brand-navy border-b border-brand-navy/10 dark:border-white/10 px-4 pt-4 pb-6 space-y-2">
           {navItems.map((item) => (
             <Link
               key={item.to}
