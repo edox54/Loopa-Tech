@@ -7,14 +7,16 @@
     "blog": "Blog",
     "about": "Nosotros",
     "contact": "Contacto",
-    "resources": "Recursos"
+    "resources": "Recursos",
+    "partner": "Vende Loopa"
   },
   "cta": {
     "scheduleConsult": "Agendar Consultoría",
     "scheduleDemo": "Agenda tu demo",
     "platformLogin": "Iniciar sesión · Demo",
     "demo": "Demo",
-    "partner": "Conviértete en partner"
+    "partner": "Conviértete en partner",
+    "scheduleShort": "Agendar"
   },
   "home": {
     "seoTitle": "IA predictiva contra el overstock",

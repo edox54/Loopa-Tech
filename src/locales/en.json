@@ -7,14 +7,16 @@
     "blog": "Blog",
     "about": "About",
     "contact": "Contact",
-    "resources": "Resources"
+    "resources": "Resources",
+    "partner": "Sell Loopa"
   },
   "cta": {
     "scheduleConsult": "Schedule Consultation",
     "scheduleDemo": "Book Your Demo",
     "platformLogin": "Log in · Demo",
     "demo": "Demo",
-    "partner": "Become a partner"
+    "partner": "Become a partner",
+    "scheduleShort": "Book a call"
   },
   "home": {
     "seoTitle": "Predictive AI against overstock",

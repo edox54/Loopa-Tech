@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate as useRawNavigate } from 'react-router-dom';
 import { Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, ArrowRight, Sun, Moon } from 'lucide-react';
+import { Menu, X, ArrowRight, Sun, Moon, Handshake } from 'lucide-react';
+import { CALENDLY_URL } from '../data';
 import { PlatformLoginButton } from './PlatformLoginButton';
 import { useTheme } from '../ThemeContext';
 import { Logo } from './Logo';
@@ -66,13 +67,13 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav id="desktop-nav" className="hidden lg:flex items-center space-x-1">
+          <nav id="desktop-nav" className="hidden lg:flex items-center xl:space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 id={`nav-link-${item.to.replace(/\//g, '') || 'home'}`}
                 to={item.to} onClick={() => setIsMobileMenuOpen(false)}
-                className={`px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ${
+                className={`px-2 xl:px-3 py-2 text-sm font-semibold rounded-lg whitespace-nowrap transition-all duration-200 ${
                   isSelected(item.to)
                     ? 'text-brand-coral bg-brand-light-gray dark:bg-brand-carbon border border-brand-coral/20'
                     : 'text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white hover:bg-white dark:hover:bg-brand-carbon border border-transparent'
@@ -81,10 +82,20 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            <a
+              id="nav-link-partner"
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={t('cta.partner')}
+              className="px-2 xl:px-3 py-2 text-sm font-semibold rounded-lg whitespace-nowrap text-brand-coral hover:bg-white dark:hover:bg-brand-carbon border border-transparent transition-all"
+            >
+              {t('nav.partner')}
+            </a>
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-3">
             <button
               id="theme-toggle"
               onClick={toggleTheme}
@@ -100,17 +111,24 @@ export function Header() {
               aria-label="Toggle language"
             >
               <Flag lang={i18n.language} />
-              <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
+              <span className="hidden xl:inline text-xs font-mono font-bold uppercase">{i18n.language}</span>
             </button>
-            <PlatformLoginButton className="px-4 py-2.5 rounded-xl text-sm font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy hover:bg-brand-cyan hover:text-brand-navy dark:hover:bg-brand-cyan shadow-[0_0_0_3px_rgba(34,211,238,0.25)] transition-all" />
+            {/* ponytail: short "Demo" label below 1536px so the bar fits on one line */}
+            <span className="2xl:hidden">
+              <PlatformLoginButton compact id="cta-login-plataforma-lg" className="px-4 py-2.5 rounded-xl text-sm font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy hover:bg-brand-cyan hover:text-brand-navy dark:hover:bg-brand-cyan shadow-[0_0_0_3px_rgba(34,211,238,0.25)] transition-all" />
+            </span>
+            <span className="hidden 2xl:block">
+              <PlatformLoginButton className="px-4 py-2.5 rounded-xl text-sm font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy hover:bg-brand-cyan hover:text-brand-navy dark:hover:bg-brand-cyan shadow-[0_0_0_3px_rgba(34,211,238,0.25)] transition-all" />
+            </span>
             <Link
               id="cta-agendar-header"
               to={'/contacto'} onClick={() => setIsMobileMenuOpen(false)}
-              className="relative inline-block px-5 py-2.5 rounded-xl text-sm font-bold text-brand-navy bg-gradient-to-r from-brand-coral via-brand-coral to-brand-cyan hover:brightness-110 active:scale-95 transition-all duration-300 shadow-[0_0_15px_rgba(242,163,138,0.2)] overflow-hidden group"
+              className="relative inline-block px-4 xl:px-5 py-2.5 rounded-xl text-sm font-bold text-brand-navy bg-gradient-to-r from-brand-coral via-brand-coral to-brand-cyan hover:brightness-110 active:scale-95 transition-all duration-300 shadow-[0_0_15px_rgba(242,163,138,0.2)] overflow-hidden group"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative flex items-center space-x-2">
-                <span>{t('cta.scheduleConsult')}</span>
+              <span className="relative flex items-center space-x-2 whitespace-nowrap">
+                <span className="xl:hidden">{t('cta.scheduleShort')}</span>
+                <span className="hidden xl:inline">{t('cta.scheduleConsult')}</span>
                 <ArrowRight className="w-4 h-4 text-brand-navy group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
@@ -157,6 +175,17 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <a
+            id="mobile-nav-link-partner"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="flex items-center gap-2 w-full px-4 py-3 rounded-xl text-base font-semibold text-brand-coral hover:bg-white dark:hover:bg-brand-carbon"
+          >
+            <Handshake className="w-5 h-5" />
+            {t('cta.partner')} · {t('nav.partner')}
+          </a>
           <div className="flex items-center justify-between pt-4 px-4">
             <button
               id="theme-toggle-mobile"

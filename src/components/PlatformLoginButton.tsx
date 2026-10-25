@@ -4,15 +4,15 @@ import { PLATFORM_URL } from '../data';
 
 // Plain link: the platform handles its own login, so it opens in a new tab.
 // `compact` = short "Demo" label for the mobile header bar. The ping dot draws the eye to it.
-export function PlatformLoginButton({ className = '', compact = false }: { className?: string; compact?: boolean }) {
+export function PlatformLoginButton({ className = '', compact = false, id }: { className?: string; compact?: boolean; id?: string }) {
   const { t } = useTranslation();
   return (
     <a
-      id={compact ? 'cta-login-plataforma-mobile' : 'cta-login-plataforma'}
+      id={id ?? (compact ? 'cta-login-plataforma-mobile' : 'cta-login-plataforma')}
       href={PLATFORM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 ${className}`}
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap ${className}`}
     >
       <span className="relative flex w-2 h-2" aria-hidden="true">
         <span className="wa-ring absolute inset-0 rounded-full bg-brand-cyan" />
