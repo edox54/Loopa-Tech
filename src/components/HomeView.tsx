@@ -150,7 +150,7 @@ export function HomeView() {
             {list('home.edges').map((e, i) => {
               const Icon = EDGE_ICONS[i];
               return (
-                <div key={e.title} className="spotlight rounded-2xl p-6 -m-6 space-y-3">
+                <div key={e.title} className="spotlight rounded-2xl py-6 -my-6 md:p-6 md:-m-6 space-y-3">
                   <Icon className="icon-pop w-6 h-6 text-brand-cyan" />
                   <h3 className="font-display text-lg font-bold">{e.title}</h3>
                   <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed">{e.text}</p>

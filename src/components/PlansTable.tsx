@@ -34,17 +34,18 @@ export function PlansTable() {
           <p className="text-lg text-brand-navy/75 dark:text-white/75">{t('plans.text')}</p>
         </div>
         <Reveal>
+          <p className="md:hidden mb-3 text-xs font-semibold text-brand-navy/60 dark:text-white/60">{t('plans.swipe')}</p>
           <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-            <table className="w-full min-w-[640px] border-separate border-spacing-0 text-sm text-brand-navy dark:text-white">
+            <table className="w-full min-w-[600px] border-separate border-spacing-0 text-xs sm:text-sm text-brand-navy dark:text-white">
               <thead>
                 <tr>
-                  <th className="sticky left-0 z-10 bg-white dark:bg-brand-navy text-left font-semibold text-brand-navy/60 dark:text-white/60 p-4 align-bottom">
+                  <th className="sticky left-0 z-10 bg-white dark:bg-brand-navy text-left font-semibold text-brand-navy/60 dark:text-white/60 p-3 sm:p-4 align-bottom">
                     {t('plans.feature')}
                   </th>
                   {plans.map((p, i) => (
                     <th
                       key={p}
-                      className={`p-4 text-center align-bottom ${i === last ? 'bg-brand-coral/10 rounded-t-2xl border-x border-t border-brand-coral/40' : ''}`}
+                      className={`p-3 sm:p-4 text-center align-bottom ${i === last ? 'bg-brand-coral/10 rounded-t-2xl border-x border-t border-brand-coral/40' : ''}`}
                     >
                       {i === last && (
                         <span className="block mb-2 text-[10px] font-bold uppercase tracking-widest text-brand-coral">{t('plans.recommended')}</span>
@@ -62,14 +63,14 @@ export function PlansTable() {
                   <tr key={r.label} className="group">
                     <th
                       scope="row"
-                      className="sticky left-0 z-10 bg-white dark:bg-brand-navy text-left font-medium p-4 border-t border-brand-navy/10 dark:border-white/10 group-hover:text-brand-coral transition-colors"
+                      className="sticky left-0 z-10 bg-white dark:bg-brand-navy text-left font-medium p-3 sm:p-4 border-t border-brand-navy/10 dark:border-white/10 group-hover:text-brand-coral transition-colors"
                     >
                       {r.label}
                     </th>
                     {r.values.map((v, i) => (
                       <td
                         key={i}
-                        className={`p-4 text-center border-t border-brand-navy/10 dark:border-white/10 group-hover:bg-brand-light-gray/60 dark:group-hover:bg-brand-carbon/60 transition-colors ${
+                        className={`p-3 sm:p-4 text-center border-t border-brand-navy/10 dark:border-white/10 group-hover:bg-brand-light-gray/60 dark:group-hover:bg-brand-carbon/60 transition-colors ${
                           i === last ? 'bg-brand-coral/10 border-x border-x-brand-coral/40' : ''
                         }`}
                       >
@@ -83,7 +84,7 @@ export function PlansTable() {
                   {plans.map((p, i) => (
                     <td
                       key={p}
-                      className={`p-4 text-center border-t border-brand-navy/10 dark:border-white/10 ${
+                      className={`p-3 sm:p-4 text-center border-t border-brand-navy/10 dark:border-white/10 ${
                         i === last ? 'bg-brand-coral/10 rounded-b-2xl border-x border-b border-x-brand-coral/40 border-b-brand-coral/40' : ''
                       }`}
                     >

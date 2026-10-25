@@ -149,7 +149,7 @@ export function Footer() {
               </li>
               <li className="flex items-center space-x-3">
                 <span className="text-brand-coral text-xs font-mono font-bold">{t('footer.mailLabel')}</span>
-                <a href="mailto:asancho@loopa.technology" className="hover:text-brand-coral transition-colors">
+                <a href="mailto:asancho@loopa.technology" className="break-all hover:text-brand-coral transition-colors">
                   asancho@loopa.technology
                 </a>
               </li>

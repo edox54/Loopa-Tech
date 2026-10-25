@@ -125,7 +125,7 @@ export function Header() {
               aria-label="Toggle language"
             >
               <Flag lang={i18n.language} />
-              <span className="text-xs font-mono font-bold uppercase">{i18n.language}</span>
+              <span className="hidden min-[400px]:inline text-xs font-mono font-bold uppercase">{i18n.language}</span>
             </button>
             <PlatformLoginButton compact className="px-3 py-1.5 rounded-full text-xs font-bold bg-brand-navy text-white dark:bg-white dark:text-brand-navy" />
             <button
