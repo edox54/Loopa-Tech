@@ -12,12 +12,11 @@ const BUDGET_OPTIONS = [
   { value: 'mas-20000', labelKey: 'contact.budgetOptionOver20000' },
 ] as const;
 
-interface CityOffice {
-  name: string;
-  country: string;
-  address: string;
-  coords: { x: string; y: string }; // Position in % for SVG Map
-}
+// Simplified Latin America outline (Mexico to Tierra del Fuego plus the Greater Antilles).
+// Equirectangular projection: x = lon + 118, y = 33 - lat, so the HQ pin uses real coordinates.
+const LATAM_PATH =
+  'M0.9 0.5L3.3 0.3L7.0 1.7L9.8 1.7L11.6 1.2L13.5 3.4L15.0 4.0L16.6 3.2L18.5 5.5L20.6 7.1L20.3 9.0L20.8 11.5L22.0 13.8L23.5 14.8L26.0 14.4L27.3 13.5L27.6 12.0L31.0 11.5L30.5 14.0L29.7 14.6L29.8 17.0L32.0 17.1L34.8 18.0L34.4 22.0L35.8 24.0L38.5 23.4L40.6 24.4L42.0 23.5L42.5 22.5L44.0 21.8L46.2 20.6L47.0 22.0L48.0 21.0L50.0 22.5L54.0 22.4L56.0 22.3L57.0 24.0L58.2 24.7L61.0 27.0L64.0 27.3L66.0 28.3L67.0 29.0L68.0 31.2L68.5 33.0L70.0 34.0L73.5 35.5L77.0 35.9L79.5 36.7L82.8 38.4L83.2 40.5L82.5 42.5L81.0 44.0L79.5 46.0L79.0 50.5L78.0 53.0L76.5 55.5L74.0 56.0L71.0 57.5L69.5 59.0L69.4 61.5L67.5 64.0L65.5 66.5L63.1 67.9L61.5 67.8L60.5 68.3L61.0 69.5L60.4 71.0L56.0 72.0L55.7 73.5L53.0 74.0L54.0 75.5L52.6 78.0L50.5 79.5L52.0 81.0L49.7 83.2L49.0 85.0L49.6 85.5L49.4 87.8L52.5 87.8L50.5 88.6L48.0 88.0L46.0 86.8L43.5 85.5L42.5 83.0L42.5 80.0L44.0 77.0L44.5 74.5L44.4 71.0L45.3 68.0L46.4 65.0L46.6 61.0L47.5 58.0L47.8 53.0L47.6 51.3L45.5 50.0L42.0 47.0L40.5 44.5L39.0 41.0L36.8 39.0L36.7 37.3L37.7 36.4L37.1 35.2L37.9 33.0L39.0 31.8L39.2 31.2L40.7 29.0L40.6 26.5L40.1 25.8L38.5 24.1L38.0 25.7L36.5 25.4L34.4 24.6L32.3 23.0L32.2 21.8L30.5 20.1L28.5 19.5L26.5 19.0L25.8 18.5L24.0 17.0L21.5 17.3L19.0 16.4L16.5 15.2L14.0 14.0L12.5 12.5L12.8 10.5L11.6 9.8L10.0 8.0L8.6 6.5L7.0 5.0L5.8 3.7L4.9 1.8L3.3 1.3L3.7 3.0L5.3 5.2L7.0 7.2L8.5 9.8L8.0 10.1L6.5 8.5L5.8 7.1L4.0 5.3L2.5 3.4L1.3 1.3ZM33.1 11.1L35.0 10.1L37.5 9.9L40.5 11.2L43.8 12.8L42.4 13.1L40.3 13.1L39.5 11.4L36.2 10.8L34.0 11.2ZM43.6 14.6L45.2 13.1L48.0 13.3L49.6 14.4L48.0 14.8L46.5 15.4L45.0 14.9ZM50.8 14.5L52.4 14.6L52.4 15.0L50.8 15.0ZM39.7 14.6L41.7 14.8L41.2 15.1L40.0 14.8Z';
+const QUITO = { x: 39.5, y: 33.2 }; // -78.5, -0.2
 
 export function ContactoView() {
   const { t, i18n } = useTranslation();
@@ -35,12 +34,7 @@ export function ContactoView() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const isQualifiedBudget = formData.presupuesto !== 'menos-5000';
 
-  const office: CityOffice = {
-    name: 'Quito',
-    country: t('contact.officeCountry'),
-    address: 'Quito, Ecuador',
-    coords: { x: '30%', y: '78%' },
-  };
+  const office = { name: 'Quito', country: t('contact.officeCountry'), address: 'Quito, Ecuador' };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -298,36 +292,22 @@ export function ContactoView() {
               <div className="relative w-full aspect-square max-h-[320px] bg-white dark:bg-brand-carbon rounded-2xl border border-brand-navy/10 dark:border-white/10 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 bg-dot-pattern opacity-20 pointer-events-none" />
 
-                {/* Custom Stylized LatAm Vector Shape Map Representation */}
-                <svg
-                  viewBox="0 0 120 160"
-                  className="w-full h-full max-h-[280px] text-slate-800 opacity-60 pointer-events-none"
-                  fill="currentColor"
-                >
-                  {/* Abstract Mexico */}
-                  <path d="M10 40 L45 40 L40 60 L15 55 Z" />
-                  {/* Central America */}
-                  <path d="M15 55 L35 70 L25 80 Z" />
-                  {/* South America outline */}
-                  <path d="M25 80 Q35 70 50 80 Q70 90 75 110 Q80 130 55 155 Q45 155 35 120 Q20 100 25 80 Z" fillOpacity="0.8" />
+                <svg viewBox="-4 -4 92 97" className="relative w-full h-full max-h-[300px]" role="img" aria-label={t('contact.mapLabel')}>
+                  <path d={LATAM_PATH} className="fill-brand-navy/15 stroke-brand-navy/40 dark:fill-white/15 dark:stroke-white/40" strokeWidth="0.4" strokeLinejoin="round" />
+                  <g transform={`translate(${QUITO.x} ${QUITO.y})`}>
+                    <circle r="2" className="fill-brand-coral/40">
+                      <animate attributeName="r" values="1.5;6;1.5" dur="2.4s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.8;0;0.8" dur="2.4s" repeatCount="indefinite" />
+                    </circle>
+                    <circle r="1.6" className="fill-brand-coral stroke-white dark:stroke-brand-navy" strokeWidth="0.5" />
+                    <text x="-3" y="1" textAnchor="end" className="fill-brand-navy dark:fill-white font-sans font-bold" fontSize="3.6">
+                      Quito
+                    </text>
+                    <text x="-3" y="5" textAnchor="end" className="fill-brand-coral font-mono font-bold uppercase" fontSize="2.4">
+                      {t('contact.hqTag')}
+                    </text>
+                  </g>
                 </svg>
-
-                {/* Location point */}
-                <div
-                  className="absolute group"
-                  style={{ left: office.coords.x, top: office.coords.y }}
-                >
-                  {/* Glow rings */}
-                  <span className="absolute -left-3 -top-3 w-7 h-7 rounded-full bg-brand-coral/20 blur-sm scale-150 animate-ping" />
-                  <span className="absolute -left-1.5 -top-1.5 w-4 h-4 rounded-full bg-brand-coral/40 scale-125" />
-                  {/* Point */}
-                  <span className="relative block w-2 h-2 rounded-full border border-slate-950 bg-brand-coral shadow-[0_0_8px_#F2A38A]" />
-
-                  {/* Tooltip on map pin */}
-                  <span className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 text-brand-navy dark:text-white font-semibold text-[10px] px-2 py-1 rounded shadow-lg pointer-events-none whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-250 z-20">
-                    {office.name}
-                  </span>
-                </div>
               </div>
 
               {/* Office Card */}

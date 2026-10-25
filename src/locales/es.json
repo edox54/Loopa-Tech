@@ -13,7 +13,8 @@
     "scheduleConsult": "Agendar Consultoría",
     "scheduleDemo": "Agenda tu demo",
     "platformLogin": "Iniciar sesión · Demo",
-    "demo": "Demo"
+    "demo": "Demo",
+    "partner": "Conviértete en partner"
   },
   "home": {
     "seoTitle": "IA predictiva contra el overstock",
@@ -292,7 +293,9 @@
     "attentionHoursValue": "Lunes a Viernes, 9:00 AM - 6:00 PM (GMT-6)",
     "coverageZoneLabel": "ZONA DE COBERTURA",
     "coverageZoneValue": "América Latina (México, Colombia, Chile, Perú, Brasil)",
-    "officeCountry": "Ecuador (Sede)"
+    "officeCountry": "Ecuador (Sede)",
+    "mapLabel": "Mapa de América Latina con la sede de Loopa en Quito, Ecuador",
+    "hqTag": "Sede"
   },
   "datalab": {
     "seoTitle": "Lab de Datos",
@@ -547,5 +550,10 @@
       }
     ],
     "swipe": "Desliza para ver todos los planes →"
+  },
+  "partner": {
+    "title": "¿Quieres vender Loopa?",
+    "text": "Conviértete en partner y lleva nuestra IA a las empresas de tu red. Agenda una llamada y te contamos cómo funciona.",
+    "footer": "Vende Loopa · Partners"
   }
 }

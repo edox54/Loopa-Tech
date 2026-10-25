@@ -1,4 +1,4 @@
-import { Check, Minus, CalendarClock, LogIn } from 'lucide-react';
+import { Check, Minus, CalendarClock, LogIn, Handshake } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CALENDLY_URL, PLATFORM_URL } from '../data';
 import { Reveal } from './Reveal';
@@ -117,6 +117,22 @@ export function PlansTable() {
                 </tr>
               </tbody>
             </table>
+          </div>
+        </Reveal>
+        <Reveal>
+          <div id="partners" className="mt-12 scroll-mt-24 flex flex-col md:flex-row md:items-center justify-between gap-6 rounded-3xl border border-brand-cyan/40 bg-brand-cyan/10 p-6 sm:p-8">
+            <div className="space-y-2 max-w-2xl">
+              <h3 className="font-display text-2xl font-black text-brand-navy dark:text-white">{t('partner.title')}</h3>
+              <p className="text-brand-navy/75 dark:text-white/75">{t('partner.text')}</p>
+            </div>
+            <button
+              type="button"
+              onClick={openCalendly}
+              className="self-start md:self-auto inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-navy text-white dark:bg-white dark:text-brand-navy font-bold text-sm hover:bg-brand-coral hover:text-brand-navy hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+            >
+              <Handshake className="w-5 h-5" />
+              {t('cta.partner')}
+            </button>
           </div>
         </Reveal>
       </div>

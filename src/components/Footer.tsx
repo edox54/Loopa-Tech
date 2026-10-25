@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
 import { Mail, ArrowRight, Linkedin, Sparkles, CheckCircle2 } from 'lucide-react';
-import { SERVICES_DATA } from '../data';
+import { CALENDLY_URL, SERVICES_DATA } from '../data';
 import { Logo } from './Logo';
 import { pickLang, useLang } from '../lib/i18nData';
 
@@ -133,6 +133,11 @@ export function Footer() {
                 <Link to={'/contacto'} className="hover:text-brand-coral transition-colors text-left">
                   {t('nav.contact')}
                 </Link>
+              </li>
+              <li>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-coral hover:underline">
+                  {t('partner.footer')}
+                </a>
               </li>
             </ul>
           </div>

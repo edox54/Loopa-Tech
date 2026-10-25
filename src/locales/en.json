@@ -13,7 +13,8 @@
     "scheduleConsult": "Schedule Consultation",
     "scheduleDemo": "Book Your Demo",
     "platformLogin": "Log in · Demo",
-    "demo": "Demo"
+    "demo": "Demo",
+    "partner": "Become a partner"
   },
   "home": {
     "seoTitle": "Predictive AI against overstock",
@@ -292,7 +293,9 @@
     "attentionHoursValue": "Monday to Friday, 9:00 AM - 6:00 PM (GMT-6)",
     "coverageZoneLabel": "COVERAGE AREA",
     "coverageZoneValue": "Latin America (Mexico, Colombia, Chile, Peru, Brazil)",
-    "officeCountry": "Ecuador (HQ)"
+    "officeCountry": "Ecuador (HQ)",
+    "mapLabel": "Map of Latin America showing Loopa headquarters in Quito, Ecuador",
+    "hqTag": "HQ"
   },
   "datalab": {
     "seoTitle": "Data Lab",
@@ -547,5 +550,10 @@
       }
     ],
     "swipe": "Swipe to see all plans →"
+  },
+  "partner": {
+    "title": "Want to sell Loopa?",
+    "text": "Become a partner and bring our AI to the companies in your network. Book a call and we will walk you through it.",
+    "footer": "Sell Loopa · Partners"
   }
 }
