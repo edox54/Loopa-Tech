@@ -1,16 +1,13 @@
 import React from 'react';
 import { useNavigate } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
-import { Users, Award, Shield, Target, Lightbulb, Linkedin, Quote } from 'lucide-react';
-import { ABOUT_TEAM } from '../data';
-import { pickLang, useLang } from '../lib/i18nData';
+import { Users, Award, Shield, Target, Lightbulb, Quote } from 'lucide-react';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
 
 export function NosotrosView() {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
-  const lang = useLang(i18n.language);
+  const { t } = useTranslation();
   const handleContactClick = () => {
     navigate('/contacto');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -110,63 +107,6 @@ export function NosotrosView() {
                 {t('about.pillar3Text')}
               </p>
             </div>
-          </Reveal>
-        </div>
-
-        {/* Leadership Team Section */}
-        <div className="space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-brand-coral font-mono text-xs font-bold uppercase tracking-wider">
-              {t('about.teamEyebrow')}
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-brand-navy dark:text-white tracking-tight">
-              {t('about.teamHeading')}
-            </h2>
-            <p className="text-brand-navy/75 dark:text-white/75 text-sm">
-              {t('about.teamSubheading')}
-            </p>
-          </div>
-
-          <Reveal className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {ABOUT_TEAM.map((member, idx) => (
-              <div
-                key={idx}
-                id={`team-card-${idx}`}
-                className="bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl p-6 flex flex-col justify-between space-y-6 group hover:bg-brand-light-gray dark:hover:bg-brand-navy transition-all duration-300 text-center animate-fade-in"
-              >
-                <div className="space-y-4">
-                  {/* Decorative Gradient Avatar Placeholder */}
-                  <div className="w-20 h-20 rounded-full mx-auto bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-all duration-300">
-                    <span className="font-display text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-coral to-brand-cyan uppercase">
-                      {member.name.split(' ').filter(n => n !== 'Ing.' && n !== 'Dr.' && n !== 'Abg.').map(n => n[0]).slice(0, 2).join('')}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-base font-bold text-brand-navy dark:text-white group-hover:text-brand-coral transition-colors">
-                      {member.name}
-                    </h3>
-                    <span className="text-xs text-brand-coral font-mono block mt-1 font-bold">
-                      {pickLang(member.role, lang)}
-                    </span>
-                  </div>
-                  <p className="text-brand-navy/90 dark:text-white/90 text-xs leading-relaxed text-center px-2">
-                    {pickLang(member.bio, lang)}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-brand-navy/10 dark:border-white/10 flex justify-center">
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-brand-navy/65 dark:text-white/65 hover:text-brand-cyan transition-colors inline-flex items-center space-x-1.5 text-xs"
-                  >
-                    <Linkedin className="w-3.5 h-3.5" />
-                    <span className="font-mono text-[10px] font-bold">{t('about.viewLinkedin')}</span>
-                  </a>
-                </div>
-              </div>
-            ))}
           </Reveal>
         </div>
 

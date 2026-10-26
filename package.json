@@ -9,7 +9,8 @@
     "sitemap": "tsx scripts/generate-sitemap.mjs",
     "preview": "vite preview",
     "clean": "rm -rf dist dist-ssr",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "build:godaddy": "VITE_SITE_URL=https://loopa.technology npm run build && cd dist && zip -qr ../loopa-godaddy.zip . -x \"*.DS_Store\""
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",

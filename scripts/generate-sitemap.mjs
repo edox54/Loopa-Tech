@@ -1,5 +1,5 @@
 // ponytail: plain Node script, no sitemap lib needed for ~40 URLs (ES + EN).
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { INDEXABLE_ROUTES, ES_ONLY_ROUTES, toEn } from '../src/routes.ts';
 
 const SITE_URL = (process.env.VITE_SITE_URL || 'https://loopa-tech.vercel.app').replace(/\/$/, '');
@@ -18,4 +18,7 @@ ${INDEXABLE_ROUTES.flatMap((route) => {
 
 writeFileSync(new URL('../public/sitemap.xml', import.meta.url), xml);
 writeFileSync(new URL('../public/robots.txt', import.meta.url), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+// llms.txt links follow the same domain as the sitemap.
+const llms = new URL('../public/llms.txt', import.meta.url);
+writeFileSync(llms, readFileSync(llms, 'utf8').replace(/https:\/\/(loopa-tech\.vercel\.app|loopa\.technology)/g, SITE_URL));
 console.log(`sitemap.xml: ${INDEXABLE_ROUTES.length * 2 - ES_ONLY_ROUTES.length} URLs`);

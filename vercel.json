@@ -19,17 +19,7 @@
     },
     {
       "source": "/en/legal",
-      "destination": "/privacidad",
-      "permanent": true
-    },
-    {
-      "source": "/en/privacidad",
-      "destination": "/privacidad",
-      "permanent": true
-    },
-    {
-      "source": "/en/terminos",
-      "destination": "/terminos",
+      "destination": "/en/privacidad",
       "permanent": true
     }
   ],

@@ -52,13 +52,6 @@ export interface BlogPost {
   coverImage?: string; // TODO: real asset pending — placeholder rendered until set
 }
 
-export interface TeamMember {
-  name: string;
-  role: Localized<string>;
-  bio: Localized<string>;
-  avatarSeed: string; // For generating stylish initial/avatar
-}
-
 export interface FAQItem {
   question: Localized<string>;
   answer: Localized<string>;

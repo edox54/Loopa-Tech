@@ -44,7 +44,8 @@ export function BlogView() {
     setTimeout(() => setIsCopied(false), 2000);
   };
 
-  const categories = ['Todos', 'Data Science', 'Inteligencia Artificial', 'Comercial'];
+  // Only categories that have posts, so no filter leads to an empty list.
+  const categories = ['Todos', ...new Set(BLOG_POSTS_DATA.map((p) => p.category))];
   const featuredPost = BLOG_POSTS_DATA.find((p) => p.id === 'llm-privados-latam');
 
   const filteredPosts = BLOG_POSTS_DATA.filter((post) => {

@@ -208,7 +208,7 @@
   },
   "about": {
     "seoTitle": "About Us",
-    "seoDescription": "Meet the Loopa Technology team: a data and AI consultancy focused on governance, data sovereignty and DAMA-DMBOK standards across LatAm.",
+    "seoDescription": "Loopa Technology: AI applied to commercial profitability, from Quito for Latin America. Our mission, vision and the principles we work by.",
     "eyebrow": "Our Story",
     "heading": "Data Engineers Leading the Next Analytics Wave",
     "subheading": "We combine global governance methodologies with cutting-edge technology to empower Latin America's most dynamic enterprises.",
@@ -224,10 +224,6 @@
     "pillar2Text": "We don't invent theoretical methodologies to stretch timelines. We focus on fast sprints with functional deliverables from month one.",
     "pillar3Title": "CDMP DAMA Standard",
     "pillar3Text": "All of our engineering follows the most demanding global frameworks for quality, data lineage and architectural traceability.",
-    "teamEyebrow": "TECHNICAL LEADERSHIP",
-    "teamHeading": "Leadership with real field experience",
-    "teamSubheading": "Our team combines international-level backgrounds in data science, advanced NLP and corporate IT governance.",
-    "viewLinkedin": "VIEW LINKEDIN",
     "quoteText": "\"We don't sell PDF reports that end up archived. We build high-engineering software and real governance so data predictably solves our region's daily business challenges.\"",
     "quoteAuthor": "Engineering & Delivery Committee",
     "ctaButton": "I Want to Work with Loopa"
