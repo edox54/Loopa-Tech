@@ -4,6 +4,8 @@ import { Link } from '../lib/i18nRouter';
 import { ShieldCheck, Mail } from 'lucide-react';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
+import { useTranslation } from 'react-i18next';
+import { PrivacyPolicyViewEn } from './PrivacyPolicyViewEn';
 
 export function PrivacyPolicyView() {
   const { hash } = useLocation();
@@ -14,12 +16,13 @@ export function PrivacyPolicyView() {
     el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [hash]);
 
+  const { i18n } = useTranslation();
+  if (i18n.language === 'en') return <PrivacyPolicyViewEn />;
   return (
     <div id="privacy-view" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
       <Seo
         title="Política de Privacidad"
         description="Política de Privacidad de Loopa Technology: qué datos personales recolectamos, cómo los usamos y tus derechos sobre tu información."
-        esOnly
       />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
 

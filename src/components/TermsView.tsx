@@ -2,14 +2,17 @@ import { ShieldCheck, Mail } from 'lucide-react';
 import { Link } from '../lib/i18nRouter';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
+import { useTranslation } from 'react-i18next';
+import { TermsViewEn } from './TermsViewEn';
 
 export function TermsView() {
+  const { i18n } = useTranslation();
+  if (i18n.language === 'en') return <TermsViewEn />;
   return (
     <div id="terms-view" className="bg-white dark:bg-brand-navy text-brand-navy/75 dark:text-white/75 min-h-screen pt-32 pb-24 font-sans relative">
       <Seo
         title="Términos y Condiciones"
         description="Términos y Condiciones que regulan el uso del sitio web, la plataforma y los servicios de Loopa Technology."
-        esOnly
       />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none radial-glow z-0" />
 

@@ -15,8 +15,8 @@ export const INDEXABLE_ROUTES = [
   '/terminos',
 ];
 
-// Legal texts are kept verbatim in Spanish only.
-export const ES_ONLY_ROUTES = ['/privacidad', '/terminos'];
+// Pages with no English version (none right now; legal pages have an English translation, Spanish prevails).
+export const ES_ONLY_ROUTES: string[] = [];
 
 export const NOINDEX_ROUTES = ['/casos', ...SUCCESS_CASES_DATA.map((c) => `/casos/${c.id}`), '/datalab'];
 
