@@ -1,0 +1,16 @@
+# Loopa Technology
+
+> Loopa Technology (Quito, Ecuador) aplica IA predictiva con agentes a la rentabilidad comercial: ayuda a rotar el inventario antes de que se vuelva overstock y conecta las líneas de negocio complementarias —las que marketing y tecnología/BI no alcanzan a priorizar— con mercados existentes.
+
+## Servicios
+- [IA para la Rentabilidad Comercial](https://loopa.technology/servicios/rentabilidad-comercial): plataforma multi-agéntica (Agente Predictivo, Agente de Mercado, Agente de Cercanía).
+- [Imagen Política y Social Listening](https://loopa.technology/servicios/imagen-politica): monitoreo de radio, televisión y medios digitales.
+- [Analítica Predictiva](https://loopa.technology/servicios/analitica-predictiva): pronóstico de demanda, detección de sobrestock, tickets de small y mid caps, escenarios en cripto, modelos propios de machine learning (Deep Tech).
+- [Limpieza y Calidad de Datos](https://loopa.technology/servicios/limpieza-datos): depuración, estandarización y transaccionabilidad de datos.
+- [Servicios Econométricos](https://loopa.technology/servicios/servicios-econometricos): qué esfuerzos comerciales y operativos impactan más en tus ingresos y dónde crecer.
+
+## Empresa
+- [Nosotros](https://loopa.technology/nosotros)
+- [Blog](https://loopa.technology/blog)
+- [Contacto](https://loopa.technology/contacto): asancho@loopa.technology · WhatsApp +593 99 690 5953
+- English version: https://loopa.technology/en
