@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 // TODO(env): set these once the client provides real IDs — each script only loads if its var is set.
-const GA4_ID = import.meta.env.VITE_GA4_ID || '';
+const GA4_ID = import.meta.env.VITE_GA4_ID || 'G-VRB2FE6GH0'; // public ID; .env* is gitignored so the default lives here
 const GTM_ID = import.meta.env.VITE_GTM_ID || '';
 const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || '';
 
