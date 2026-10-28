@@ -1,6 +1,6 @@
 import { isEnPath, toEn, toEs } from '../routes';
 
-export const SITE_URL = (import.meta.env?.VITE_SITE_URL || 'https://loopa-tech.vercel.app').replace(/\/$/, '');
+export const SITE_URL = (import.meta.env?.VITE_SITE_URL || 'https://loopa.technology').replace(/\/$/, '');
 export const SITE_NAME = 'Loopa Technology';
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
@@ -43,6 +43,7 @@ const ORGANIZATION = {
   email: 'asancho@loopa.technology',
   telephone: '+593996905953',
   address: { '@type': 'PostalAddress', addressLocality: 'Quito', addressCountry: 'EC' },
+  contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: 'asancho@loopa.technology', telephone: '+593996905953', availableLanguage: ['es', 'en'] },
   sameAs: ['https://www.linkedin.com/company/loopatech/'],
 };
 
@@ -80,17 +81,34 @@ export function buildHead(seo: SeoData, pathname: string) {
     meta('property', 'og:image', image),
     meta('property', 'og:image:width', '1200'),
     meta('property', 'og:image:height', '630'),
+    meta('property', 'og:image:alt', title),
     meta('property', 'og:locale', en ? 'en_US' : 'es_EC'),
     meta('property', 'og:locale:alternate', en ? 'es_EC' : 'en_US'),
     meta('name', 'twitter:card', 'summary_large_image'),
     meta('name', 'twitter:title', title),
     meta('name', 'twitter:description', description),
     meta('name', 'twitter:image', image),
+    meta('name', 'twitter:image:alt', title),
   ];
+
+  // Every page gets a WebPage node typed by section; articles already carry their own BlogPosting.
+  const section = esPath.split('/')[1] || '';
+  const pageType = { nosotros: 'AboutPage', contacto: 'ContactPage', servicios: 'CollectionPage', blog: 'CollectionPage', recursos: 'CollectionPage' }[section] || 'WebPage';
+  const webPage = {
+    '@type': esPath.split('/').length > 2 ? 'WebPage' : pageType,
+    '@id': `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    inLanguage: en ? 'en' : 'es',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    about: { '@id': `${SITE_URL}/#organization` },
+    primaryImageOfPage: { '@type': 'ImageObject', url: image },
+  };
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
-    '@graph': [ORGANIZATION, WEBSITE, ...(seo.jsonLd || [])],
+    '@graph': [ORGANIZATION, WEBSITE, webPage, ...(seo.jsonLd || [])],
   });
 
   return { title, tags, jsonLd, lang: en ? 'en' : 'es' };
