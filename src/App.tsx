@@ -5,6 +5,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
+import { CookieBanner } from './components/CookieBanner';
 import { useSpotlight } from './lib/useSpotlight';
 
 // Inner pages load on demand so the home page ships less JavaScript.
@@ -90,6 +91,7 @@ export default function App() {
 
       <Footer />
       <WhatsAppFloat />
+      <CookieBanner />
       <MercatelyChat />
       <Analytics />
     </div>

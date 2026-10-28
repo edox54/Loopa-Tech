@@ -98,7 +98,7 @@ export function PrivacyPolicyView() {
             Podremos hacer actualizaciones de este documento, los cuales te notificaremos por medio de los canales digitales o por medio de la web.
           </p>
 
-          <h2 className="font-display text-2xl font-bold text-brand-navy dark:text-white pt-4">Política de cookies</h2>
+          <h2 id="cookies" className="font-display text-2xl font-bold text-brand-navy dark:text-white pt-4 scroll-mt-32">Política de cookies</h2>
 
           <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white">¿Qué son las cookies?</h3>
           <p className="text-sm leading-relaxed">

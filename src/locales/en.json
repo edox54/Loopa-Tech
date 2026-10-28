@@ -412,6 +412,13 @@
     "governanceLogStep4": "📜 [{{timestamp}}] [{{nodeName}}] Logging provenance into the immutable metadata graph.",
     "governanceLogStep5": "🏆 [{{timestamp}}] [{{nodeName}}] Final clean-data load successful. Traceability: 100%."
   },
+  "cookies": {
+    "label": "Cookie notice",
+    "text": "We use analytics cookies to improve the site. You can accept or decline them.",
+    "more": "Learn more",
+    "accept": "Accept",
+    "reject": "Decline"
+  },
   "footer": {
     "newsletterHeading": "Subscribe to Loopa Insights",
     "newsletterText": "Get monthly analysis on trends, corporate AI and data governance for leaders across LatAm.",

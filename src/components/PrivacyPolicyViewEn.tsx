@@ -93,7 +93,7 @@ export function PrivacyPolicyViewEn() {
             We may update this document, and we will notify you of any updates through our digital channels or the website.
           </p>
 
-          <h2 className="font-display text-2xl font-bold text-brand-navy dark:text-white pt-4">Cookie policy</h2>
+          <h2 id="cookies" className="font-display text-2xl font-bold text-brand-navy dark:text-white pt-4 scroll-mt-32">Cookie policy</h2>
 
           <h3 className={H3}>What are cookies?</h3>
           <p className={P}>

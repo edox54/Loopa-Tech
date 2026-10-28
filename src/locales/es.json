@@ -412,6 +412,13 @@
     "governanceLogStep4": "📜 [{{timestamp}}] [{{nodeName}}] Registrando procedencia en el grafo inmutable de metadatos.",
     "governanceLogStep5": "🏆 [{{timestamp}}] [{{nodeName}}] Carga final de datos limpios exitosa. Trazabilidad: 100%."
   },
+  "cookies": {
+    "label": "Aviso de cookies",
+    "text": "Usamos cookies de analítica para mejorar el sitio. Puedes aceptarlas o rechazarlas.",
+    "more": "Más información",
+    "accept": "Aceptar",
+    "reject": "Rechazar"
+  },
   "footer": {
     "newsletterHeading": "Suscríbete a Loopa Insights",
     "newsletterText": "Recibe mensualmente análisis de tendencias, IA corporativa y gobernanza de datos para líderes en LatAm.",
