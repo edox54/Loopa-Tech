@@ -164,9 +164,15 @@ export function Footer() {
 
         {/* Lower Legal Bar */}
         <div className="border-t border-brand-navy/10 dark:border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
-          <p className="text-brand-navy/75 dark:text-white/75">
-            {t('footer.copyright')}
-          </p>
+          <div className="text-brand-navy/75 dark:text-white/75 text-center md:text-left space-y-1">
+            <p>{t('footer.copyright')}</p>
+            <p>
+              {t('footer.credit')}{' '}
+              <a href="https://seoefectivo.com" target="_blank" rel="noopener" className="font-semibold hover:text-brand-coral transition-colors">
+                SEOefectivo
+              </a>
+            </p>
+          </div>
           <div className="flex space-x-6 mt-4 md:mt-0 text-brand-navy/75 dark:text-white/75">
             <Link to="/privacidad" className="hover:text-brand-coral transition-colors">{t('footer.privacyNotice')}</Link>
             <Link to="/terminos" className="hover:text-brand-coral transition-colors">{t('footer.termsOfService')}</Link>
