@@ -13,15 +13,14 @@ const lastmod = (route) => {
 
 const SITE_URL = (process.env.VITE_SITE_URL || 'https://loopa.technology').replace(/\/$/, '');
 
+// ponytail: hreflang lives in each page's <head> (enough for Google); keeping it out of the sitemap lets Chrome show the XML tree.
+const entry = (url, lm) => `<url>\n<loc>${url}</loc>\n${lm ? `<lastmod>${lm}</lastmod>\n` : ''}</url>`;
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${INDEXABLE_ROUTES.flatMap((route) => {
-  if (ES_ONLY_ROUTES.includes(route)) return [`  <url><loc>${SITE_URL}${route}</loc>${lastmod(route)}</url>`];
-  const esUrl = `${SITE_URL}${route}`;
-  const enUrl = `${SITE_URL}${toEn(route)}`;
-  const alternates = `<xhtml:link rel="alternate" hreflang="es" href="${esUrl}" /><xhtml:link rel="alternate" hreflang="en" href="${enUrl}" /><xhtml:link rel="alternate" hreflang="x-default" href="${esUrl}" />`;
-  const lm = lastmod(route);
-  return [`  <url><loc>${esUrl}</loc>${lm}${alternates}</url>`, `  <url><loc>${enUrl}</loc>${lm}${alternates}</url>`];
+  const lm = lastmod(route).replace(/<\/?lastmod>/g, '');
+  const urls = ES_ONLY_ROUTES.includes(route) ? [route] : [route, toEn(route)];
+  return urls.map((u) => entry(`${SITE_URL}${u}`, lm));
 }).join('\n')}
 </urlset>
 `;
