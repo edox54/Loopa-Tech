@@ -1,16 +1,58 @@
 # Loopa Technology
 
-> Loopa Technology (Quito, Ecuador) aplica IA predictiva con agentes a la rentabilidad comercial: ayuda a rotar el inventario antes de que se vuelva overstock y conecta las líneas de negocio complementarias —las que marketing y tecnología/BI no alcanzan a priorizar— con mercados existentes.
+> Loopa Technology (Quito, Ecuador) aplica IA predictiva con agentes a la rentabilidad comercial: ayuda a rotar el inventario antes de que se vuelva overstock y conecta las líneas de negocio complementarias —las que marketing y tecnología/BI no alcanzan a priorizar— con mercados existentes. Sitio bilingüe (español e inglés); cada página tiene su versión en inglés bajo /en.
 
-## Servicios
-- [IA para la Rentabilidad Comercial](https://loopa.technology/servicios/rentabilidad-comercial): plataforma multi-agéntica (Agente Predictivo, Agente de Mercado, Agente de Cercanía).
-- [Imagen Política y Social Listening](https://loopa.technology/servicios/imagen-politica): monitoreo de radio, televisión y medios digitales.
-- [Analítica Predictiva](https://loopa.technology/servicios/analitica-predictiva): pronóstico de demanda, detección de sobrestock, tickets de small y mid caps, escenarios en cripto, modelos propios de machine learning (Deep Tech).
+> Loopa Technology (Quito, Ecuador) applies predictive AI with agents to commercial profitability: it helps rotate inventory before it becomes overstock and connects complementary business lines —the ones marketing and tech/BI teams can't prioritize— with existing markets. Bilingual site (Spanish and English); every page has an English version under /en.
+
+Slogan / Eslogan: Crea océanos de negocios.
+
+## Español
+
+### Servicios
+- [Servicios](https://loopa.technology/servicios): resumen de las cinco líneas de servicio de IA y datos.
+- [IA para la Rentabilidad Comercial](https://loopa.technology/servicios/rentabilidad-comercial): plataforma multi-agéntica (Agente Predictivo, Agente de Mercado, Agente de Cercanía) que ayuda a las líneas complementarias de la empresa a cumplir sus metas comerciales.
+- [Imagen Política y Social Listening](https://loopa.technology/servicios/imagen-politica): monitoreo de radio, televisión y medios digitales para medir percepción, anticipar crisis y orientar la estrategia de comunicación.
+- [Analítica Predictiva](https://loopa.technology/servicios/analitica-predictiva): pronóstico de demanda, ventas y capacidad ociosa, detección de sobrestock, tickets de small y mid caps, escenarios en cripto, modelos propios de machine learning (Deep Tech).
 - [Limpieza y Calidad de Datos](https://loopa.technology/servicios/limpieza-datos): depuración, estandarización y transaccionabilidad de datos.
-- [Servicios Econométricos](https://loopa.technology/servicios/servicios-econometricos): qué esfuerzos comerciales y operativos impactan más en tus ingresos y dónde crecer.
+- [Servicios Econométricos](https://loopa.technology/servicios/servicios-econometricos): qué esfuerzos comerciales y operativos impactan más en los ingresos y dónde hay más oportunidad de crecer.
 
-## Empresa
-- [Nosotros](https://loopa.technology/nosotros)
-- [Blog](https://loopa.technology/blog)
-- [Contacto](https://loopa.technology/contacto): asancho@loopa.technology · WhatsApp +593 99 690 5953
-- English version: https://loopa.technology/en
+### Empresa
+- [Inicio](https://loopa.technology/): propuesta de valor y resumen del sitio.
+- [Nosotros](https://loopa.technology/nosotros): misión, visión y principios de trabajo.
+- [Contacto](https://loopa.technology/contacto): agenda una consultoría. Correo asancho@loopa.technology · WhatsApp +593 99 690 5953.
+
+### Blog y recursos
+- [Blog](https://loopa.technology/blog): análisis sobre datos, IA generativa, gobernanza y social listening para líderes en LatAm.
+- [Cómo los modelos LLM privados están transformando la consulta de datos corporativos en LatAm](https://loopa.technology/blog/llm-privados-latam): riesgo de enviar datos de clientes a APIs públicas y auge del RAG privado y seguro.
+- [Recursos](https://loopa.technology/recursos): whitepapers, reportes y podcast sobre datos e inteligencia artificial.
+
+### Legal
+- [Política de privacidad](https://loopa.technology/privacidad)
+- [Términos y condiciones](https://loopa.technology/terminos)
+
+## English
+
+### Services
+- [Services](https://loopa.technology/en/servicios): overview of the five AI and data service lines.
+- [AI for Commercial Profitability](https://loopa.technology/en/servicios/rentabilidad-comercial): multi-agent platform (Predictive Agent, Market Agent, Proximity Agent) that helps the company's complementary business lines hit their commercial targets.
+- [Political Image & Social Listening](https://loopa.technology/en/servicios/imagen-politica): radio, TV and digital media monitoring to measure perception, anticipate crises and guide communication strategy.
+- [Predictive Analytics](https://loopa.technology/en/servicios/analitica-predictiva): demand, sales and idle-capacity forecasting, overstock detection, tickers for small- and mid-cap portfolios, crypto scenarios, proprietary machine learning models (Deep Tech).
+- [Data Cleansing & Quality](https://loopa.technology/en/servicios/limpieza-datos): data cleaning, standardization and data transactability.
+- [Econometric Services](https://loopa.technology/en/servicios/servicios-econometricos): which commercial and operational efforts have the biggest impact on revenue and where there is the most room to grow.
+
+### Company
+- [Home](https://loopa.technology/en): value proposition and site overview.
+- [About](https://loopa.technology/en/nosotros): mission, vision and working principles.
+- [Contact](https://loopa.technology/en/contacto): schedule a consultation. Email asancho@loopa.technology · WhatsApp +593 99 690 5953.
+
+### Blog and resources
+- [Blog](https://loopa.technology/en/blog): analysis on data, generative AI, governance and social listening for leaders across LatAm.
+- [How Private LLMs Are Transforming Corporate Data Search Across LatAm](https://loopa.technology/en/blog/llm-privados-latam): the risk of sending customer data to public APIs and the rise of private, secure RAG.
+- [Resources](https://loopa.technology/en/recursos): whitepapers, reports and podcast on data and artificial intelligence.
+
+### Legal
+- [Privacy policy](https://loopa.technology/en/privacidad) (Spanish version prevails)
+- [Terms and conditions](https://loopa.technology/en/terminos) (Spanish version prevails)
+
+## Optional
+- [Sitemap](https://loopa.technology/sitemap.xml)
