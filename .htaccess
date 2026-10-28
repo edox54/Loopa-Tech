@@ -53,7 +53,7 @@ Header always set Referrer-Policy "strict-origin-when-cross-origin"
 Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
 Header always set X-Frame-Options "SAMEORIGIN"
 Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-<FilesMatch "^(robots\.txt|sitemap\.xml|sitemap\.xsl|llms\.txt)$">
+<FilesMatch "^(robots\.txt|sitemap\.xml|llms\.txt)$">
 Header set Cache-Control "public, max-age=3600"
 </FilesMatch>
 <FilesMatch "\.html$">
