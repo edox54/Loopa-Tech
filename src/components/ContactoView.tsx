@@ -329,7 +329,7 @@ export function ContactoView() {
 
             {/* General contact channels card */}
             <div className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 rounded-3xl p-6 space-y-6">
-              <h3 className="font-display text-lg font-bold text-brand-navy dark:text-white">{t('contact.directChannelsHeading')}</h3>
+              <h2 className="font-display text-lg font-bold text-brand-navy dark:text-white">{t('contact.directChannelsHeading')}</h2>
               <div className="space-y-4 text-sm text-brand-navy/75 dark:text-white/75">
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 rounded-lg bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 flex items-center justify-center text-brand-coral shrink-0">

@@ -61,11 +61,11 @@ export function ServicesView() {
                       <ServiceIcon name={service.iconName} />
                     </div>
                     <div>
-                      <h3 className="font-display text-xl font-bold text-brand-navy dark:text-white group-hover:text-brand-coral transition-colors">
+                      <h2 className="font-display text-xl font-bold text-brand-navy dark:text-white group-hover:text-brand-coral transition-colors">
                         <Link to={`/servicios/${service.id}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
                           {pickLang(service.title, lang)}
                         </Link>
-                      </h3>
+                      </h2>
                       <p className="text-brand-navy/55 dark:text-white/55 text-xs font-mono mt-1">
                         {t('services.consultingServices')}
                       </p>

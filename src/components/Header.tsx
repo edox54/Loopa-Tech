@@ -108,7 +108,7 @@ export function Header() {
               id="language-toggle"
               onClick={toggleLanguage}
               className="p-2.5 rounded-xl text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white border border-transparent hover:border-brand-coral/40 transition-all cursor-pointer flex items-center space-x-1.5"
-              aria-label="Toggle language"
+              aria-label={`Toggle language (${i18n.language.toUpperCase()})`}
             >
               <Flag lang={i18n.language} />
               <span className="hidden xl:inline text-xs font-mono font-bold uppercase">{i18n.language}</span>
@@ -140,7 +140,7 @@ export function Header() {
               id="language-toggle-mobile"
               onClick={toggleLanguage}
               className="p-1.5 rounded-xl text-brand-navy/75 dark:text-white/75 hover:text-brand-navy dark:hover:text-white cursor-pointer flex items-center gap-1"
-              aria-label="Toggle language"
+              aria-label={`Toggle language (${i18n.language.toUpperCase()})`}
             >
               <Flag lang={i18n.language} />
               <span className="hidden min-[400px]:inline text-xs font-mono font-bold uppercase">{i18n.language}</span>

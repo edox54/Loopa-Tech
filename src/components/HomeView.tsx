@@ -1,5 +1,5 @@
-import { ArrowRight, CalendarClock, Radar, Megaphone, Network, RefreshCw, Users, Layers, Check } from 'lucide-react';
-import type { CSSProperties } from 'react';
+import { ArrowRight, CalendarClock, Play, Radar, Megaphone, Network, RefreshCw, Users, Layers, Check } from 'lucide-react';
+import { useState, type CSSProperties } from 'react';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
@@ -33,6 +33,8 @@ function Heading({ eyebrow, title, text }: { eyebrow: string; title: string; tex
 }
 
 export function HomeView() {
+  // The Drive preview weighs ~3 MB of third-party JS; load it only when someone presses play.
+  const [demoOn, setDemoOn] = useState(false);
   const { t, i18n } = useTranslation();
   const lang = useLang(i18n.language);
   const list = (key: string) => t(key, { returnObjects: true }) as Item[];
@@ -93,7 +95,7 @@ export function HomeView() {
           <div className="space-y-8">
             {list('home.problemPoints').map((p) => (
               <div key={p.title} className="border-l-2 border-brand-coral pl-6 space-y-2 hover:border-l-4 hover:pl-5 transition-all">
-                <h3 className="font-display text-xl font-bold">{p.title}</h3>
+                <h2 className="font-display text-xl font-bold">{p.title}</h2>
                 <p className="text-brand-navy/75 dark:text-white/75">{p.text}</p>
               </div>
             ))}
@@ -125,14 +127,27 @@ export function HomeView() {
           </div>
           <p className="mt-10 text-center font-display text-xl md:text-2xl font-bold">{t('home.platformOneClick')}</p>
           <Reveal className="mt-12 max-w-4xl mx-auto">
-            <iframe
-              src={DEMO_VIDEO_EMBED}
-              title={t('home.demoVideoLabel')}
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              loading="lazy"
-              className="w-full aspect-video rounded-2xl border border-brand-navy/10 dark:border-white/10"
-            />
+            {demoOn ? (
+              <iframe
+                src={DEMO_VIDEO_EMBED}
+                title={t('home.demoVideoLabel')}
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                className="w-full aspect-video rounded-2xl border border-brand-navy/10 dark:border-white/10"
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={() => setDemoOn(true)}
+                aria-label={t('home.demoVideoLabel')}
+                className="w-full aspect-video rounded-2xl border border-brand-navy/10 dark:border-white/10 bg-brand-navy text-white flex flex-col items-center justify-center gap-4 hover:brightness-110 transition cursor-pointer"
+              >
+                <span className="w-16 h-16 rounded-full bg-brand-coral text-brand-navy flex items-center justify-center">
+                  <Play className="w-7 h-7 ml-1" aria-hidden="true" />
+                </span>
+                <span className="font-display font-bold">{t('home.demoVideoLabel')}</span>
+              </button>
+            )}
             <div className="mt-8 flex justify-center">
               <PlatformLoginButton className="px-8 py-3.5 rounded-full bg-brand-navy text-white dark:bg-white dark:text-brand-navy font-bold hover:brightness-110 transition" />
             </div>

@@ -23,7 +23,8 @@ export async function render(url: string) {
         </StaticRouter>
       </ThemeProvider>
     </SeoCollector.Provider>,
-    { onError: (e) => void errors.push(e) }
+    // Fizz moves any Suspense boundary over ~12.8 KB into a hidden block after the footer; keep the page inline in <main>.
+    { onError: (e) => void errors.push(e), progressiveChunkSize: Infinity }
   );
   // A render error would silently ship an empty page; fail the build instead.
   if (errors.length) throw errors[0];

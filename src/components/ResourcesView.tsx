@@ -45,7 +45,7 @@ export function ResourcesView() {
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 text-brand-coral">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-display text-xl font-bold text-brand-navy dark:text-white">{t(`resources.${key}Label`)}</h3>
+                <h2 className="font-display text-xl font-bold text-brand-navy dark:text-white">{t(`resources.${key}Label`)}</h2>
                 <p className="text-brand-navy/75 dark:text-white/75 text-sm leading-relaxed">{t(`resources.${key}Desc`)}</p>
               </div>
               <span className="text-xs font-mono text-brand-cyan font-bold flex items-center space-x-1.5">
