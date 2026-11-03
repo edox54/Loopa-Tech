@@ -1,3 +1,4 @@
+import { canonicalId } from '../routes';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from '../lib/i18nRouter';
@@ -30,7 +31,8 @@ function CaseCover({ kase, lang, wide = false, label, className = '' }: { kase: 
 
 export function CasesView() {
   const navigate = useNavigate();
-  const { id: selectedCaseId } = useParams<{ id: string }>();
+  const { id: rawId } = useParams<{ id: string }>();
+  const selectedCaseId = canonicalId(rawId);
   const { t, i18n } = useTranslation();
   const lang = useLang(i18n.language);
 

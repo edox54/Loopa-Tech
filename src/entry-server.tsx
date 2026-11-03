@@ -6,7 +6,7 @@ import { ThemeProvider } from './ThemeContext';
 import { SeoCollector } from './components/Seo';
 import { buildHead, headToHtml } from './lib/seoHead';
 import { INDEXABLE_ROUTES, NOINDEX_ROUTES, isEnPath } from './routes';
-export { ES_ONLY_ROUTES } from './routes';
+export { ES_ONLY_ROUTES, toEn } from './routes';
 
 export const ROUTES = [...INDEXABLE_ROUTES, ...NOINDEX_ROUTES];
 

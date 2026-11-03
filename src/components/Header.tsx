@@ -7,6 +7,7 @@ import { CALENDLY_URL } from '../data';
 import { PlatformLoginButton } from './PlatformLoginButton';
 import { useTheme } from '../ThemeContext';
 import { Logo } from './Logo';
+import { toEn, toEs } from '../routes';
 import { Flag } from './Flag';
 
 export function Header() {
@@ -29,8 +30,7 @@ export function Header() {
   // navigating to the equivalent path under/without the /en prefix.
   const toggleLanguage = () => {
     const next = i18n.language === 'es' ? 'en' : 'es';
-    const esPath = location.pathname.startsWith('/en') ? location.pathname.slice(3) || '/' : location.pathname;
-    const target = next === 'en' ? (esPath === '/' ? '/en' : `/en${esPath}`) : esPath;
+    const target = next === 'en' ? toEn(location.pathname) : toEs(location.pathname);
     rawNavigate(`${target}${location.search}${location.hash}`);
     setIsMobileMenuOpen(false);
   };
@@ -41,7 +41,7 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const currentEsPath = location.pathname.startsWith('/en') ? location.pathname.slice(3) || '/' : location.pathname;
+  const currentEsPath = toEs(location.pathname);
   const isSelected = (to: string) =>
     to === '/' ? currentEsPath === '/' : currentEsPath.startsWith(to);
 

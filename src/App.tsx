@@ -7,6 +7,7 @@ import { HomeView } from './components/HomeView';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { CookieBanner } from './components/CookieBanner';
 import { useSpotlight } from './lib/useSpotlight';
+import { segment } from './routes';
 
 // Inner pages load on demand so the home page ships less JavaScript.
 const page = <T extends string>(load: () => Promise<Record<T, ComponentType>>, name: T) =>
@@ -38,23 +39,24 @@ function LangLayout({ lang }: { lang: 'es' | 'en' }) {
   return <Outlet />;
 }
 
-function PageRoutes() {
+function PageRoutes({ lang }: { lang: 'es' | 'en' }) {
+  const seg = (es: string) => segment(es, lang);
   return (
     <>
       <Route index element={<HomeView />} />
-      <Route path="servicios" element={<ServicesView />} />
-      <Route path="servicios/:id" element={<ServicesView />} />
-      <Route path="casos" element={<CasesView />} />
-      <Route path="casos/:id" element={<CasesView />} />
+      <Route path={seg('servicios')} element={<ServicesView />} />
+      <Route path={`${seg('servicios')}/:id`} element={<ServicesView />} />
+      <Route path={seg('casos')} element={<CasesView />} />
+      <Route path={`${seg('casos')}/:id`} element={<CasesView />} />
       <Route path="blog" element={<BlogView />} />
       <Route path="blog/:id" element={<BlogView />} />
-      <Route path="nosotros" element={<NosotrosView />} />
-      <Route path="contacto" element={<ContactoView />} />
-      <Route path="datalab" element={<DataLabView />} />
-      <Route path="recursos" element={<ResourcesView />} />
-      <Route path="privacidad" element={<PrivacyPolicyView />} />
-      <Route path="terminos" element={<TermsView />} />
-      <Route path="legal" element={<Navigate to="../privacidad" replace />} />
+      <Route path={seg('nosotros')} element={<NosotrosView />} />
+      <Route path={seg('contacto')} element={<ContactoView />} />
+      <Route path={seg('datalab')} element={<DataLabView />} />
+      <Route path={seg('recursos')} element={<ResourcesView />} />
+      <Route path={seg('privacidad')} element={<PrivacyPolicyView />} />
+      <Route path={seg('terminos')} element={<TermsView />} />
+      <Route path="legal" element={<Navigate to={`../${seg('privacidad')}`} replace />} />
       <Route path="*" element={<NotFoundView />} />
     </>
   );
@@ -79,10 +81,10 @@ export default function App() {
           <Suspense fallback={<div className="min-h-screen" />}>
           <Routes>
             <Route path="/en" element={<LangLayout lang="en" />}>
-              {PageRoutes()}
+              {PageRoutes({ lang: 'en' })}
             </Route>
             <Route element={<LangLayout lang="es" />}>
-              {PageRoutes()}
+              {PageRoutes({ lang: 'es' })}
             </Route>
           </Routes>
           </Suspense>

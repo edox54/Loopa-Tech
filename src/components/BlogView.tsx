@@ -1,3 +1,4 @@
+import { canonicalId } from '../routes';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link, useNavigate, localizePath } from '../lib/i18nRouter';
@@ -45,7 +46,8 @@ function splitContentForCTA(html: string) {
 
 export function BlogView() {
   const navigate = useNavigate();
-  const { id: selectedPostId } = useParams<{ id: string }>();
+  const { id: rawId } = useParams<{ id: string }>();
+  const selectedPostId = canonicalId(rawId);
   const { t, i18n } = useTranslation();
   const lang = useLang(i18n.language);
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');

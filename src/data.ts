@@ -546,7 +546,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
 
       <h2>How much capital do you have trapped in warehouses because your information isn’t connected to the right market?</h2>
       <p>Letting your slow-moving products keep gathering dust costs you storage, liquidity and operating margin every single day.</p>
-      <p>Want to see how to connect your current systems to a predictive engine that starts moving your inventory in days, not months? <a href="/en/contacto"><strong>Request a live demo with the Loopa team</strong></a>.</p>
+      <p>Want to see how to connect your current systems to a predictive engine that starts moving your inventory in days, not months? <a href="/en/contact"><strong>Request a live demo with the Loopa team</strong></a>.</p>
     `,
     },
   },

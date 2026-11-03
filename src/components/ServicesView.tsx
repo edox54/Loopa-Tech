@@ -1,3 +1,4 @@
+import { canonicalId } from '../routes';
 import { useParams } from 'react-router-dom';
 import { Link, useNavigate, localizePath } from '../lib/i18nRouter';
 import { SITE_URL, breadcrumb } from '../lib/seoHead';
@@ -13,7 +14,8 @@ import { ServiceChart } from './Charts';
 
 export function ServicesView() {
   const navigate = useNavigate();
-  const { id: selectedServiceId } = useParams<{ id: string }>();
+  const { id: rawId } = useParams<{ id: string }>();
+  const selectedServiceId = canonicalId(rawId);
   const { t, i18n } = useTranslation();
   const lang = useLang(i18n.language);
 

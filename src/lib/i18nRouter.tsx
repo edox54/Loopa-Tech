@@ -6,13 +6,14 @@ import {
   type NavigateOptions,
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { isEnPath, toEn } from '../routes';
 
 // ponytail: one place that knows about the /en prefix, instead of every
 // navigate()/<Link to> call site across the app having to think about locale.
 export function localizePath(to: string, lang: string): string {
   if (lang !== 'en') return to;
-  if (!to.startsWith('/') || to.startsWith('/en')) return to; // relative, hash, or already localized
-  return to === '/' ? '/en' : `/en${to}`;
+  if (!to.startsWith('/') || isEnPath(to)) return to; // relative, hash, or already localized
+  return toEn(to);
 }
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link({ to, ...rest }, ref) {

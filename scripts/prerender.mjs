@@ -3,8 +3,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { dirname } from 'node:path';
 
-const { render, ROUTES, ES_ONLY_ROUTES } = await import('../dist-ssr/entry-server.js');
-const toEn = (p) => (p === '/' ? '/en' : `/en${p}`);
+const { render, ROUTES, ES_ONLY_ROUTES, toEn } = await import('../dist-ssr/entry-server.js');
 const template = readFileSync('dist/index.html', 'utf8')
   .replace(/<title>[\s\S]*?<\/title>\s*/, '')
   .replace(/<meta name="description"[^>]*>\s*/, '');
