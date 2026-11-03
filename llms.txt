@@ -23,6 +23,7 @@ Slogan / Eslogan: Crea océanos de negocios.
 
 ### Blog y recursos
 - [Blog](https://loopa.technology/blog): análisis sobre datos, IA generativa, gobernanza y social listening para líderes en LatAm.
+- [Cómo conectar tus productos de baja rotación con la demanda correcta (sin cambiar tu ERP)](https://loopa.technology/blog/productos-baja-rotacion-sin-cambiar-erp): IA sobre el ERP actual para liberar la liquidez atrapada en inventario de lenta salida, con integración Plug-and-Play y arquitectura Zero-Copy.
 - [Cómo los modelos LLM privados están transformando la consulta de datos corporativos en LatAm](https://loopa.technology/blog/llm-privados-latam): riesgo de enviar datos de clientes a APIs públicas y auge del RAG privado y seguro.
 - [Recursos](https://loopa.technology/recursos): whitepapers, reportes y podcast sobre datos e inteligencia artificial.
 
@@ -47,6 +48,7 @@ Slogan / Eslogan: Crea océanos de negocios.
 
 ### Blog and resources
 - [Blog](https://loopa.technology/en/blog): analysis on data, generative AI, governance and social listening for leaders across LatAm.
+- [How to Connect Your Slow-Moving Products with the Right Demand (Without Changing Your ERP)](https://loopa.technology/en/blog/productos-baja-rotacion-sin-cambiar-erp): AI on top of your current ERP to free cash trapped in slow-moving inventory, with Plug-and-Play integration and Zero-Copy architecture.
 - [How Private LLMs Are Transforming Corporate Data Search Across LatAm](https://loopa.technology/en/blog/llm-privados-latam): the risk of sending customer data to public APIs and the rise of private, secure RAG.
 - [Resources](https://loopa.technology/en/recursos): whitepapers, reports and podcast on data and artificial intelligence.
 
