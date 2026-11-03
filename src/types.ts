@@ -49,7 +49,8 @@ export interface BlogPost {
   };
   date: string;
   tags: string[];
-  coverImage?: string; // TODO: real asset pending — placeholder rendered until set
+  /** Per-language cover (1200×800 WebP in /public/blog). The social-share JPEG sits next to it as `<name>-og.jpg`. */
+  coverImage?: Localized<string>;
 }
 
 export interface FAQItem {

@@ -2,6 +2,24 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link, useNavigate, localizePath } from '../lib/i18nRouter';
 import { SITE_URL, breadcrumb, spanishDateToIso } from '../lib/seoHead';
+
+// Real cover when the post has one, the placeholder box otherwise.
+function PostCover({ post, lang, ratio, label, className = '', eager = false }: { post: BlogPost; lang: 'es' | 'en'; ratio: '16/9' | '4/3'; label?: string; className?: string; eager?: boolean }) {
+  const src = post.coverImage ? pickLang(post.coverImage, lang) : '';
+  if (!src) return <MediaPlaceholder ratio={ratio} label={label} className={className} />;
+  return (
+    <img
+      src={src}
+      alt={pickLang(post.title, lang)}
+      width={1200}
+      height={800}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      className={`w-full object-cover ${className}`}
+      style={{ aspectRatio: '3 / 2' }} // the cover art is 1200×800; cropping it to 16:9 would cut the logo and the URL
+    />
+  );
+}
 import { NotFoundView } from './NotFoundView';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Share2, Clock, Calendar, ArrowRight, CheckCircle, Search, Linkedin } from 'lucide-react';
@@ -10,6 +28,7 @@ import { pickLang, useLang } from '../lib/i18nData';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
 import { MediaPlaceholder } from './MediaPlaceholder';
+import type { BlogPost } from '../types';
 import { BlogSidebar } from './BlogSidebar';
 import { InnerCTA } from './InnerCTA';
 
@@ -150,7 +169,7 @@ export function BlogView() {
                 </div>
 
                 <div className="lg:col-span-5 relative">
-                  <MediaPlaceholder ratio="4/3" label={t('blog.featuredImageLabel')} className="w-full" />
+                  <PostCover post={featuredPost} lang={lang} ratio="4/3" label={t('blog.featuredImageLabel')} className="w-full rounded-2xl" />
                   <div className="absolute -bottom-4 -right-4 w-12 h-12 rounded-2xl bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 flex items-center justify-center text-brand-cyan group-hover:bg-gradient-to-r group-hover:from-brand-coral group-hover:to-brand-cyan group-hover:text-brand-navy transition-all duration-300 shadow-md">
                     <ArrowRight className="w-5 h-5" />
                   </div>
@@ -174,7 +193,7 @@ export function BlogView() {
                   id={`blog-index-card-${post.id}`}
                   className="spotlight relative bg-white dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl overflow-hidden flex flex-col justify-between hover:bg-brand-light-gray dark:hover:bg-brand-navy group focus-within:ring-2 focus-within:ring-brand-coral"
                 >
-                  <MediaPlaceholder ratio="16/9" className="rounded-none border-x-0 border-t-0" />
+                  <PostCover post={post} lang={lang} ratio="16/9" className="rounded-none border-x-0 border-t-0" />
                   <div className="p-6 space-y-4 flex flex-col justify-between flex-grow">
                     <div className="space-y-4">
                       <div className="flex items-center justify-between text-xs font-mono">
@@ -217,6 +236,7 @@ export function BlogView() {
 
   // Article Detail View
   const post = BLOG_POSTS_DATA.find((p) => p.id === selectedPostId);
+  const coverUrl = post?.coverImage ? pickLang(post.coverImage, lang) : '';
   if (!post) return <NotFoundView />;
   const { before, after } = splitContentForCTA(pickLang(post.content, lang));
 
@@ -226,6 +246,7 @@ export function BlogView() {
           title={pickLang(post.seoTitle || post.title, lang)}
           description={pickLang(post.excerpt, lang)}
           type="article"
+          image={coverUrl ? `${SITE_URL}${coverUrl.replace(/\.webp$/, '-og.jpg')}` : undefined}
           jsonLd={[
             {
               '@type': 'BlogPosting',
@@ -238,7 +259,7 @@ export function BlogView() {
               author: { '@type': 'Person', name: post.author.name, jobTitle: pickLang(post.author.role, lang) },
               publisher: { '@id': `${SITE_URL}/#organization` },
               mainEntityOfPage: `${SITE_URL}${localizePath(`/blog/${post.id}`, lang)}`,
-              image: `${SITE_URL}/og-image.jpg`,
+              image: coverUrl ? `${SITE_URL}${coverUrl}` : `${SITE_URL}/og-image.jpg`,
             },
             breadcrumb([
               { name: t('nav.home'), path: localizePath('/', lang) },
@@ -326,7 +347,7 @@ export function BlogView() {
               </div>
 
               {/* Featured Image */}
-              <MediaPlaceholder ratio="16/9" label={t('blog.articleImageLabel')} className="w-full" />
+              <PostCover post={post} lang={lang} ratio="16/9" label={t('blog.articleImageLabel')} className="w-full rounded-2xl" eager />
 
               {/* Article Body Content */}
               <div className="prose dark:prose-invert max-w-none text-brand-navy/75 dark:text-white/75 leading-relaxed space-y-6 text-base">

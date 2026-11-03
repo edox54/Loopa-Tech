@@ -455,6 +455,10 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     },
     date: '3 de Noviembre, 2026',
     tags: ['Inventario', 'ERP', 'Zero-Copy', 'IA'],
+    coverImage: {
+      es: '/blog/productos-baja-rotacion-es.webp',
+      en: '/blog/productos-baja-rotacion-en.webp',
+    },
     content: {
       es: `
       <p>Si manejas inventarios, finanzas o gestión comercial, conoces bien la pesadilla: productos acumulando polvo en bodega, bases de datos en Excel dispersas, sistemas ERP que no se hablan entre sí y decisiones comerciales que se toman tarde, dejando liquidez atrapada en stock que no se mueve.</p>
