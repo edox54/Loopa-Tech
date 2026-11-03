@@ -436,6 +436,111 @@ export const SUCCESS_CASES_DATA: ProjectCase[] = [
 
 export const BLOG_POSTS_DATA: BlogPost[] = [
   {
+    id: 'productos-baja-rotacion-sin-cambiar-erp',
+    title: {
+      es: 'Cómo conectar tus productos de baja rotación con la demanda correcta (sin cambiar tu ERP)',
+      en: 'How to Connect Your Slow-Moving Products with the Right Demand (Without Changing Your ERP)',
+    },
+    seoTitle: { es: 'Baja rotación: IA sin cambiar tu ERP', en: 'Slow-moving stock: AI without changing your ERP' },
+    excerpt: {
+      es: 'Cómo liberar la liquidez atrapada en inventario de baja rotación conectando IA a tu ERP actual, sin migraciones ni pausar tu operación.',
+      en: 'How to free the cash trapped in slow-moving inventory by connecting AI to your current ERP, with no migration and no operational pause.',
+    },
+    category: 'Comercial',
+    readTime: { es: '4 min de lectura', en: '4 min read' },
+    author: {
+      name: 'Anita Sancho',
+      role: { es: 'Content Lead en Loopa Technology', en: 'Content Lead at Loopa Technology' },
+      avatar: 'AS',
+    },
+    date: '3 de Noviembre, 2026',
+    tags: ['Inventario', 'ERP', 'Zero-Copy', 'IA'],
+    content: {
+      es: `
+      <p>Si manejas inventarios, finanzas o gestión comercial, conoces bien la pesadilla: productos acumulando polvo en bodega, bases de datos en Excel dispersas, sistemas ERP que no se hablan entre sí y decisiones comerciales que se toman tarde, dejando liquidez atrapada en stock que no se mueve.</p>
+      <p>¿La respuesta tradicional de las consultoras? “Necesitamos detener tu empresa 6 meses, migrar toda tu infraestructura y gastar decenas de miles de dólares en desarrollos a la medida”.</p>
+      <p><strong>Hoy, esa premisa quedó obsoleta.</strong> No necesitas pausar tu operación ni reinventar la rueda para liberar la liquidez atascada en tus bodegas. Existe un camino mucho más ágil, cómodo y conveniente: conectar Inteligencia Artificial sobre la infraestructura y los procesos que ya tienes funcionando hoy.</p>
+
+      <h2>La vía rápida: de inventario estancado a caja líquida en días, no meses</h2>
+      <p>Hasta hoy, intentar dar salida a productos de baja rotación significaba descuentos agresivos que destruían el margen o cruces manuales de reportes que tomaban semanas.</p>
+      <p>Nuestra metodología rompe esa parálisis mediante integración Plug-and-Play y arquitectura Zero-Copy, ofreciéndote un motor de agilidad comercial diseñado para encontrar compradores ideales para ese inventario atascado, rápido y sin fricción. Se apoya en cuatro pilares:</p>
+      <ul>
+        <li><strong>Conectividad Plug-and-Play:</strong> conexión sobre lo que ya usas, sin cambios traumáticos en el ERP.</li>
+        <li><strong>Arquitectura Zero-Copy:</strong> hallazgo de mercado en vivo, y el dato nunca sale de tu nube.</li>
+        <li><strong>Adaptabilidad inmediata:</strong> integración nativa con MCP y con las herramientas del día a día.</li>
+        <li><strong>Monetización acumulativa:</strong> rotación del stock lento y ventas cruzadas en comunidad.</li>
+      </ul>
+
+      <h3>1. Implementación suave: cero interrupciones en tu negocio</h3>
+      <p>Olvídate de detener las operaciones para capacitar a tu equipo en herramientas complejas. Nos conectamos de forma nativa a tus repositorios y canales actuales (BigQuery, ERP, WhatsApp, TikTok, YouTube).</p>
+      <p><strong>El resultado:</strong> enriqueces la toma de decisiones comerciales en tiempo real dentro de las mismas plataformas que tu equipo ya utiliza a diario.</p>
+
+      <h3>2. Conexión en comunidad con Zero-Copy (sin mover un solo archivo)</h3>
+      <p>La arquitectura Zero-Copy es la clave para colocar productos de baja rotación en el mercado correcto sin arriesgar tu información: tus bases de datos de inventario y comercial jamás salen de la infraestructura privada de tu empresa, pero la IA —que ya entiende a la perfección tu catálogo y tus capacidades operativas— sale a explorar de forma totalmente segura.</p>
+      <p>A través de este modelo, el agente interactúa dentro de una red de aliados y clientes potenciales buscando a quienes tienen una necesidad puntual para esos productos específicos en ese preciso momento. Así conecta tu oferta atascada con la demanda del mercado de manera automatizada, inmediata y sin el riesgo ni la fricción de mover un solo archivo.</p>
+
+      <h3>3. Automatización cómoda y a tu medida</h3>
+      <p>Si tu empresa ya cuenta con infraestructura de IA o conectores avanzados (como Server MCP en Claude), nos acoplamos de inmediato a tu entorno. Si apenas estás arrancando, te entregamos una arquitectura temporal de alto rendimiento lista para usar. La tecnología se adapta a tu ritmo, no al revés.</p>
+
+      <h3>4. Monetización directa de tus activos</h3>
+      <p>Cada movimiento de stock, conversación comercial y producto lento se transforma en una oportunidad activa. La IA detecta automáticamente combinaciones de productos complementarios, dinamiza el inventario de baja rotación y encapsula la inteligencia de ventas como patrimonio digital de la compañía.</p>
+
+      <h2>La garantía Loopa: Seamless AI para monetizar rápido</h2>
+      <p>La mayor bandera roja de un proveedor de tecnología es escucharlo decir: “Si no cambias tu ERP y todos tus procesos, no podemos instalar IA”. En Loopa creemos en la transformación progresiva, conveniente y sin fricción (Seamless AI):</p>
+      <ol>
+        <li><strong>Limpiamos y estructuramos tus datos comerciales</strong>, sin saltarnos el primer paso crítico: tener información limpia.</li>
+        <li><strong>Instalamos agentes de IA</strong> sobre tus procesos comerciales actuales para identificar cuellos de botella en bodega y liberar horas operativas desde la primera semana.</li>
+        <li><strong>Monetizamos activos existentes:</strong> convertimos tu inventario de lenta salida, tus datos y el flujo de trabajo de tus equipos en fuentes de ingreso constante e integraciones preautomatizadas.</li>
+      </ol>
+
+      <h2>¿Cuánto capital tienes atrapado en bodegas por no conectar tu información con el mercado correcto?</h2>
+      <p>Dejar que tus productos de baja rotación sigan acumulando polvo te cuesta almacenamiento, liquidez y margen operativo todos los días.</p>
+      <p>¿Quieres ver cómo conectar tus sistemas actuales a un motor predictivo que empiece a mover tu inventario en días y no en meses? <a href="/contacto"><strong>Solicita una demo en vivo con el equipo de Loopa</strong></a>.</p>
+    `,
+      en: `
+      <p>If you manage inventory, finance or commercial operations, you know the nightmare well: products gathering dust in the warehouse, scattered Excel databases, ERP systems that don’t talk to each other, and commercial decisions made too late, leaving cash trapped in stock that doesn’t move.</p>
+      <p>The traditional consulting answer? “We need to stop your company for 6 months, migrate your entire infrastructure and spend tens of thousands of dollars on custom development.”</p>
+      <p><strong>Today, that premise is obsolete.</strong> You don’t need to pause your operation or reinvent the wheel to free the cash stuck in your warehouses. There is a far more agile, comfortable and convenient path: connecting Artificial Intelligence on top of the infrastructure and processes you already run today.</p>
+
+      <h2>The fast track: from stalled inventory to liquid cash in days, not months</h2>
+      <p>Until now, trying to move slow-moving products meant aggressive discounts that destroyed margin, or manual report cross-checks that took weeks.</p>
+      <p>Our methodology breaks that paralysis through Plug-and-Play integration and a Zero-Copy architecture, giving you a commercial agility engine designed to find the ideal buyers for that stalled inventory, quickly and without friction. It rests on four pillars:</p>
+      <ul>
+        <li><strong>Plug-and-Play connectivity:</strong> connection on top of what you already use, with no traumatic ERP changes.</li>
+        <li><strong>Zero-Copy architecture:</strong> live market discovery, and your data never leaves your cloud.</li>
+        <li><strong>Immediate adaptability:</strong> native integration with MCP and with your everyday tools.</li>
+        <li><strong>Cumulative monetization:</strong> slow-stock rotation and cross-selling within the community.</li>
+      </ul>
+
+      <h3>1. Smooth implementation: zero disruption to your business</h3>
+      <p>Forget stopping operations to train your team on complex tools. We connect natively to your current repositories and channels (BigQuery, ERP, WhatsApp, TikTok, YouTube).</p>
+      <p><strong>The result:</strong> you enrich real-time commercial decisions inside the same platforms your team already uses every day.</p>
+
+      <h3>2. Community connection with Zero-Copy (without moving a single file)</h3>
+      <p>Zero-Copy architecture is the key to placing slow-moving products in the right market without putting your information at risk: your inventory and commercial databases never leave your company’s private infrastructure, yet the AI —which already understands your catalog and operating capabilities perfectly— goes out to explore in a fully secure way.</p>
+      <p>Through this model, the agent interacts within a network of partners and potential customers, looking for those with a specific need for those exact products at that precise moment. It connects your stalled supply with market demand in an automated, immediate way, without the risk or friction of moving a single file.</p>
+
+      <h3>3. Comfortable automation, tailored to you</h3>
+      <p>If your company already has AI infrastructure or advanced connectors (such as MCP Server in Claude), we plug into your environment right away. If you’re just getting started, we deliver a high-performance temporary architecture, ready to use. The technology adapts to your pace, not the other way around.</p>
+
+      <h3>4. Direct monetization of your assets</h3>
+      <p>Every stock movement, commercial conversation and slow product becomes an active opportunity. The AI automatically detects complementary product combinations, energizes slow-moving inventory and captures sales intelligence as the company’s digital asset.</p>
+
+      <h2>The Loopa guarantee: Seamless AI to monetize fast</h2>
+      <p>The biggest red flag from a technology vendor is hearing: “If you don’t change your ERP and all your processes, we can’t install AI.” At Loopa we believe in progressive, convenient, frictionless transformation (Seamless AI):</p>
+      <ol>
+        <li><strong>We clean and structure your commercial data</strong>, without skipping the critical first step: having clean information.</li>
+        <li><strong>We install AI agents</strong> on top of your current commercial processes to identify warehouse bottlenecks and free up operating hours from the first week.</li>
+        <li><strong>We monetize existing assets:</strong> we turn your slow-moving inventory, your data and your teams’ workflow into a steady source of income and pre-automated integrations.</li>
+      </ol>
+
+      <h2>How much capital do you have trapped in warehouses because your information isn’t connected to the right market?</h2>
+      <p>Letting your slow-moving products keep gathering dust costs you storage, liquidity and operating margin every single day.</p>
+      <p>Want to see how to connect your current systems to a predictive engine that starts moving your inventory in days, not months? <a href="/en/contacto"><strong>Request a live demo with the Loopa team</strong></a>.</p>
+    `,
+    },
+  },
+  {
     id: 'llm-privados-latam',
     title: {
       es: 'Cómo los Modelos LLM Privados están Transformando la Consulta de Datos Corporativos en LatAm',
