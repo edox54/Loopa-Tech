@@ -170,7 +170,7 @@ export function BlogView() {
 
                 <div className="lg:col-span-5 relative">
                   <PostCover post={featuredPost} lang={lang} ratio="4/3" label={t('blog.featuredImageLabel')} className="w-full rounded-2xl" />
-                  <div className="absolute -bottom-4 -right-4 w-12 h-12 rounded-2xl bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 flex items-center justify-center text-brand-cyan group-hover:bg-gradient-to-r group-hover:from-brand-coral group-hover:to-brand-cyan group-hover:text-brand-navy transition-all duration-300 shadow-md">
+                  <div className="absolute -top-4 -right-4 w-12 h-12 rounded-2xl bg-white dark:bg-brand-navy border border-brand-navy/10 dark:border-white/10 flex items-center justify-center text-brand-cyan group-hover:bg-gradient-to-r group-hover:from-brand-coral group-hover:to-brand-cyan group-hover:text-brand-navy transition-all duration-300 shadow-md">
                     <ArrowRight className="w-5 h-5" />
                   </div>
                 </div>

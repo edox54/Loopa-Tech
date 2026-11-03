@@ -8,6 +8,25 @@ import { pickLang, useLang } from '../lib/i18nData';
 import { Seo } from './Seo';
 import { Reveal } from './Reveal';
 import { MediaPlaceholder } from './MediaPlaceholder';
+import type { ProjectCase } from '../types';
+
+// Real art when the case has it, the placeholder box otherwise. `wide` is the 21:9 banner of the detail page.
+function CaseCover({ kase, lang, wide = false, label, className = '' }: { kase: ProjectCase; lang: 'es' | 'en'; wide?: boolean; label?: string; className?: string }) {
+  const base = kase.coverImage ? pickLang(kase.coverImage, lang) : '';
+  if (!base) return <MediaPlaceholder ratio={wide ? '21/9' : '16/9'} label={label} className={className} />;
+  return (
+    <img
+      src={wide ? base.replace(/\.webp$/, '-wide.webp') : base}
+      alt={pickLang(kase.title, lang)}
+      width={wide ? 1680 : 1200}
+      height={wide ? 720 : 800}
+      loading={wide ? 'eager' : 'lazy'}
+      decoding="async"
+      className={`w-full object-cover ${className}`}
+      style={{ aspectRatio: wide ? '7 / 3' : '3 / 2' }}
+    />
+  );
+}
 
 export function CasesView() {
   const navigate = useNavigate();
@@ -60,7 +79,7 @@ export function CasesView() {
                 className="bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 hover:border-brand-coral/40 rounded-2xl overflow-hidden flex flex-col justify-between hover:bg-white dark:hover:bg-brand-navy transition-all duration-300 group cursor-pointer"
                 onClick={() => handleSelectCase(kase.id)}
               >
-                <MediaPlaceholder ratio="16/9" className="rounded-none border-x-0 border-t-0" />
+                <CaseCover kase={kase} lang={lang} className="rounded-none" />
                 <div className="p-8 space-y-6">
                   <div className="flex items-center justify-between text-xs font-mono text-brand-navy/75 dark:text-white/75">
                     <span className="font-bold">{pickLang(kase.industry, lang)}</span>
@@ -145,7 +164,7 @@ export function CasesView() {
             </p>
           </div>
 
-          <MediaPlaceholder ratio="21/9" label={t('cases.featuredImageLabel')} className="w-full" />
+          <CaseCover kase={kase} lang={lang} wide label={t('cases.featuredImageLabel')} className="w-full rounded-2xl" />
 
           {/* Metrics Spotlight Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

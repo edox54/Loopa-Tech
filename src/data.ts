@@ -274,6 +274,10 @@ export const CLIENTS_LOGOS = [
 export const SUCCESS_CASES_DATA: ProjectCase[] = [
   {
     id: 'social-listening-retail',
+    coverImage: {
+      es: '/casos/social-listening-retail-es.webp',
+      en: '/casos/social-listening-retail-en.webp',
+    },
     title: {
       es: 'Predicción de tendencias de mercado con NLP avanzado en consumo masivo',
       en: 'Predicting market trends with advanced NLP in mass consumer goods',
@@ -314,6 +318,10 @@ export const SUCCESS_CASES_DATA: ProjectCase[] = [
   },
   {
     id: 'inventario-predictivo-logistica',
+    coverImage: {
+      es: '/casos/inventario-predictivo-logistica-es.webp',
+      en: '/casos/inventario-predictivo-logistica-en.webp',
+    },
     title: {
       es: 'Optimización predictiva de suministro para distribuidora de consumo',
       en: 'Predictive supply optimization for a consumer goods distributor',
@@ -354,6 +362,10 @@ export const SUCCESS_CASES_DATA: ProjectCase[] = [
   },
   {
     id: 'consentimiento-blockchain-fintech',
+    coverImage: {
+      es: '/casos/consentimiento-blockchain-fintech-es.webp',
+      en: '/casos/consentimiento-blockchain-fintech-en.webp',
+    },
     title: {
       es: 'Resguardo de consentimiento Habeas Data con Blockchain para microcréditos',
       en: 'Blockchain-backed Habeas Data consent for microloans',
@@ -394,6 +406,10 @@ export const SUCCESS_CASES_DATA: ProjectCase[] = [
   },
   {
     id: 'asistente-llm-energia',
+    coverImage: {
+      es: '/casos/asistente-llm-energia-es.webp',
+      en: '/casos/asistente-llm-energia-en.webp',
+    },
     title: {
       es: 'IA Generativa con RAG privado para soporte logístico en campo',
       en: 'Generative AI with private RAG for field logistics support',
@@ -536,6 +552,10 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
   },
   {
     id: 'llm-privados-latam',
+    coverImage: {
+      es: '/blog/llm-privados-latam-es.webp',
+      en: '/blog/llm-privados-latam-en.webp',
+    },
     title: {
       es: 'Cómo los Modelos LLM Privados están Transformando la Consulta de Datos Corporativos en LatAm',
       en: 'How Private LLMs Are Transforming Corporate Data Search Across LatAm',

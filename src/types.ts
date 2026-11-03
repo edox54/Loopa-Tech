@@ -30,7 +30,7 @@ export interface ProjectCase {
   metrics: { value: string; label: Localized<string> }[];
   tag: Localized<string>;
   date: string;
-  coverImage?: string; // TODO: real asset pending — placeholder rendered until set
+  coverImage?: Localized<string>; // card art 1200×800; the detail page uses the `-wide` sibling (1680×720)
 }
 
 export interface BlogPost {
