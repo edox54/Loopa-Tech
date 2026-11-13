@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from '../lib/i18nRouter';
 import { useTranslation } from 'react-i18next';
-import { Mail, ArrowRight, Linkedin, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Mail, ArrowRight, Linkedin, Instagram, Youtube, Sparkles, CheckCircle2 } from 'lucide-react';
 import { CALENDLY_URL, SERVICES_DATA } from '../data';
 import { Logo } from './Logo';
 import { pickLang, useLang } from '../lib/i18nData';
@@ -84,6 +84,25 @@ export function Footer() {
               >
                 <Linkedin className="w-4 h-4" />
               </a>
+              <a
+                href="https://www.instagram.com/loopainfluencia/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="w-9 h-9 flex items-center justify-center rounded-lg bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 text-brand-navy/75 dark:text-white/75 hover:text-brand-coral hover:border-brand-coral/30 transition-all"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.youtube.com/@LoopaTech/shorts"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube"
+                className="w-9 h-9 flex items-center justify-center rounded-lg bg-brand-light-gray dark:bg-brand-carbon border border-brand-navy/10 dark:border-white/10 text-brand-navy/75 dark:text-white/75 hover:text-brand-coral hover:border-brand-coral/30 transition-all"
+              >
+                <Youtube className="w-4 h-4" />
+              </a>
+              {/* TikTok: pending — the client has not sent the URL yet */}
             </div>
           </div>
 

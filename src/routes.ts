@@ -35,6 +35,7 @@ const SEGMENTS: Record<string, string> = {
 const SLUGS: Record<string, string> = {
   'rentabilidad-comercial': 'commercial-profitability',
   'imagen-politica': 'political-image',
+  'social-simulation': 'social-simulation',
   'analitica-predictiva': 'predictive-analytics',
   'limpieza-datos': 'data-cleansing',
   'servicios-econometricos': 'econometric-services',

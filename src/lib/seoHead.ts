@@ -44,7 +44,11 @@ const ORGANIZATION = {
   telephone: '+593996905953',
   address: { '@type': 'PostalAddress', addressLocality: 'Quito', addressCountry: 'EC' },
   contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: 'asancho@loopa.technology', telephone: '+593996905953', availableLanguage: ['es', 'en'] },
-  sameAs: ['https://www.linkedin.com/company/loopatech/'],
+  sameAs: [
+    'https://www.linkedin.com/company/loopatech/',
+    'https://www.instagram.com/loopainfluencia/',
+    'https://www.youtube.com/@LoopaTech',
+  ],
 };
 
 const WEBSITE = {

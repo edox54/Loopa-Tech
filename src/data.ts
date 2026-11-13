@@ -75,13 +75,13 @@ export const SERVICES_DATA: Service[] = [
     iconName: 'Sparkles',
     features: {
       es: [
-        'Monitoreo de radio, televisión, prensa y redes sociales',
+        'Zero shot narrative detection',
         'Análisis de sentimiento y temas de conversación',
         'Alertas tempranas de crisis reputacionales',
         'Reportes de percepción para equipos de comunicación',
       ],
       en: [
-        'Radio, TV, press and social media monitoring',
+        'Zero shot narrative detection',
         'Sentiment and topic analysis',
         'Early warnings for reputational crises',
         'Perception reports for communication teams',
@@ -102,6 +102,53 @@ export const SERVICES_DATA: Service[] = [
     forWho: {
       es: 'Gobiernos, instituciones públicas, candidatos y equipos de comunicación política, además de marcas que necesitan cuidar su reputación.',
       en: 'Governments, public institutions, candidates and political communication teams, as well as brands that need to protect their reputation.',
+    },
+    metrics: { es: [], en: [] },
+  },
+  {
+    id: 'social-simulation',
+    title: {
+      es: 'Social Simulation: audiencias sintéticas',
+      en: 'Social Simulation: synthetic audiences',
+    },
+    shortDesc: {
+      es: 'Prueba campañas y mensajes con audiencias sintéticas, sin riesgo, antes de lanzarlos al público real.',
+      en: 'Test campaigns and messages with synthetic audiences, risk-free, before they reach your real audience.',
+    },
+    longDesc: {
+      es: 'Social Simulation te permite probar campañas y mensajes con audiencias sintéticas antes de publicarlos. Simulas cómo reaccionaría cada segmento, comparas versiones y ajustas el mensaje sin exponer tu marca ni gastar presupuesto en pruebas reales.',
+      en: 'Social Simulation lets you test campaigns and messages with synthetic audiences before you publish them. You simulate how each segment would react, compare versions and refine the message without exposing your brand or spending budget on real-world tests.',
+    },
+    iconName: 'Users',
+    features: {
+      es: [
+        'Audiencias sintéticas por segmento para probar mensajes y campañas',
+        'Comparación de versiones de un mismo mensaje antes de lanzarlo',
+        'Anticipación de reacciones y de posibles focos de crisis',
+        'Ajuste del mensaje sin exponer tu marca ni tu presupuesto',
+      ],
+      en: [
+        'Synthetic audiences by segment to test messages and campaigns',
+        'Side-by-side comparison of message versions before launch',
+        'Anticipation of reactions and potential crisis triggers',
+        'Message refinement without exposing your brand or your budget',
+      ],
+    },
+    benefits: {
+      es: [
+        'Pruebas sin riesgo: tu audiencia real solo ve el mensaje que ya fue probado.',
+        'Decisiones de comunicación respaldadas por simulación, no por intuición.',
+        'Menos presupuesto gastado en campañas que no funcionan.',
+      ],
+      en: [
+        'Risk-free testing: your real audience only sees the message that has already been tested.',
+        'Communication decisions backed by simulation, not intuition.',
+        'Less budget spent on campaigns that do not work.',
+      ],
+    },
+    forWho: {
+      es: 'Equipos de marketing, comunicación y asuntos públicos, y agencias que necesitan validar mensajes y campañas antes de lanzarlos.',
+      en: 'Marketing, communications and public affairs teams, and agencies that need to validate messages and campaigns before launching them.',
     },
     metrics: { es: [], en: [] },
   },
